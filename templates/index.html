@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Virtual Chief Engineer</title>
+</head>
+<body>
+    <h1>Virtual Chief Engineer</h1>
+    <form id="query-form">
+        <textarea id="query" placeholder="Describe the machinery issue..."></textarea>
+        <button type="submit">Diagnose</button>
+    </form>
+    <div id="results"></div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
