@@ -1,0 +1,1386 @@
+# Main Engine Pressure-Related Fault Trees
+
+## Fault 1
+fault:
+  name: "Main Engine Low Lubricating Oil Pressure"
+  symptoms:
+    - "Low lubricating oil pressure alarm"
+    - "Engine automatic slowdown or shutdown"
+    - "Abnormal bearing temperatures"
+    - "Unusual engine noise"
+    - "Oil pressure gauge showing below normal readings"
+  causes:
+    - name: "Telescopic pipe issues"
+      probability: 0.6
+      checks:
+        - "Inspect telescopic pipes"
+        - "Check pipe movement"
+        - "Verify alignment"
+        - "Test for internal leakage"
+      actions:
+        - "Replace damaged telescopic pipes"
+        - "Restore proper alignment"
+        - "Service sliding surfaces"
+        - "Check for scoring or wear"
+    - name: "System leakage"
+      probability: 0.5
+      checks:
+        - "Check for external leaks"
+        - "Inspect pipe connections"
+        - "Test system integrity"
+        - "Verify pressure relief valve"
+      actions:
+        - "Repair identified leaks"
+        - "Tighten loose connections"
+        - "Replace damaged components"
+        - "Adjust relief valve setting"
+
+## Fault 2
+fault:
+  name: "Main Engine High Crankcase Pressure"
+  symptoms:
+    - "High crankcase pressure alarm"
+    - "Oil mist detector alarm"
+    - "Abnormal crankcase breather emission"
+    - "Engine protection system activation"
+    - "Unusual noise from crankcase"
+  causes:
+    - name: "Piston ring blow-by"
+      probability: 0.75
+      checks:
+        - "Check cylinder compression"
+        - "Inspect indicator cock operation"
+        - "Monitor exhaust gas temperatures"
+        - "Check for signs of scuffing on liners"
+      actions:
+        - "Overhaul affected cylinders"
+        - "Replace worn piston rings"
+        - "Check liner condition"
+        - "Verify piston ring gap clearances"
+    - name: "Crankcase breather restriction"
+      probability: 0.7
+      checks:
+        - "Inspect breather for clogging"
+        - "Check breather filter condition"
+        - "Verify breather valve operation"
+        - "Inspect breather piping"
+      actions:
+        - "Clean or replace breather"
+        - "Service breather valve"
+        - "Clear breather piping"
+        - "Remove restrictions"
+    - name: "Excessive bearing clearance"
+      probability: 0.6
+      checks:
+        - "Check main and connecting rod bearing clearances"
+        - "Inspect for oil mist formation"
+        - "Monitor bearing temperatures"
+        - "Check for abnormal vibration"
+      actions:
+        - "Replace worn bearings"
+        - "Verify crankshaft alignment"
+        - "Check journal surface condition"
+        - "Maintain proper bearing clearances"
+    - name: "Oil aeration"
+      probability: 0.5
+      checks:
+        - "Inspect for air ingress in oil system"
+        - "Check oil pump suction line"
+        - "Verify oil level is not too high/low"
+        - "Check for foam in oil"
+      actions:
+        - "Repair suction leaks"
+        - "Maintain proper oil level"
+        - "Check deaerator function"
+        - "Investigate source of aeration"
+
+## Fault 3
+fault:
+  name: "Main Engine Low Fuel Oil Pressure"
+  symptoms:
+    - "Low fuel oil pressure alarm"
+    - "Reduced engine power"
+    - "Unstable engine RPM"
+    - "Increased fuel consumption"
+    - "Engine misfiring or rough running"
+  causes:
+    - name: "Fuel filter clogging"
+      probability: 0.85
+      checks:
+        - "Check differential pressure across filters"
+        - "Inspect filter elements"
+        - "Verify bypass valve operation"
+        - "Test fuel quality"
+      actions:
+        - "Replace fuel filter elements"
+        - "Clean filter housing"
+        - "Check fuel quality and change if necessary"
+        - "Service bypass valve"
+    - name: "Fuel pump issues"
+      probability: 0.7
+      checks:
+        - "Inspect fuel supply pump"
+        - "Check pump drive mechanism"
+        - "Measure pump discharge pressure"
+        - "Verify electrical supply to pump"
+      actions:
+        - "Repair or replace fuel pump"
+        - "Service pump drive"
+        - "Check power supply to pump"
+        - "Adjust pressure regulator"
+    - name: "Air in fuel system"
+      probability: 0.65
+      checks:
+        - "Check for air leaks in suction side"
+        - "Inspect pipe connections"
+        - "Verify tank venting system"
+        - "Check seals and gaskets"
+      actions:
+        - "Tighten loose connections"
+        - "Bleed air from fuel system"
+        - "Replace damaged seals"
+        - "Check suction pipe arrangement"
+    - name: "Low fuel level"
+      probability: 0.5
+      checks:
+        - "Check fuel level in service tank"
+        - "Verify transfer pump operation"
+        - "Inspect float switch/level indicator"
+        - "Check for transfer system alarms"
+      actions:
+        - "Transfer fuel to service tank"
+        - "Repair level indication system"
+        - "Service transfer pump"
+        - "Check for blocked suction"
+    - name: "Pressure regulating valve malfunction"
+      probability: 0.45
+      checks:
+        - "Inspect pressure regulating valve"
+        - "Check valve spring tension"
+        - "Verify valve setting"
+        - "Look for contamination"
+      actions:
+        - "Clean pressure regulating valve"
+        - "Adjust valve setting"
+        - "Replace valve if necessary"
+        - "Check for fuel contamination"
+
+## Fault 4
+fault:
+  name: "Main Engine Low Cooling Water Pressure"
+  symptoms:
+    - "Low cooling water pressure alarm"
+    - "Rising engine temperature"
+    - "Fluctuating cooling water pressure"
+    - "Expansion tank level changes"
+    - "Cooling pump abnormal noise"
+  causes:
+    - name: "Water pump malfunction"
+      probability: 0.8
+      checks:
+        - "Check pump operation"
+        - "Inspect pump coupling"
+        - "Measure pump discharge pressure"
+        - "Check for unusual noise"
+      actions:
+        - "Repair or replace water pump"
+        - "Service pump coupling"
+        - "Replace worn impeller"
+        - "Check pump shaft alignment"
+    - name: "Air in cooling system"
+      probability: 0.7
+      checks:
+        - "Check for air leaks"
+        - "Inspect air venting points"
+        - "Monitor expansion tank level"
+        - "Check for bubbles in sight glass"
+      actions:
+        - "Vent air from cooling system"
+        - "Repair leaks"
+        - "Top up expansion tank"
+        - "Check system for gas contamination"
+    - name: "Restriction in cooling circuit"
+      probability: 0.65
+      checks:
+        - "Inspect heat exchangers for fouling"
+        - "Check cooling water strainers"
+        - "Verify thermostat operation"
+        - "Test 3-way temperature control valve"
+      actions:
+        - "Clean heat exchangers"
+        - "Clean strainers"
+        - "Replace faulty thermostat"
+        - "Service 3-way valve"
+    - name: "Pressure regulating valve issues"
+      probability: 0.55
+      checks:
+        - "Check pressure control valve"
+        - "Inspect valve spring/diaphragm"
+        - "Verify valve setting"
+        - "Test valve operation"
+      actions:
+        - "Clean pressure control valve"
+        - "Adjust valve setting"
+        - "Replace valve components"
+        - "Service actuator if fitted"
+    - name: "External leakage"
+      probability: 0.5
+      checks:
+        - "Inspect system for visible leaks"
+        - "Check cooling water consumption rate"
+        - "Pressure test system if possible"
+        - "Inspect pipe joints and flanges"
+      actions:
+        - "Repair identified leaks"
+        - "Replace damaged pipes"
+        - "Tighten loose connections"
+        - "Replace damaged gaskets"
+
+## Fault 5
+fault:
+  name: "Main Engine High Scavenge Air Pressure"
+  symptoms:
+    - "High scavenge air pressure alarm"
+    - "Increased engine power"
+    - "Higher than normal firing pressure"
+    - "Potential overloading"
+    - "Turbocharger over-speed concerns"
+  causes:
+    - name: "Excessive turbocharger efficiency"
+      probability: 0.7
+      checks:
+        - "Monitor turbocharger speed"
+        - "Check turbocharger cleanliness"
+        - "Inspect variable geometry system if fitted"
+        - "Verify waste gate operation if fitted"
+      actions:
+        - "Adjust waste gate setting if available"
+        - "Check VGT mechanism operation"
+        - "Verify engine is within operating parameters"
+        - "Adjust load controller if necessary"
+    - name: "Scavenge air cooler bypass"
+      probability: 0.6
+      checks:
+        - "Inspect bypass valve position"
+        - "Check bypass control system"
+        - "Verify temperature control logic"
+        - "Test actuator operation"
+      actions:
+        - "Adjust bypass valve"
+        - "Service control system"
+        - "Recalibrate temperature sensors"
+        - "Check for control air leakage"
+    - name: "Environmental conditions"
+      probability: 0.5
+      checks:
+        - "Check barometric pressure"
+        - "Measure intake air temperature"
+        - "Verify engine room ventilation"
+        - "Consider weather and altitude effects"
+      actions:
+        - "Adjust engine load accordingly"
+        - "Verify engine operation is within limits"
+        - "Consider operational constraints"
+        - "Monitor parameters closely"
+    - name: "Pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure sensors"
+        - "Check sensor connections"
+        - "Verify signal transmission"
+        - "Compare with manual gauge readings"
+      actions:
+        - "Recalibrate pressure sensors"
+        - "Replace faulty sensors"
+        - "Repair signal transmission issues"
+        - "Check alarm settings"
+
+## Fault 6
+fault:
+  name: "Main Engine Low Scavenge Air Pressure"
+  symptoms:
+    - "Low scavenge air pressure alarm"
+    - "Reduced engine power"
+    - "Black smoke from exhaust"
+    - "High exhaust gas temperatures"
+    - "Poor combustion indicators"
+  causes:
+    - name: "Turbocharger issues"
+      probability: 0.85
+      checks:
+        - "Inspect turbocharger for fouling"
+        - "Check turbocharger rotor freedom"
+        - "Measure turbocharger speed"
+        - "Inspect for mechanical damage"
+      actions:
+        - "Clean turbocharger air/gas sides"
+        - "Service or replace turbocharger"
+        - "Balance turbocharger rotor"
+        - "Check bearings and seals"
+    - name: "Air filter restriction"
+      probability: 0.8
+      checks:
+        - "Check differential pressure across filter"
+        - "Inspect filter elements"
+        - "Verify airflow restriction indicator"
+        - "Check for foreign material"
+      actions:
+        - "Clean or replace air filters"
+        - "Remove foreign material"
+        - "Reset restriction indicator"
+        - "Check filter housing integrity"
+    - name: "Exhaust gas system restriction"
+      probability: 0.7
+      checks:
+        - "Inspect exhaust gas economizer"
+        - "Check silencer condition"
+        - "Measure back pressure"
+        - "Inspect exhaust gas piping"
+      actions:
+        - "Clean exhaust gas economizer"
+        - "Service silencer"
+        - "Remove restrictions in exhaust system"
+        - "Clean turbocharger nozzle ring"
+    - name: "Air cooler fouling"
+      probability: 0.65
+      checks:
+        - "Inspect air cooler for fouling"
+        - "Check pressure drop across cooler"
+        - "Verify water drains operation"
+        - "Measure temperature differential"
+      actions:
+        - "Clean air cooler"
+        - "Service water drain system"
+        - "Maintain water washing schedule"
+        - "Check for tube leaks"
+    - name: "Pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure sensor"
+        - "Check sensor connections"
+        - "Verify signal transmission"
+        - "Compare with manual readings"
+      actions:
+        - "Recalibrate or replace pressure sensor"
+        - "Repair connections"
+        - "Service monitoring system"
+        - "Verify alarm settings"
+
+## Fault 7
+fault:
+  name: "Main Engine High Fuel Injection Pressure"
+  symptoms:
+    - "High fuel pressure indication"
+    - "Increased engine noise"
+    - "Harder engine starting"
+    - "Potential mechanical damage"
+    - "Abnormal combustion"
+  causes:
+    - name: "Incorrect fuel pump timing"
+      probability: 0.75
+      checks:
+        - "Check fuel pump timing"
+        - "Verify camshaft position"
+        - "Inspect timing marks"
+        - "Test injection timing"
+      actions:
+        - "Adjust fuel pump timing"
+        - "Verify camshaft timing"
+        - "Consult manufacturer specifications"
+        - "Check for wear in timing mechanism"
+    - name: "Fuel injector issues"
+      probability: 0.7
+      checks:
+        - "Check injector opening pressure"
+        - "Inspect injector spring tension"
+        - "Test injector spray pattern"
+        - "Verify injector valve movement"
+      actions:
+        - "Adjust injector opening pressure"
+        - "Replace injector springs"
+        - "Service or replace injectors"
+        - "Check for carbon deposits"
+    - name: "High viscosity fuel"
+      probability: 0.6
+      checks:
+        - "Measure fuel viscosity"
+        - "Check fuel temperature"
+        - "Verify fuel heating system"
+        - "Test fuel quality"
+      actions:
+        - "Adjust fuel heating"
+        - "Verify correct fuel grade"
+        - "Check viscosimeter operation"
+        - "Clean fuel heater"
+    - name: "Pressure regulating valve malfunction"
+      probability: 0.5
+      checks:
+        - "Inspect pressure regulating valve"
+        - "Check valve spring tension"
+        - "Verify valve setting"
+        - "Test valve operation"
+      actions:
+        - "Clean pressure regulating valve"
+        - "Adjust valve setting"
+        - "Replace valve if necessary"
+        - "Reset to manufacturer specification"
+
+## Fault 8
+fault:
+  name: "Main Engine Low Fuel Injection Pressure"
+  symptoms:
+    - "Low fuel injection pressure indication"
+    - "Poor engine performance"
+    - "Difficult starting"
+    - "White/gray smoke from exhaust"
+    - "Engine misfiring"
+  causes:
+    - name: "Fuel pump wear"
+      probability: 0.8
+      checks:
+        - "Check fuel pump plunger and barrel"
+        - "Inspect pump delivery valve"
+        - "Test fuel pump output"
+        - "Check for internal leakage"
+      actions:
+        - "Replace worn fuel pump elements"
+        - "Service delivery valve"
+        - "Install new o-rings and seals"
+        - "Check cam lobe condition"
+    - name: "Air in fuel system"
+      probability: 0.7
+      checks:
+        - "Check for air leaks in fuel system"
+        - "Inspect pipe connections"
+        - "Verify fuel return system"
+        - "Test fuel circulation"
+      actions:
+        - "Tighten loose connections"
+        - "Bleed air from system"
+        - "Replace damaged seals"
+        - "Check for cracked pipes"
+    - name: "Low viscosity fuel"
+      probability: 0.6
+      checks:
+        - "Measure fuel viscosity"
+        - "Check fuel temperature"
+        - "Verify cooling/heating system"
+        - "Test fuel quality"
+      actions:
+        - "Adjust fuel temperature"
+        - "Verify correct fuel grade"
+        - "Service temperature control"
+        - "Check for fuel contamination"
+    - name: "Fuel injector issues"
+      probability: 0.55
+      checks:
+        - "Check injector opening pressure"
+        - "Inspect for nozzle wear/damage"
+        - "Test injector spray pattern"
+        - "Check for leakage"
+      actions:
+        - "Replace worn injectors"
+        - "Adjust opening pressure"
+        - "Clean injector nozzles"
+        - "Check injector seats"
+    - name: "Pressure gauge malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure gauge"
+        - "Check gauge connections"
+        - "Verify with secondary measurement"
+        - "Inspect for damage"
+      actions:
+        - "Replace faulty gauge"
+        - "Repair connections"
+        - "Recalibrate measurement system"
+        - "Clear blocked impulse lines"
+
+## Fault 9
+fault:
+  name: "Main Engine High Compression Pressure"
+  symptoms:
+    - "High compression pressure readings"
+    - "Increased mechanical stress"
+    - "Potential starting difficulties"
+    - "Risk of mechanical damage"
+    - "Abnormal engine noise"
+  causes:
+    - name: "Carbon deposits"
+      probability: 0.75
+      checks:
+        - "Check for carbon buildup in combustion space"
+        - "Inspect piston crown"
+        - "Check cylinder head"
+        - "Verify recent operational history"
+      actions:
+        - "Decarbonize combustion space"
+        - "Clean piston crown"
+        - "Service cylinder head"
+        - "Review operating procedures"
+    - name: "Incorrect valve timing"
+      probability: 0.6
+      checks:
+        - "Check exhaust valve timing"
+        - "Verify valve overlap"
+        - "Inspect camshaft timing"
+        - "Test valve operation"
+      actions:
+        - "Adjust valve timing"
+        - "Correct camshaft timing"
+        - "Service valve actuating mechanism"
+        - "Check timing gear marks"
+    - name: "Compression ratio change"
+      probability: 0.5
+      checks:
+        - "Measure piston protrusion"
+        - "Check cylinder head gasket thickness"
+        - "Verify piston type is correct"
+        - "Inspect liner height"
+      actions:
+        - "Adjust with appropriate gasket thickness"
+        - "Verify correct components"
+        - "Consult manufacturer specifications"
+        - "Correct improper assembly"
+    - name: "Indicator malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate indicator equipment"
+        - "Check indicator valve"
+        - "Verify connection to cylinder"
+        - "Test with known good equipment"
+      actions:
+        - "Service indicator equipment"
+        - "Clean indicator valve"
+        - "Replace indicator components"
+        - "Use correct calibration"
+
+## Fault 10
+fault:
+  name: "Main Engine Low Compression Pressure"
+  symptoms:
+    - "Low compression pressure readings"
+    - "Difficult starting"
+    - "Poor engine performance"
+    - "Black smoke from exhaust"
+    - "High lubricating oil consumption"
+  causes:
+    - name: "Piston ring wear/breakage"
+      probability: 0.85
+      checks:
+        - "Inspect piston rings through scavenge ports"
+        - "Check lubricating oil consumption"
+        - "Monitor crankcase oil mist"
+        - "Test compression with indicator"
+      actions:
+        - "Replace worn piston rings"
+        - "Service piston assembly"
+        - "Check ring grooves for wear"
+        - "Verify ring gaps and orientation"
+    - name: "Cylinder liner wear"
+      probability: 0.75
+      checks:
+        - "Measure liner diameter"
+        - "Check for liner wear pattern"
+        - "Inspect for scuffing"
+        - "Verify liner lubrication"
+      actions:
+        - "Replace worn cylinder liner"
+        - "Check liner cooling system"
+        - "Adjust cylinder oil feed rate"
+        - "Ensure proper running-in procedure"
+    - name: "Exhaust valve leakage"
+      probability: 0.7
+      checks:
+        - "Inspect exhaust valve seating"
+        - "Check valve for burning/pitting"
+        - "Verify valve rotation"
+        - "Test valve tightness"
+      actions:
+        - "Grind or replace exhaust valve"
+        - "Service valve seat"
+        - "Check valve rotator"
+        - "Adjust valve clearance"
+    - name: "Cylinder head gasket failure"
+      probability: 0.6
+      checks:
+        - "Look for signs of gas leakage"
+        - "Inspect cylinder head gasket"
+        - "Check cylinder head bolts tension"
+        - "Test for cooling water contamination"
+      actions:
+        - "Replace cylinder head gasket"
+        - "Check cylinder head for distortion"
+        - "Tighten head bolts to specification"
+        - "Verify proper assembly"
+    - name: "Indicator equipment issues"
+      probability: 0.4
+      checks:
+        - "Calibrate indicator equipment"
+        - "Check indicator valve"
+        - "Verify indicator connections"
+        - "Test with known good equipment"
+      actions:
+        - "Service indicator equipment"
+        - "Replace faulty components"
+        - "Clean indicator valve"
+        - "Use correct calibration"
+
+## Fault 11
+fault:
+  name: "Main Engine High Starting Air Pressure Drop"
+  symptoms:
+    - "Excessive pressure drop in starting air system"
+    - "Difficulty starting engine"
+    - "Quick depletion of air reservoirs"
+    - "Multiple start attempts required"
+    - "Air leakage sounds"
+  causes:
+    - name: "Air distributor leakage"
+      probability: 0.8
+      checks:
+        - "Inspect air distributor seals"
+        - "Check distributor operation"
+        - "Test for leakage"
+        - "Verify timing"
+      actions:
+        - "Overhaul air distributor"
+        - "Replace worn seals"
+        - "Clean distributor components"
+        - "Adjust timing if necessary"
+    - name: "Starting air valve issues"
+      probability: 0.75
+      checks:
+        - "Check starting air valves"
+        - "Inspect valve seats and springs"
+        - "Test valve operation"
+        - "Listen for leakage"
+      actions:
+        - "Replace damaged starting air valves"
+        - "Clean valve seats"
+        - "Replace springs if necessary"
+        - "Apply proper lubrication"
+    - name: "Air line leaks"
+      probability: 0.7
+      checks:
+        - "Inspect air piping for leaks"
+        - "Check connections and flanges"
+        - "Test with soapy water if possible"
+        - "Verify valve packings"
+      actions:
+        - "Repair identified leaks"
+        - "Tighten loose connections"
+        - "Replace damaged pipes"
+        - "Renew valve packings"
+    - name: "Control air system leakage"
+      probability: 0.6
+      checks:
+        - "Check pilot air system"
+        - "Inspect solenoid valves"
+        - "Verify control air pressure"
+        - "Test system operation"
+      actions:
+        - "Replace leaking components"
+        - "Service solenoid valves"
+        - "Adjust control air pressure"
+        - "Repair pilot system"
+    - name: "Air starting system blockage"
+      probability: 0.5
+      checks:
+        - "Inspect for moisture or oil accumulation"
+        - "Check air filters/strainers"
+        - "Verify drain trap operation"
+        - "Test system flow"
+      actions:
+        - "Clean air system components"
+        - "Replace clogged filters"
+        - "Service drain traps"
+        - "Blow through system if necessary"
+
+## Fault 12
+fault:
+  name: "Main Engine Low Starting Air Pressure"
+  symptoms:
+    - "Low starting air pressure alarm"
+    - "Difficulty starting engine"
+    - "Slow build-up of air pressure"
+    - "Air compressor running frequently"
+    - "Engine turning over slowly during start"
+  causes:
+    - name: "Air compressor issues"
+      probability: 0.8
+      checks:
+        - "Check air compressor operation"
+        - "Inspect compressor valves"
+        - "Verify delivery pressure"
+        - "Test safety valve"
+      actions:
+        - "Service air compressor"
+        - "Replace worn valves"
+        - "Clean intercooler"
+        - "Adjust pressure switch setting"
+    - name: "Air system leakage"
+      probability: 0.75
+      checks:
+        - "Inspect entire air system for leaks"
+        - "Check main air receivers"
+        - "Test air bottle valves"
+        - "Verify starting valve tightness"
+      actions:
+        - "Repair identified leaks"
+        - "Replace damaged components"
+        - "Test system integrity"
+        - "Service starting valves"
+    - name: "Pressure regulating valve issues"
+      probability: 0.6
+      checks:
+        - "Check pressure reducing valve"
+        - "Inspect pressure regulator"
+        - "Verify valve setting"
+        - "Test valve operation"
+      actions:
+        - "Clean pressure regulator"
+        - "Adjust valve setting"
+        - "Replace valve if necessary"
+        - "Service pressure control system"
+    - name: "Air receiver drain valve leakage"
+      probability: 0.5
+      checks:
+        - "Inspect drain valves"
+        - "Check automatic drain traps"
+        - "Verify valve seating"
+        - "Test for leakage"
+      actions:
+        - "Clean drain valves"
+        - "Replace faulty drain traps"
+        - "Service valve seats"
+        - "Adjust automatic drain timing"
+    - name: "Pressure gauge malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure gauge"
+        - "Verify with secondary measurement"
+        - "Check gauge connections"
+        - "Inspect for damage"
+      actions:
+        - "Replace faulty gauge"
+        - "Recalibrate if possible"
+        - "Repair connections"
+        - "Clear blocked impulse line"
+
+## Fault 13
+fault:
+  name: "Main Engine High Differential Pressure Across Air Filter"
+  symptoms:
+    - "High differential pressure alarm"
+    - "Reduced engine power"
+    - "Increased fuel consumption"
+    - "High exhaust gas temperature"
+    - "Low turbocharger speed"
+  causes:
+    - name: "Clogged air filter elements"
+      probability: 0.9
+      checks:
+        - "Inspect air filter elements"
+        - "Check for unusual contamination"
+        - "Verify maintenance schedule"
+        - "Test filter restriction indicator"
+      actions:
+        - "Clean or replace air filter elements"
+        - "Reset restriction indicator"
+        - "Adhere to maintenance schedule"
+        - "Investigate source of contamination"
+    - name: "Environmental factors"
+      probability: 0.7
+      checks:
+        - "Check for high dust conditions"
+        - "Verify air intake location"
+        - "Inspect for water/snow ingress"
+        - "Consider ambient conditions"
+      actions:
+        - "Relocate air intake if possible"
+        - "Install additional pre-filtering"
+        - "Protect from weather elements"
+        - "Increase filter inspection frequency"
+    - name: "Filter housing issues"
+      probability: 0.5
+      checks:
+        - "Inspect filter housing for damage"
+        - "Check for improper sealing"
+        - "Verify correct filter installation"
+        - "Test housing integrity"
+      actions:
+        - "Repair damaged housing"
+        - "Ensure proper filter seating"
+        - "Replace gaskets/seals"
+        - "Verify correct assembly"
+    - name: "Differential pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate differential pressure sensor"
+        - "Check sensor connections"
+        - "Verify sensing lines"
+        - "Test with known good equipment"
+      actions:
+        - "Recalibrate sensor"
+        - "Replace faulty sensor"
+        - "Clear sensing lines"
+        - "Adjust alarm settings"
+
+## Fault 14
+fault:
+  name: "Main Engine Low Piston Cooling Oil Pressure"
+  symptoms:
+    - "Low piston cooling oil pressure alarm"
+    - "High piston temperature"
+    - "Piston cooling system flow indicator issues"
+    - "Risk of piston seizure"
+    - "Engine power limitation"
+  causes:
+    - name: "Piston cooling oil pump failure"
+      probability: 0.8
+      checks:
+        - "Check pump operation"
+        - "Inspect pump coupling"
+        - "Measure discharge pressure"
+        - "Verify electrical supply if applicable"
+      actions:
+        - "Repair or replace pump"
+        - "Service pump coupling"
+        - "Check pump drive mechanism"
+        - "Restore electrical supply"
+    - name: "Oil filter clogging"
+      probability: 0.75
+      checks:
+        - "Check differential pressure across filter"
+        - "Inspect filter elements"
+        - "Test bypass valve operation"
+        - "Look for contamination"
+      actions:
+        - "Replace filter elements"
+        - "Service bypass valve"
+        - "Clean filter housing"
+        - "Address source of contamination"
+    - name: "Oil cooler fouling"
+      probability: 0.6
+      checks:
+        - "Inspect oil cooler"
+        - "Check cooling water flow"
+        - "Measure temperature differential"
+        - "Test pressure drop"
+      actions:
+        - "Clean oil cooler"
+        - "Restore cooling water flow"
+        - "Replace cooler if necessary"
+        - "Improve water treatment"
+    - name: "
+
+## Fault 15
+fault:
+  name: "Main Engine High Differential Pressure Across Lubricating Oil Filter"
+  symptoms:
+    - "High differential pressure alarm"
+    - "Lubricating oil filter bypass indicator activation"
+    - "Potential low oil pressure downstream"
+    - "Increased oil temperature"
+    - "Abnormal engine bearing temperature"
+  causes:
+    - name: "Contaminated filter elements"
+      probability: 0.85
+      checks:
+        - "Inspect filter elements"
+        - "Check for metal particles"
+        - "Verify oil quality"
+        - "Test bypass valve operation"
+      actions:
+        - "Replace filter elements"
+        - "Analyze contaminants"
+        - "Check for source of contamination"
+        - "Service bypass valve"
+    - name: "Improper oil grade"
+      probability: 0.6
+      checks:
+        - "Verify correct oil specification"
+        - "Check oil viscosity"
+        - "Test oil temperature"
+        - "Consult manufacturer requirements"
+      actions:
+        - "Change to correct oil grade"
+        - "Adjust oil temperature"
+        - "Follow manufacturer specifications"
+        - "Review bunkering procedures"
+    - name: "Cold oil conditions"
+      probability: 0.55
+      checks:
+        - "Check oil temperature"
+        - "Verify oil heater operation"
+        - "Inspect thermostat function"
+        - "Test temperature control system"
+      actions:
+        - "Repair oil heater"
+        - "Replace faulty thermostat"
+        - "Adjust temperature control"
+        - "Allow proper warm-up time"
+    - name: "Filter structural issues"
+      probability: 0.45
+      checks:
+        - "Inspect filter housing"
+        - "Check for collapsed elements"
+        - "Verify correct assembly"
+        - "Test internal bypass channels"
+      actions:
+        - "Replace damaged filter components"
+        - "Correct assembly issues"
+        - "Use appropriate filter elements"
+        - "Clean filter housing"
+    - name: "Differential pressure gauge malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate differential pressure gauge"
+        - "Check gauge connections"
+        - "Verify sensing lines"
+        - "Test with known calibrated equipment"
+      actions:
+        - "Replace faulty gauge"
+        - "Clear blocked sensing lines"
+        - "Recalibrate measurement system"
+        - "Adjust alarm settings"
+
+## Fault 16
+fault:
+  name: "Main Engine High Fuel Oil Pressure"
+  symptoms:
+    - "High fuel pressure alarm"
+    - "Potential leakage from high pressure pipes"
+    - "Abnormal engine knocking"
+    - "Increased fuel consumption"
+    - "Mechanical stress on injection components"
+  causes:
+    - name: "Pressure regulating valve malfunction"
+      probability: 0.8
+      checks:
+        - "Inspect pressure regulating valve"
+        - "Check valve spring tension"
+        - "Verify valve seating"
+        - "Test for sticking or jamming"
+      actions:
+        - "Clean pressure regulating valve"
+        - "Adjust valve setting"
+        - "Replace valve components"
+        - "Check for contamination"
+    - name: "Fuel oil viscosity issues"
+      probability: 0.7
+      checks:
+        - "Measure fuel viscosity"
+        - "Check fuel temperature"
+        - "Verify heating system operation"
+        - "Test viscosimeter if fitted"
+      actions:
+        - "Adjust fuel heating"
+        - "Service temperature control system"
+        - "Calibrate viscosimeter"
+        - "Use correct fuel grade"
+    - name: "Fuel pump delivery valve sticking"
+      probability: 0.6
+      checks:
+        - "Inspect delivery valves"
+        - "Check for contamination"
+        - "Test valve spring tension"
+        - "Verify valve seating"
+      actions:
+        - "Clean or replace delivery valves"
+        - "Remove contamination"
+        - "Replace valve springs"
+        - "Check valve seats"
+    - name: "Pressure transmitter fault"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure transmitter"
+        - "Check electrical connections"
+        - "Verify signal output"
+        - "Compare with local gauge"
+      actions:
+        - "Recalibrate transmitter"
+        - "Replace faulty transmitter"
+        - "Repair electrical issues"
+        - "Adjust alarm settings"
+
+## Fault 17
+fault:
+  name: "Main Engine Low Control Air Pressure"
+  symptoms:
+    - "Low control air pressure alarm"
+    - "Erratic engine control"
+    - "Slow actuator response"
+    - "Potential shutdown or failure to start"
+    - "Unstable governing"
+  causes:
+    - name: "Air compressor issues"
+      probability: 0.75
+      checks:
+        - "Check control air compressor"
+        - "Inspect air dryer"
+        - "Verify compressor unloader"
+        - "Test safety valve"
+      actions:
+        - "Service air compressor"
+        - "Replace worn components"
+        - "Clean/replace air dryer desiccant"
+        - "Adjust pressure switches"
+    - name: "System leakage"
+      probability: 0.7
+      checks:
+        - "Inspect pneumatic lines for leaks"
+        - "Check pneumatic actuators"
+        - "Test solenoid valves"
+        - "Verify connections and fittings"
+      actions:
+        - "Repair identified leaks"
+        - "Replace damaged pneumatic lines"
+        - "Service faulty actuators"
+        - "Tighten loose connections"
+    - name: "Air filter restriction"
+      probability: 0.6
+      checks:
+        - "Inspect control air filters"
+        - "Check for moisture or oil contamination"
+        - "Verify filter integrity"
+        - "Test airflow"
+      actions:
+        - "Clean or replace air filters"
+        - "Drain moisture from system"
+        - "Service air dryer"
+        - "Clear restrictions"
+    - name: "Pressure regulator malfunction"
+      probability: 0.55
+      checks:
+        - "Check pressure regulator"
+        - "Inspect regulator diaphragm"
+        - "Verify setting"
+        - "Test function"
+      actions:
+        - "Service pressure regulator"
+        - "Replace diaphragm if damaged"
+        - "Adjust regulator setting"
+        - "Clean or replace if necessary"
+    - name: "Air receiver issues"
+      probability: 0.5
+      checks:
+        - "Inspect air receiver"
+        - "Check drain valve"
+        - "Verify safety valve"
+        - "Test pressure retention"
+      actions:
+        - "Service air receiver"
+        - "Clean or replace drain valve"
+        - "Test safety valve function"
+        - "Check for internal corrosion"
+
+## Fault 18
+fault:
+  name: "Main Engine High Crankcase Pressure"
+  symptoms:
+    - "High crankcase pressure alarm"
+    - "Oil mist detector warnings"
+    - "Abnormal crankcase breather emission"
+    - "Potential oil leaks from seals"
+    - "Engine protection system activation"
+  causes:
+    - name: "Piston ring blow-by"
+      probability: 0.8
+      checks:
+        - "Check cylinder compression"
+        - "Inspect indicator cock operation"
+        - "Monitor exhaust gas temperatures"
+        - "Look for signs of scuffing on liners"
+      actions:
+        - "Overhaul affected cylinders"
+        - "Replace worn piston rings"
+        - "Check liner condition"
+        - "Verify piston ring gaps"
+    - name: "Crankcase breather restriction"
+      probability: 0.75
+      checks:
+        - "Inspect breather for clogging"
+        - "Check breather filter/flame arrester"
+        - "Verify breather valve operation"
+        - "Test flow capacity"
+      actions:
+        - "Clean or replace breather"
+        - "Service flame arrester"
+        - "Check for oil accumulation"
+        - "Restore proper ventilation"
+    - name: "Excessive bearing clearance"
+      probability: 0.6
+      checks:
+        - "Check main and connecting rod bearings"
+        - "Inspect for oil mist"
+        - "Monitor bearing temperatures"
+        - "Look for abnormal vibration"
+      actions:
+        - "Replace worn bearings"
+        - "Check crankshaft alignment"
+        - "Verify journal condition"
+        - "Maintain proper clearances"
+    - name: "Pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure sensor"
+        - "Check sensor connections"
+        - "Verify signal transmission"
+        - "Test with known good equipment"
+      actions:
+        - "Recalibrate sensor"
+        - "Replace faulty sensor"
+        - "Repair connections"
+        - "Adjust alarm settings"
+
+## Fault 19
+fault:
+  name: "Main Engine High Charge Air Pressure"
+  symptoms:
+    - "High scavenge/charge air pressure alarm"
+    - "Increased engine power output"
+    - "Higher than normal firing pressure"
+    - "Potential mechanical overload"
+    - "Turbocharger over-speed risk"
+  causes:
+    - name: "Turbocharger overperformance"
+      probability: 0.7
+      checks:
+        - "Check turbocharger speed"
+        - "Inspect turbine side cleanliness"
+        - "Verify waste gate operation if fitted"
+        - "Test variable geometry system if fitted"
+      actions:
+        - "Adjust waste gate setting"
+        - "Service variable geometry mechanism"
+        - "Verify engine is within parameters"
+        - "Consider load adjustment"
+    - name: "Charge air cooler bypass"
+      probability: 0.65
+      checks:
+        - "Inspect bypass valve position"
+        - "Check bypass control system"
+        - "Verify temperature control logic"
+        - "Test actuator operation"
+      actions:
+        - "Adjust bypass valve"
+        - "Service control system"
+        - "Recalibrate temperature sensors"
+        - "Check for control air leakage"
+    - name: "Environmental conditions"
+      probability: 0.5
+      checks:
+        - "Check atmospheric pressure"
+        - "Measure intake air temperature"
+        - "Consider altitude effects"
+        - "Verify engine room ventilation"
+      actions:
+        - "Adjust engine parameters"
+        - "Monitor operation closely"
+        - "Consider operational constraints"
+        - "Ensure adequate ventilation"
+    - name: "Pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate pressure sensors"
+        - "Check sensor connections"
+        - "Verify signal transmission"
+        - "Compare with manual measurements"
+      actions:
+        - "Recalibrate pressure sensors"
+        - "Replace faulty sensors"
+        - "Repair signal transmission issues"
+        - "Check alarm settings"
+
+## Fault 20
+fault:
+  name: "Main Engine High Exhaust Back Pressure"
+  symptoms:
+    - "High exhaust back pressure alarm"
+    - "Reduced engine power"
+    - "Black smoke from exhaust"
+    - "High exhaust gas temperatures"
+    - "Low turbocharger speed"
+  causes:
+    - name: "Exhaust gas economizer fouling"
+      probability: 0.85
+      checks:
+        - "Inspect economizer for soot buildup"
+        - "Check tube bundle condition"
+        - "Measure pressure drop across economizer"
+        - "Verify soot blower operation"
+      actions:
+        - "Clean exhaust gas economizer"
+        - "Service soot blowers"
+        - "Perform water washing if possible"
+        - "Establish regular cleaning schedule"
+    - name: "Exhaust silencer restriction"
+      probability: 0.7
+      checks:
+        - "Inspect silencer internals"
+        - "Check for collapsed baffles"
+        - "Verify drainage system"
+        - "Measure pressure drop"
+      actions:
+        - "Clean silencer internals"
+        - "Replace damaged components"
+        - "Service drain system"
+        - "Repair or replace if necessary"
+    - name: "Turbocharger turbine fouling"
+      probability: 0.65
+      checks:
+        - "Inspect turbine side for fouling"
+        - "Check nozzle ring condition"
+        - "Verify turbine blade cleanliness"
+        - "Test turbocharger speed"
+      actions:
+        - "Clean turbine side"
+        - "Water wash turbocharger"
+        - "Clean or replace nozzle ring"
+        - "Service turbocharger"
+    - name: "Exhaust gas system restriction"
+      probability: 0.6
+      checks:
+        - "Inspect entire exhaust system"
+        - "Check for dents or deformation"
+        - "Verify exhaust pipe diameter"
+        - "Look for foreign objects"
+      actions:
+        - "Remove restrictions"
+        - "Repair damaged piping"
+        - "Clear blockages"
+        - "Check compliance with design"
+    - name: "Pressure sensor malfunction"
+      probability: 0.4
+      checks:
+        - "Calibrate back pressure sensor"
+        - "Check sensor connections"
+        - "Verify signal transmission"
+        - "Test with manual measurement"
+      actions:
+        - "Recalibrate sensor"
+        - "Replace faulty sensor"
+        - "Repair connections"
+        - "Adjust alarm settings"
+
+## Fault 21
+fault:
+  name: "Main Engine Hydraulic System Low Pressure"
+  symptoms:
+    - "Low hydraulic pressure alarm"
+    - "Slow hydraulic actuator response"
+    - "System unable to maintain pressure"
+    - "Erratic valve operation"
+    - "Abnormal engine operation"
+  causes:
+    - name: "Hydraulic pump issues"
+      probability: 0.8
+      checks:
+        - "Check hydraulic pump operation"
+        - "Inspect pump coupling"
+        - "Measure pump discharge pressure"
+        - "Verify pump drive mechanism"
+      actions:
+        - "Repair or replace hydraulic pump"
+        - "Service pump coupling"
+        - "Check pump internal clearances"
+        - "Verify pump drive"
+    - name: "System leakage"
+      probability: 0.75
+      checks:
+        - "Inspect for external leaks"
+        - "Check pipe connections"
+        - "Verify cylinder/actuator seals"
+        - "Test valve blocks for internal leakage"
+      actions:
+        - "Repair identified leaks"
+        - "Tighten loose connections"
+        - "Replace damaged seals"
+        - "Service valve blocks"
+    - name: "Filter clogging"
+      probability: 0.7
+      checks:
+        - "Check differential pressure across filter"
+        - "Inspect filter elements"
+        - "Verify bypass valve operation"
+        - "Check for contamination"
+      actions:
+        - "Replace filter elements"
+        - "Clean filter housing"
+        - "Service bypass valve"
+        - "Investigate source of contamination"
+    - name: "Relief valve issues"
+      probability: 0.6
+      checks:
+        - "Check relief valve setting"
+        - "Inspect valve for contamination"
+        - "Verify valve seating"
+        - "Test valve operation"
+      actions:
+        - "Adjust relief valve setting"
+        - "Clean relief valve"
+        - "Replace valve components"
+        - "Recalibrate to specification"
+    - name: "Low hydraulic oil level"
+      probability: 0.55Insufficient oil level"
+      probability: 0.85
+      checks:
+        - "Check oil level in sump/tank"
+        - "Inspect for oil leaks"
+        - "Verify recent oil consumption rate"
+        - "Check for water contamination"
+      actions:
+        - "Top up oil to proper level"
+        - "Repair any oil leaks"
+        - "Investigate abnormal oil consumption"
+        - "Check crankcase for water ingress"
+    - name: "Oil pump malfunction"
+      probability: 0.7
+      checks:
+        - "Inspect oil pump for damage"
+        - "Check pump coupling/drive"
+        - "Measure pump discharge pressure"
+        - "Inspect pump suction strainer"
+      actions:
+        - "Clean pump suction strainer"
+        - "Repair or replace oil pump"
+        - "Replace worn pump components"
+        - "Check pump drive alignment"
+    - name: "Oil filter clogging"
+      probability: 0.65
+      checks:
+        - "Check differential pressure across filter"
+        - "Inspect filter bypass valve operation"
+        - "Examine filter elements"
+        - "Verify filter housing integrity"
+      actions:
+        - "Replace oil filter elements"
+        - "Clean filter housing"
+        - "Service bypass valve"
+        - "Check for contaminants in old filter"
+    - name: "Oil pressure relief valve issues"
+      probability: 0.6
+      checks:
+        - "Inspect relief valve operation"
+        - "Check valve spring tension"
+        - "Test valve seating"
+        - "Verify pressure setting"
+      actions:
+        - "Adjust relief valve setting"
+        - "Clean relief valve"
+        - "Replace valve components"
+        - "Re-calibrate pressure setting"
+    - name: "Oil viscosity problems"
+      probability: 0.5
+      checks:
+        - "Check oil temperature"
+        - "Verify correct oil grade"
+        - "Test oil viscosity"
+        - "Inspect for fuel dilution"
+      actions:
+        - "Change oil if incorrect grade"
+        - "Fix oil temperature control issue"
+        - "Address fuel dilution problem"
+        - "Use correct oil specification"

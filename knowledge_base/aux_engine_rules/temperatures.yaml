@@ -1,0 +1,276 @@
+# Auxiliary Engine Temperature-Related Fault Trees
+
+## Fault 1
+fault:
+  name: "Auxiliary Engine High Cooling Water Temperature"
+  symptoms:
+    - "High cooling water temperature alarm"
+    - "Abnormal engine performance"
+    - "Possible automatic load reduction"
+    - "Rising cylinder head temperatures"
+    - "Steam or water vapor from cooling system"
+  causes:
+    - name: "Cooling Water Pump Failure"
+      probability: 0.7
+      checks:
+        - "Check pump running status"
+        - "Verify pump discharge pressure"
+        - "Inspect pump mechanical seal for leakage"
+        - "Check pump drive belt tension (if applicable)"
+        - "Inspect pump impeller condition"
+      actions:
+        - "Start standby pump if available"
+        - "Replace damaged mechanical seal"
+        - "Adjust or replace drive belt"
+        - "Clean or replace pump impeller"
+        - "Repair or replace faulty pump"
+    
+    - name: "Heat Exchanger Fouling"
+      probability: 0.6
+      checks:
+        - "Check temperature difference across heat exchanger"
+        - "Verify seawater/freshwater flow rates"
+        - "Inspect heat exchanger plates/tubes if possible"
+        - "Check heat exchanger pressure differential"
+        - "Review maintenance records for cleaning schedule"
+      actions:
+        - "Clean heat exchanger using chemical cleaning"
+        - "Backflush heat exchanger if possible"
+        - "Disassemble and manually clean heat exchanger"
+        - "Ensure proper water treatment procedures"
+        - "Adjust maintenance schedule if needed"
+    
+    - name: "Cooling System Air Lock"
+      probability: 0.4
+      checks:
+        - "Check for air in cooling system"
+        - "Verify expansion tank level"
+        - "Check for bubbles in sight glass"
+        - "Inspect for changes in cooling water flow sound"
+        - "Test operation of air vents"
+      actions:
+        - "Vent air from cooling system high points"
+        - "Top up expansion tank to proper level"
+        - "Repair any leaks allowing air ingress"
+        - "Clean or replace air vents"
+        - "Inspect for damaged pipe insulation"
+
+## Fault 2
+fault:
+  name: "Auxiliary Engine High Exhaust Gas Temperature"
+  symptoms:
+    - "High exhaust temperature alarm"
+    - "Uneven exhaust temperatures across cylinders"
+    - "Black or dark gray exhaust smoke"
+    - "Reduced engine power output"
+    - "Increased fuel consumption"
+  causes:
+    - name: "Fuel Injection Issues"
+      probability: 0.8
+      checks:
+        - "Compare exhaust temperatures across cylinders"
+        - "Check fuel injector condition"
+        - "Verify fuel injection timing"
+        - "Test fuel injector spray pattern"
+        - "Inspect for carbon deposits on injector tips"
+      actions:
+        - "Clean or replace faulty fuel injectors"
+        - "Adjust fuel injection timing"
+        - "Verify correct fuel injector opening pressure"
+        - "Replace damaged injector components"
+        - "Check fuel quality and treatment"
+    
+    - name: "Air Filter Restriction"
+      probability: 0.7
+      checks:
+        - "Check air filter differential pressure"
+        - "Inspect air filter element visually"
+        - "Verify air intake system for restrictions"
+        - "Test air filter bypass indicator (if equipped)"
+        - "Inspect turbocharger inlet"
+      actions:
+        - "Clean or replace air filter element"
+        - "Verify correct air filter installation"
+        - "Remove any restrictions in air intake system"
+        - "Clean turbocharger inlet if dirty"
+        - "Check intake silencer for blockage"
+    
+    - name: "Turbocharger Issues"
+      probability: 0.6
+      checks:
+        - "Inspect turbocharger for fouling"
+        - "Check turbocharger shaft free movement"
+        - "Verify turbocharger boost pressure"
+        - "Inspect for exhaust gas leaks before turbocharger"
+        - "Check turbocharger waste gate (if equipped)"
+      actions:
+        - "Clean turbocharger compressor and turbine"
+        - "Repair exhaust gas leaks"
+        - "Check waste gate operation and adjust if needed"
+        - "Inspect turbine blades for damage"
+        - "Verify lubrication to turbocharger bearings"
+
+## Fault 3
+fault:
+  name: "Auxiliary Engine High Lubricating Oil Temperature"
+  symptoms:
+    - "High oil temperature alarm"
+    - "Abnormal engine noise"
+    - "Possible low oil pressure alarm"
+    - "Engine power reduction"
+    - "Unusual smell of hot oil"
+  causes:
+    - name: "Oil Cooler Issues"
+      probability: 0.7
+      checks:
+        - "Check temperature difference across oil cooler"
+        - "Verify cooling water flow through oil cooler"
+        - "Inspect oil cooler for external fouling"
+        - "Test oil cooler bypass valve operation"
+        - "Check oil cooler pressure differential"
+      actions:
+        - "Clean oil cooler externally"
+        - "Backflush water side of oil cooler"
+        - "Chemical clean oil cooler"
+        - "Replace oil cooler if severely fouled"
+        - "Repair or replace bypass valve if faulty"
+    
+    - name: "Excessive Engine Load"
+      probability: 0.5
+      checks:
+        - "Verify actual engine load compared to rating"
+        - "Check for prolonged high-load operation"
+        - "Inspect load sharing between auxiliary engines"
+        - "Verify proper functioning of governor"
+        - "Check engine timing"
+      actions:
+        - "Reduce engine load if excessive"
+        - "Adjust load sharing between engines"
+        - "Check and adjust engine timing"
+        - "Verify governor settings"
+        - "Balance loads on vessel's electrical system"
+    
+    - name: "Low Oil Level"
+      probability: 0.4
+      checks:
+        - "Check oil level in sump"
+        - "Inspect for external oil leaks"
+        - "Check for internal leaks (oil in cooling water)"
+        - "Verify correct oil dipstick reading"
+        - "Check for oil consumption via exhaust"
+      actions:
+        - "Add oil to correct level"
+        - "Repair any external oil leaks"
+        - "Investigate and repair internal leaks"
+        - "Monitor oil consumption rate"
+        - "Check piston rings and cylinder liners if consumption high"
+
+## Fault 4
+fault:
+  name: "Auxiliary Engine High Charge Air Temperature"
+  symptoms:
+    - "High intake manifold temperature alarm"
+    - "Reduced engine power"
+    - "Black exhaust smoke"
+    - "High exhaust gas temperature"
+    - "Poor engine response to load changes"
+  causes:
+    - name: "Charge Air Cooler Fouling"
+      probability: 0.8
+      checks:
+        - "Inspect charge air cooler for external fouling"
+        - "Measure temperature differential across cooler"
+        - "Check for signs of oil or dirt buildup"
+        - "Verify cooling water flow through cooler"
+        - "Check charge air cooler pressure drop"
+      actions:
+        - "Clean external surfaces of charge air cooler"
+        - "Flush water side of charge air cooler"
+        - "Clean air side using approved methods"
+        - "Check and clean condensate drain"
+        - "Replace charge air cooler if severely damaged"
+    
+    - name: "High Ambient Temperature"
+      probability: 0.5
+      checks:
+        - "Measure engine room temperature"
+        - "Verify engine room ventilation operation"
+        - "Check for hot air recirculation"
+        - "Inspect for heat sources near engine air intake"
+        - "Verify cooling water inlet temperature"
+      actions:
+        - "Increase engine room ventilation"
+        - "Redirect hot air away from intake"
+        - "Add additional ventilation if possible"
+        - "Ensure engine room insulation is intact"
+        - "Reduce engine load if necessary"
+    
+    - name: "Turbocharger Efficiency Loss"
+      probability: 0.6
+      checks:
+        - "Check turbocharger speed"
+        - "Inspect for fouling on turbine or compressor"
+        - "Verify boost pressure compared to reference"
+        - "Check for exhaust gas leaks before turbocharger"
+        - "Inspect turbocharger bearings"
+      actions:
+        - "Clean turbocharger components"
+        - "Repair exhaust leaks"
+        - "Check variable geometry system if equipped"
+        - "Replace turbocharger if severely damaged"
+        - "Inspect and clean air intake filter"
+
+## Fault 5
+fault:
+  name: "Auxiliary Engine Hot Spots on External Surfaces"
+  symptoms:
+    - "Localized discoloration on engine surface"
+    - "Blistering paint on specific areas"
+    - "Excessive heat detected by infrared thermometer"
+    - "Burning smell from specific location"
+    - "Inability to touch certain engine areas due to heat"
+  causes:
+    - name: "Exhaust Manifold Insulation Failure"
+      probability: 0.7
+      checks:
+        - "Inspect exhaust manifold insulation"
+        - "Check for damaged or missing insulation sections"
+        - "Look for exhaust leaks at manifold gaskets"
+        - "Verify heat shields are properly mounted"
+        - "Check mounting brackets for insulation"
+      actions:
+        - "Replace damaged insulation sections"
+        - "Repair or replace heat shields"
+        - "Tighten loose mounting brackets"
+        - "Seal exhaust leaks at manifold"
+        - "Verify correct type of insulation used"
+    
+    - name: "Cylinder Head Coolant Flow Restriction"
+      probability: 0.5
+      checks:
+        - "Compare temperature of affected cylinder to others"
+        - "Check for scaling inside cooling passages"
+        - "Verify coolant flow through affected area"
+        - "Inspect for external signs of coolant leakage"
+        - "Test cylinder compression"
+      actions:
+        - "Flush cooling system to remove restrictions"
+        - "Clean cooling passages mechanically if accessible"
+        - "Use proper cooling water treatment"
+        - "Repair coolant leaks"
+        - "Consider cylinder head replacement if severely affected"
+    
+    - name: "Fuel Line Leakage"
+      probability: 0.4
+      checks:
+        - "Inspect for fuel weeping or stains"
+        - "Check high-pressure fuel line connections"
+        - "Verify proper torque on fuel line fittings"
+        - "Look for signs of heat damage to fuel lines"
+        - "Test for fuel in engine coolant"
+      actions:
+        - "Tighten loose connections to specified torque"
+        - "Replace damaged fuel lines"
+        - "Ensure proper sealing of threaded connections"
+        - "Replace any heat-affected components"
+        - "Verify no fuel contamination in other systems"

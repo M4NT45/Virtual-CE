@@ -1,0 +1,166 @@
+# Auxiliary Engine Other Fault Trees (Electrical, Mechanical, etc.)
+
+## Fault 1
+fault:
+  name: "Auxiliary Engine Fails to Start"
+  symptoms:
+    - "Engine doesn't crank when start button pressed"
+    - "Starting motor makes noise but engine doesn't turn"
+    - "Engine turns but doesn't fire"
+    - "Engine starts but immediately stops"
+    - "Multiple failed start attempts"
+  causes:
+    - name: "Battery/Electrical Supply Issues"
+      probability: 0.8
+      checks:
+        - "Check battery voltage (should be >24V)"
+        - "Verify battery connections are clean and tight"
+        - "Inspect battery cables for damage"
+        - "Test battery under load"
+        - "Check battery charger operation"
+      actions:
+        - "Charge or replace weak batteries"
+        - "Clean and tighten battery connections"
+        - "Replace damaged battery cables"
+        - "Repair or replace battery charger"
+        - "Verify proper grounding of electrical system"
+    
+    - name: "Starter Motor Problems"
+      probability: 0.7
+      checks:
+        - "Test starter solenoid operation"
+        - "Check starter motor brushes"
+        - "Inspect commutator condition"
+        - "Verify pinion engagement with flywheel"
+        - "Check starter motor mounting"
+      actions:
+        - "Replace worn brushes"
+        - "Clean or replace commutator"
+        - "Repair or replace starter motor"
+        - "Replace defective solenoid"
+        - "Adjust pinion engagement mechanism"
+    
+    - name: "Fuel System Issues"
+      probability: 0.6
+      checks:
+        - "Verify fuel supply to engine"
+        - "Check for air in fuel system"
+        - "Inspect fuel filters for clogging"
+        - "Test fuel pump operation"
+        - "Check fuel return system"
+      actions:
+        - "Ensure adequate fuel in day tank"
+        - "Bleed air from fuel system"
+        - "Replace clogged fuel filters"
+        - "Repair or replace fuel pump"
+        - "Clear any fuel return line restrictions"
+
+## Fault 2
+fault:
+  name: "Auxiliary Engine Excessive Vibration"
+  symptoms:
+    - "Abnormal vibration felt on engine or foundation"
+    - "Loose components on engine"
+    - "Vibration alarms on monitoring system"
+    - "Visible movement of engine on mounts"
+    - "Unusual noise accompanying vibration"
+  causes:
+    - name: "Engine Mounting Failure"
+      probability: 0.7
+      checks:
+        - "Inspect engine mounts for damage"
+        - "Check mount fasteners for tightness"
+        - "Verify proper alignment of engine"
+        - "Look for signs of rubber deterioration in mounts"
+        - "Check for structural damage to foundation"
+      actions:
+        - "Replace damaged engine mounts"
+        - "Tighten loose mounting fasteners"
+        - "Realign engine if misaligned"
+        - "Repair damaged foundation"
+        - "Add additional vibration damping if needed"
+    
+    - name: "Misaligned or Damaged Coupling"
+      probability: 0.6
+      checks:
+        - "Check coupling alignment"
+        - "Inspect coupling elements for wear or damage"
+        - "Verify coupling fastener tightness"
+        - "Look for signs of overheating on coupling"
+        - "Measure vibration specifically at coupling"
+      actions:
+        - "Realign coupling to specifications"
+        - "Replace worn or damaged coupling elements"
+        - "Tighten coupling fasteners to specified torque"
+        - "Balance rotating components if necessary"
+        - "Check driven equipment for issues"
+    
+    - name: "Internal Engine Component Failure"
+      probability: 0.5
+      checks:
+        - "Perform cylinder power balance test"
+        - "Check for unusual knocking sounds"
+        - "Measure crankshaft deflection"
+        - "Inspect engine internals via inspection ports"
+        - "Verify fuel injection timing"
+      actions:
+        - "Repair or replace damaged internal components"
+        - "Rebalance engine if possible"
+        - "Adjust injection timing if incorrect"
+        - "Check and correct cylinder compression"
+        - "Verify proper counterbalance shaft operation"
+
+## Fault 3
+fault:
+  name: "Auxiliary Engine Generator Output Problems"
+  symptoms:
+    - "No voltage output from generator"
+    - "Unstable voltage or frequency"
+    - "Generator unable to take load"
+    - "Circuit breaker trips when loading"
+    - "Overheating during normal operation"
+  causes:
+    - name: "AVR (Automatic Voltage Regulator) Failure"
+      probability: 0.7
+      checks:
+        - "Check AVR power supply"
+        - "Verify AVR sensing circuit"
+        - "Test AVR output to field"
+        - "Inspect AVR fuse"
+        - "Check AVR settings"
+      actions:
+        - "Replace defective AVR"
+        - "Repair AVR power supply circuit"
+        - "Replace blown AVR fuse"
+        - "Correct AVR settings"
+        - "Check field winding circuit"
+    
+    - name: "Excitation System Problems"
+      probability: 0.6
+      checks:
+        - "Measure field winding resistance"
+        - "Check rotating diodes (if applicable)"
+        - "Verify exciter stator condition"
+        - "Test exciter rotor windings"
+        - "Inspect slip rings and brushes (if fitted)"
+      actions:
+        - "Replace failed diodes"
+        - "Repair or replace field windings"
+        - "Clean slip rings"
+        - "Replace worn brushes"
+        - "Repair exciter stator or rotor as needed"
+    
+    - name: "Main Stator Issues"
+      probability: 0.5
+      checks:
+        - "Measure stator winding resistance"
+        - "Test insulation resistance to ground"
+        - "Check for signs of overheating"
+        - "Inspect terminal connections"
+        - "Test for short circuits between phases"
+      actions:
+        - "Repair or rewind stator if damaged"
+        - "Clean and tighten terminal connections"
+        - "Dry out windings if moisture present"
+        - "Repair any damaged insulation"
+        - "Check for proper cooling air flow"

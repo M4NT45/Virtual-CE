@@ -1,0 +1,813 @@
+# Marine Engine Temperature-Related Fault Trees
+
+## Fault 1
+fault:
+  name: "Main Engine High Temperature"
+  symptoms:
+    - "High jacket water temperature"
+    - "High exhaust gas temperature"
+    - "High lubricating oil temperature"
+    - "Engine temperature alarm activation"
+    - "Reduced engine performance"
+  causes:
+    - name: "Cooling system malfunction"
+      probability: 0.8
+      checks:
+        - "Check coolant level"
+        - "Inspect cooling pump operation"
+        - "Check heat exchanger for fouling"
+        - "Inspect thermostat functionality"
+        - "Check cooling water pressure"
+      actions:
+        - "Refill coolant if low"
+        - "Clean heat exchanger"
+        - "Replace cooling pump if faulty"
+        - "Replace thermostat if stuck"
+    - name: "Excessive load"
+      probability: 0.6
+      checks:
+        - "Check engine load indicator"
+        - "Review recent operating conditions"
+        - "Inspect propeller for fouling"
+        - "Check vessel trim and draft"
+      actions:
+        - "Reduce load if possible"
+        - "Clean propeller if fouled"
+        - "Adjust vessel trim for optimal performance"
+    - name: "Inadequate ventilation"
+      probability: 0.5
+      checks:
+        - "Check engine room ventilation fans"
+        - "Inspect air inlet filters"
+        - "Measure engine room temperature"
+      actions:
+        - "Repair ventilation fans if faulty"
+        - "Clean or replace air filters"
+        - "Increase ventilation rate if possible"
+    - name: "Lubricating oil issues"
+      probability: 0.4
+      checks:
+        - "Check oil level"
+        - "Inspect oil quality and contamination"
+        - "Check oil pressure"
+        - "Inspect oil cooler"
+      actions:
+        - "Top up oil if low"
+        - "Change oil and filters if contaminated"
+        - "Clean oil cooler"
+        - "Check oil pump function"
+
+## Fault 2
+fault:
+  name: "Main Engine Cylinder Overheating"
+  symptoms:
+    - "High individual cylinder temperature"
+    - "Uneven exhaust gas temperatures across cylinders"
+    - "Increased fuel consumption"
+    - "Black smoke from exhaust"
+    - "Engine knocking or rough running"
+  causes:
+    - name: "Fuel injection system problems"
+      probability: 0.75
+      checks:
+        - "Check fuel injector condition"
+        - "Inspect fuel quality"
+        - "Test injection timing"
+        - "Measure injection pressure"
+        - "Inspect fuel pump operation"
+      actions:
+        - "Replace or clean clogged injectors"
+        - "Adjust injection timing"
+        - "Replace worn fuel pump components"
+        - "Change to better quality fuel"
+    - name: "Poor compression"
+      probability: 0.6
+      checks:
+        - "Perform compression test"
+        - "Inspect cylinder liner for wear"
+        - "Check piston rings for damage"
+        - "Inspect cylinder head gasket"
+      actions:
+        - "Replace worn piston rings"
+        - "Rebuild cylinder if necessary"
+        - "Replace cylinder head gasket if damaged"
+    - name: "Insufficient cylinder lubrication"
+      probability: 0.5
+      checks:
+        - "Check cylinder oil feed rate"
+        - "Inspect lubricator operation"
+        - "Examine cylinder liner for signs of scoring"
+      actions:
+        - "Adjust cylinder oil feed rate"
+        - "Repair or replace malfunctioning lubricator"
+        - "Use proper grade cylinder oil"
+    - name: "Air intake system restriction"
+      probability: 0.4
+      checks:
+        - "Inspect air filters"
+        - "Check turbocharger operation"
+        - "Measure scavenge air pressure"
+        - "Inspect air cooler condition"
+      actions:
+        - "Clean or replace air filters"
+        - "Clean air cooler"
+        - "Service turbocharger"
+        - "Clear any obstructions in air intake system"
+
+## Fault 3
+fault:
+  name: "Main Engine Piston Cooling Oil High Temperature"
+  symptoms:
+    - "High piston cooling oil outlet temperature"
+    - "High cylinder liner temperature"
+    - "Piston cooling oil low pressure alarm"
+    - "Uneven running of engine"
+  causes:
+    - name: "Piston cooling oil cooler fouling"
+      probability: 0.8
+      checks:
+        - "Check piston cooling oil cooler for fouling"
+        - "Measure cooling water flow through cooler"
+        - "Compare inlet/outlet temperature differential"
+      actions:
+        - "Clean piston cooling oil cooler"
+        - "Backwash cooling water side"
+        - "Chemical clean cooler if necessary"
+    - name: "Piston cooling oil pump malfunction"
+      probability: 0.6
+      checks:
+        - "Check pump suction and discharge pressures"
+        - "Inspect pump coupling"
+        - "Check pump strainer/filter"
+        - "Test pump motor"
+      actions:
+        - "Clean pump strainer/filter"
+        - "Repair or replace pump"
+        - "Replace pump coupling if damaged"
+    - name: "Piston cooling oil passages blockage"
+      probability: 0.5
+      checks:
+        - "Inspect telescopic pipes"
+        - "Check oil flow indicators if fitted"
+        - "Inspect for debris in strainer"
+      actions:
+        - "Clean telescopic pipes"
+        - "Replace damaged components"
+        - "Flush cooling system"
+    - name: "Oil degradation"
+      probability: 0.3
+      checks:
+        - "Take oil sample for analysis"
+        - "Check oil color and smell"
+        - "Measure oil viscosity"
+      actions:
+        - "Change piston cooling oil"
+        - "Clean oil tanks and piping"
+        - "Check for sources of contamination"
+
+## Fault 4
+fault:
+  name: "Main Engine Exhaust Valve Overheating"
+  symptoms:
+    - "High exhaust valve temperature"
+    - "Increased exhaust gas temperature from affected cylinder"
+    - "Valve hammering sound"
+    - "Exhaust gas blow-by"
+  causes:
+    - name: "Valve seat damage"
+      probability: 0.7
+      checks:
+        - "Inspect valve seat for burning or pitting"
+        - "Check valve rotation"
+        - "Measure valve lash/clearance"
+      actions:
+        - "Grind or replace valve seat"
+        - "Adjust valve clearance"
+        - "Service valve rotator"
+    - name: "Improper valve timing"
+      probability: 0.6
+      checks:
+        - "Check camshaft timing"
+        - "Inspect push rod adjustment"
+        - "Check hydraulic actuator function"
+      actions:
+        - "Adjust valve timing"
+        - "Service hydraulic actuator"
+        - "Replace worn camshaft components"
+    - name: "Cooling water circulation issues"
+      probability: 0.5
+      checks:
+        - "Check cooling water flow to exhaust valve cage"
+        - "Inspect for scale build-up in cooling passages"
+        - "Measure water temperature differential"
+      actions:
+        - "Descale cooling water passages"
+        - "Improve water treatment"
+        - "Restore proper cooling water flow"
+    - name: "Poor quality fuel"
+      probability: 0.4
+      checks:
+        - "Test fuel for contaminants"
+        - "Check for vanadium and sodium content"
+        - "Inspect for carbon deposits on valve"
+      actions:
+        - "Switch to better quality fuel"
+        - "Use appropriate fuel additives"
+        - "Increase purification efficiency"
+
+## Fault 5
+fault:
+  name: "Main Engine Turbocharger Overheating"
+  symptoms:
+    - "High turbocharger bearing temperature"
+    - "High turbocharger exhaust gas outlet temperature"
+    - "Reduced turbocharger speed"
+    - "Unusual noise from turbocharger"
+    - "Black smoke from exhaust"
+  causes:
+    - name: "Fouled turbine side"
+      probability: 0.8
+      checks:
+        - "Inspect turbine blades for fouling"
+        - "Check exhaust gas path for restrictions"
+        - "Measure back pressure"
+        - "Inspect nozzle ring condition"
+      actions:
+        - "Clean turbine blades"
+        - "Perform water washing procedure"
+        - "Remove and clean nozzle ring"
+    - name: "Fouled compressor side"
+      probability: 0.7
+      checks:
+        - "Inspect compressor wheel for dirt/oil"
+        - "Check air filter condition"
+        - "Inspect air intake ducting"
+      actions:
+        - "Clean compressor wheel"
+        - "Replace air filters"
+        - "Clean air intake ducting"
+    - name: "Bearing lubrication issues"
+      probability: 0.6
+      checks:
+        - "Check oil level in turbocharger"
+        - "Inspect oil quality"
+        - "Measure oil pressure"
+        - "Check oil filter condition"
+      actions:
+        - "Top up oil level"
+        - "Change oil and filter"
+        - "Replace damaged bearings"
+    - name: "Mechanical damage"
+      probability: 0.4
+      checks:
+        - "Inspect for rotor imbalance"
+        - "Check for shaft misalignment"
+        - "Inspect for blade damage or erosion"
+        - "Check clearances"
+      actions:
+        - "Balance rotor assembly"
+        - "Replace damaged components"
+        - "Service or replace turbocharger"
+
+## Fault 6
+fault:
+  name: "Main Engine Lubricating Oil High Temperature"
+  symptoms:
+    - "High lubricating oil temperature alarm"
+    - "Increased bearing temperatures"
+    - "Reduced oil pressure"
+    - "Oil degradation and discoloration"
+  causes:
+    - name: "Lubricating oil cooler fouling"
+      probability: 0.85
+      checks:
+        - "Inspect oil cooler for fouling"
+        - "Check cooling water flow through cooler"
+        - "Measure temperature differential across cooler"
+        - "Check cooler bypass valve operation"
+      actions:
+        - "Clean oil cooler"
+        - "Restore cooling water flow"
+        - "Repair or replace bypass valve if faulty"
+    - name: "Cooling water system issues"
+      probability: 0.7
+      checks:
+        - "Check cooling water temperature"
+        - "Inspect cooling water pump operation"
+        - "Check heat exchanger/central cooler"
+        - "Verify sea water flow"
+      actions:
+        - "Service sea water system"
+        - "Clean central cooler"
+        - "Repair cooling water pump"
+    - name: "Oil pump problems"
+      probability: 0.5
+      checks:
+        - "Check oil pump relief valve setting"
+        - "Inspect pump for internal wear"
+        - "Verify pump drive mechanism"
+      actions:
+        - "Adjust relief valve"
+        - "Overhaul or replace oil pump"
+        - "Repair pump drive"
+    - name: "Excessive bearing clearances"
+      probability: 0.4
+      checks:
+        - "Measure bearing clearances if possible"
+        - "Inspect oil for metal particles"
+        - "Check for unusual engine vibration"
+      actions:
+        - "Replace worn bearings"
+        - "Check crankshaft alignment"
+        - "Verify bearing oil supply passages"
+
+## Fault 7
+fault:
+  name: "Main Engine Scavenge Air High Temperature"
+  symptoms:
+    - "High scavenge air temperature alarms"
+    - "Reduced engine power"
+    - "Increased exhaust gas temperatures"
+    - "Poor combustion indicators"
+  causes:
+    - name: "Air cooler fouling"
+      probability: 0.9
+      checks:
+        - "Inspect air cooler for fouling"
+        - "Check differential pressure across cooler"
+        - "Measure temperature differential"
+        - "Check water drain function"
+      actions:
+        - "Clean air cooler water side"
+        - "Clean air cooler air side"
+        - "Repair water drain system"
+        - "Improve water treatment"
+    - name: "Cooling water flow restriction"
+      probability: 0.7
+      checks:
+        - "Check cooling water pump operation"
+        - "Inspect cooling water piping for restrictions"
+        - "Verify cooling water pressure"
+        - "Check for air locks in system"
+      actions:
+        - "Restore proper cooling water flow"
+        - "Vent air from cooling system"
+        - "Clean cooling water strainers"
+        - "Repair or replace cooling water pump"
+    - name: "Turbocharger inefficiency"
+      probability: 0.6
+      checks:
+        - "Check turbocharger speed"
+        - "Inspect turbocharger for fouling"
+        - "Measure compressor outlet temperature"
+      actions:
+        - "Clean turbocharger"
+        - "Service turbocharger"
+        - "Check exhaust gas system for restrictions"
+    - name: "Ambient conditions"
+      probability: 0.3
+      checks:
+        - "Check engine room temperature"
+        - "Measure air intake temperature"
+        - "Verify ventilation system operation"
+      actions:
+        - "Improve engine room ventilation"
+        - "Ensure cool air supply to turbocharger intake"
+        - "Consider weather and operating conditions"
+
+## Fault 8
+fault:
+  name: "Main Engine Thrust Bearing High Temperature"
+  symptoms:
+    - "High thrust bearing temperature alarm"
+    - "Increased axial vibration"
+    - "Abnormal propeller shaft movement"
+    - "Metallic particles in lubricating oil"
+  causes:
+    - name: "Excessive axial thrust"
+      probability: 0.7
+      checks:
+        - "Check propeller condition"
+        - "Inspect for vessel trim changes"
+        - "Verify engine alignment"
+        - "Check for excessive maneuvering"
+      actions:
+        - "Adjust vessel trim"
+        - "Service propeller if damaged"
+        - "Reduce aggressive maneuvering"
+    - name: "Bearing damage"
+      probability: 0.65
+      checks:
+        - "Inspect bearing surface condition"
+        - "Check bearing clearances"
+        - "Inspect for discoloration or wiping"
+        - "Look for evidence of overloading"
+      actions:
+        - "Replace thrust bearing pads"
+        - "Adjust bearing clearances"
+        - "Rebuild thrust bearing assembly"
+    - name: "Oil supply problems"
+      probability: 0.6
+      checks:
+        - "Check oil pressure to bearing"
+        - "Inspect oil supply passages for restrictions"
+        - "Verify oil quality and cleanliness"
+        - "Check for proper oil viscosity"
+      actions:
+        - "Clean oil supply passages"
+        - "Replace oil filters"
+        - "Change lubricating oil"
+        - "Adjust oil pressure if necessary"
+    - name: "Misalignment"
+      probability: 0.5
+      checks:
+        - "Check engine-shaft alignment"
+        - "Inspect foundation bolts"
+        - "Check for hull deformation"
+        - "Verify coupling alignment"
+      actions:
+        - "Realign engine to shaft"
+        - "Tighten foundation bolts"
+        - "Check vessel in drydock if necessary"
+
+## Fault 9
+fault:
+  name: "Main Engine Governor Oil High Temperature"
+  symptoms:
+    - "High governor oil temperature"
+    - "Unstable engine speed"
+    - "Hunting or surging"
+    - "Erratic load sharing in multi-engine installations"
+  causes:
+    - name: "Oil cooler malfunction"
+      probability: 0.75
+      checks:
+        - "Inspect governor oil cooler"
+        - "Check cooling water flow"
+        - "Measure temperature differential"
+      actions:
+        - "Clean governor oil cooler"
+        - "Restore cooling water flow"
+        - "Replace cooler if damaged"
+    - name: "Oil quality degradation"
+      probability: 0.6
+      checks:
+        - "Check oil color and viscosity"
+        - "Inspect for contamination"
+        - "Verify correct oil type"
+        - "Check oil service hours"
+      actions:
+        - "Change governor oil"
+        - "Flush oil system"
+        - "Use manufacturer recommended oil"
+    - name: "Excessive cycling"
+      probability: 0.5
+      checks:
+        - "Observe governor response to load changes"
+        - "Check governor settings"
+        - "Inspect for mechanical binding"
+      actions:
+        - "Adjust governor sensitivity"
+        - "Service governor mechanism"
+        - "Check for external factors causing load variations"
+    - name: "Internal leakage"
+      probability: 0.4
+      checks:
+        - "Check for internal bypass"
+        - "Inspect servo mechanisms"
+        - "Measure actuator response times"
+      actions:
+        - "Overhaul governor"
+        - "Replace worn components"
+        - "Service or replace servo valves"
+
+## Fault 10
+fault:
+  name: "Main Engine High Crankcase Temperature"
+  symptoms:
+    - "High crankcase temperature alarm"
+    - "Oil mist detector warnings"
+    - "Increased lubricating oil temperature"
+    - "Unusual smell from crankcase"
+  causes:
+    - name: "Bearing overheating"
+      probability: 0.75
+      checks:
+        - "Monitor individual bearing temperatures"
+        - "Check oil supply to bearings"
+        - "Inspect for bearing wear or damage"
+        - "Check crankshaft deflections"
+      actions:
+        - "Reduce engine load"
+        - "Replace damaged bearings"
+        - "Verify proper clearances"
+        - "Check crankshaft alignment"
+    - name: "Poor crankcase ventilation"
+      probability: 0.6
+      checks:
+        - "Inspect crankcase breather"
+        - "Check ventilation ducting"
+        - "Verify breather flame trap condition"
+      actions:
+        - "Clean or replace crankcase breather"
+        - "Service ventilation system"
+        - "Clean flame trap"
+    - name: "Piston cooling failure"
+      probability: 0.5
+      checks:
+        - "Check piston cooling oil system"
+        - "Inspect telescopic pipes"
+        - "Verify oil flow to pistons"
+      actions:
+        - "Repair piston cooling system"
+        - "Replace damaged telescopic pipes"
+        - "Clean piston cooling oil strainers"
+    - name: "Excessive blow-by"
+      probability: 0.45
+      checks:
+        - "Check cylinder compression"
+        - "Inspect piston rings for wear"
+        - "Monitor crankcase pressure"
+      actions:
+        - "Overhaul affected cylinders"
+        - "Replace worn piston rings"
+        - "Check cylinder liner condition"
+
+## Fault 11
+fault:
+  name: "Main Engine Fuel Valve Cooling Water High Temperature"
+  symptoms:
+    - "High fuel valve cooling water temperature alarm"
+    - "Increased exhaust gas temperatures"
+    - "Carbon deposits on injector tips"
+    - "Poor combustion performance"
+  causes:
+    - name: "Cooling water system fouling"
+      probability: 0.8
+      checks:
+        - "Inspect cooling water passages for scale"
+        - "Check cooling water flow rate"
+        - "Measure temperature differential"
+        - "Inspect for restrictions in piping"
+      actions:
+        - "Descale cooling water system"
+        - "Improve water treatment"
+        - "Clean strainers or filters"
+        - "Restore proper water flow"
+    - name: "Heat exchanger fouling"
+      probability: 0.7
+      checks:
+        - "Check heat exchanger condition"
+        - "Inspect cooling medium flow"
+        - "Measure performance parameters"
+      actions:
+        - "Clean heat exchanger"
+        - "Restore cooling medium flow"
+        - "Repair or replace if damaged"
+    - name: "Circulation pump issues"
+      probability: 0.6
+      checks:
+        - "Check pump operation"
+        - "Measure pump pressure"
+        - "Inspect mechanical components"
+        - "Verify electrical supply to pump"
+      actions:
+        - "Repair or replace circulation pump"
+        - "Clean pump strainer"
+        - "Correct electrical issues"
+    - name: "Thermostat malfunction"
+      probability: 0.5
+      checks:
+        - "Test thermostat operation"
+        - "Check bypass valve function"
+        - "Verify temperature control system"
+      actions:
+        - "Replace faulty thermostat"
+        - "Service bypass valve"
+        - "Recalibrate temperature control system"
+
+## Fault 12
+fault:
+  name: "Main Engine Charge Air Manifold High Temperature"
+  symptoms:
+    - "High charge air manifold temperature alarm"
+    - "Reduced engine power"
+    - "High exhaust gas temperatures"
+    - "Increased fuel consumption"
+  causes:
+    - name: "Air cooler fouling"
+      probability: 0.85
+      checks:
+        - "Inspect air side of cooler for fouling"
+        - "Check water side for scale build-up"
+        - "Measure pressure drop across cooler"
+        - "Test drain trap function"
+      actions:
+        - "Clean air cooler (air side)"
+        - "Clean air cooler (water side)"
+        - "Service drain traps"
+        - "Improve water treatment"
+    - name: "Insufficient cooling water flow"
+      probability: 0.7
+      checks:
+        - "Verify cooling water pump operation"
+        - "Check cooling water pressure"
+        - "Inspect for restrictions in cooling circuit"
+        - "Check for air locks"
+      actions:
+        - "Repair cooling water pump"
+        - "Clear restrictions in piping"
+        - "Vent air from system"
+        - "Adjust cooling water pressure"
+    - name: "Turbocharger efficiency loss"
+      probability: 0.6
+      checks:
+        - "Inspect turbocharger components"
+        - "Check turbocharger speed"
+        - "Measure compressor outlet temperature"
+        - "Check for exhaust gas leakage"
+      actions:
+        - "Clean turbocharger"
+        - "Repair or replace damaged components"
+        - "Balance turbocharger if necessary"
+    - name: "High ambient conditions"
+      probability: 0.4
+      checks:
+        - "Measure engine room temperature"
+        - "Check air intake temperature"
+        - "Verify engine room ventilation"
+      actions:
+        - "Improve engine room ventilation"
+        - "Ensure cool air to turbocharger intake"
+        - "Consider load reduction in extreme conditions"
+
+## Fault 13
+fault:
+  name: "Main Engine Cylinder Liner High Temperature"
+  symptoms:
+    - "High cylinder liner temperature alarm"
+    - "Increased lubricating oil consumption"
+    - "High exhaust gas temperature"
+    - "Abnormal engine knock"
+  causes:
+    - name: "Cooling water jacket issues"
+      probability: 0.8
+      checks:
+        - "Check cooling water flow to jacket"
+        - "Inspect for scale build-up"
+        - "Verify cooling water chemistry"
+        - "Measure temperature differential"
+      actions:
+        - "Descale cooling water passages"
+        - "Improve water treatment"
+        - "Restore proper water flow"
+        - "Adjust water chemistry"
+    - name: "Cylinder lubrication problems"
+      probability: 0.7
+      checks:
+        - "Check cylinder oil feed rate"
+        - "Inspect lubricator function"
+        - "Verify oil distribution pattern"
+        - "Check quill condition"
+      actions:
+        - "Adjust cylinder oil feed rate"
+        - "Repair lubricator"
+        - "Replace worn quills"
+        - "Use correct cylinder oil grade"
+    - name: "Piston ring failure"
+      probability: 0.6
+      checks:
+        - "Look for blow-by symptoms"
+        - "Check compression"
+        - "Inspect indicator cock operation"
+        - "Monitor exhaust gas deviation"
+      actions:
+        - "Overhaul cylinder"
+        - "Replace piston rings"
+        - "Check piston ring grooves for wear"
+    - name: "Improper injection timing"
+      probability: 0.5
+      checks:
+        - "Verify injection timing"
+        - "Check fuel pump operation"
+        - "Inspect injector condition"
+      actions:
+        - "Adjust injection timing"
+        - "Service fuel pump"
+        - "Clean or replace injectors"
+
+## Fault 14
+fault:
+  name: "Main Engine Exhaust Gas High Temperature"
+  symptoms:
+    - "High exhaust gas temperature alarm"
+    - "Increased fuel consumption"
+    - "Black smoke from funnel"
+    - "Reduced engine performance"
+  causes:
+    - name: "Poor combustion"
+      probability: 0.8
+      checks:
+        - "Check fuel injector condition"
+        - "Inspect compression pressure"
+        - "Verify fuel quality"
+        - "Check injection timing"
+      actions:
+        - "Clean or replace fuel injectors"
+        - "Overhaul cylinder if compression low"
+        - "Change to better quality fuel"
+        - "Adjust injection timing"
+    - name: "Scavenge air system issues"
+      probability: 0.7
+      checks:
+        - "Inspect air cooler condition"
+        - "Check scavenge ports for carbon build-up"
+        - "Verify scavenge air pressure"
+        - "Test scavenge air temperature"
+      actions:
+        - "Clean air cooler"
+        - "Clean scavenge ports"
+        - "Check turbocharger operation"
+        - "Restore proper scavenge air flow"
+    - name: "Exhaust valve leakage"
+      probability: 0.6
+      checks:
+        - "Check exhaust valve seating"
+        - "Inspect for valve damage"
+        - "Verify valve timing"
+        - "Check valve cooling water system"
+      actions:
+        - "Grind or replace exhaust valve"
+        - "Replace valve seat"
+        - "Adjust valve timing"
+        - "Restore valve cooling"
+    - name: "Turbocharger efficiency loss"
+      probability: 0.5
+      checks:
+        - "Inspect turbocharger rotors"
+        - "Check for fouling on blades"
+        - "Verify turbocharger speed"
+        - "Inspect nozzle ring condition"
+      actions:
+        - "Clean turbocharger"
+        - "Replace worn components"
+        - "Service turbocharger"
+        - "Clean nozzle ring"
+
+## Fault 15
+fault:
+  name: "Main Engine Differential Expansion High Temperature"
+  symptoms:
+    - "High differential expansion alarm"
+    - "Abnormal engine noise"
+    - "Increased vibration"
+    - "Restricted engine load capability"
+  causes:
+    - name: "Uneven thermal loading"
+      probability: 0.7
+      checks:
+        - "Monitor metal temperatures in various locations"
+        - "Check for sudden load changes"
+        - "Verify cooling water distribution"
+        - "Inspect for hot spots"
+      actions:
+        - "Stabilize engine load"
+        - "Allow for gradual warm-up/cool-down"
+        - "Balance cooling water flow"
+        - "Reduce load if necessary"
+    - name: "Cooling system malfunction"
+      probability: 0.65
+      checks:
+        - "Inspect cooling water flow to affected areas"
+        - "Check for air pockets in cooling system"
+        - "Verify thermostat operation"
+        - "Test temperature regulation"
+      actions:
+        - "Restore proper cooling water flow"
+        - "Vent air from cooling system"
+        - "Replace faulty thermostats"
+        - "Service temperature regulation system"
+    - name: "Structural constraints"
+      probability: 0.5
+      checks:
+        - "Check engine mounting"
+        - "Inspect for mechanical restrictions"
+        - "Verify clearances"
+        - "Examine expansion joints"
+      actions:
+        - "Adjust mounting arrangements"
+        - "Remove mechanical constraints"
+        - "Ensure adequate clearances"
+        - "Replace damaged expansion joints"
+    - name: "Measurement system error"
+      probability: 0.4
+      checks:
+        - "Calibrate temperature sensors"
+        - "Verify monitoring system function"
+        - "Check sensor placement"
+        - "Test alarm settings"
+      actions:
+        - "Recalibrate sensors"
+        - "Replace faulty monitoring equipment"
+        - "Adjust sensor position"
+        - "Reset alarm thresholds if appropriate"

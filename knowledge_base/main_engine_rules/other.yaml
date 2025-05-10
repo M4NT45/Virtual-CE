@@ -1,0 +1,387 @@
+# Main Engine Electrical & Non-Temperature/Pressure Fault Trees
+
+## Fault 1
+fault:
+  name: "Engine Fails to Start (Electrical)"
+  symptoms:
+    - "No cranking when start button is pressed"
+    - "Click sound but no cranking"
+    - "No indicator lights on control panel"
+    - "Battery discharge alarm"
+    - "Starter motor not engaging"
+  causes:
+    - name: "Battery/Power Supply Issues"
+      probability: 0.7
+      checks:
+        - "Check battery voltage (should be >24V)"
+        - "Inspect battery connections for corrosion"
+        - "Verify battery disconnect switch position"
+        - "Test battery under load"
+        - "Check battery charger operation"
+      actions:
+        - "Clean and tighten battery connections"
+        - "Charge or replace weak batteries"
+        - "Repair damaged battery cables"
+        - "Reset/replace battery disconnect switch"
+        - "Repair or replace battery charger"
+    
+    - name: "Starter Motor Failure"
+      probability: 0.5
+      checks:
+        - "Inspect starter motor mounting"
+        - "Test starter solenoid operation"
+        - "Check starter motor brushes"
+        - "Inspect commutator condition"
+        - "Test for short circuits or ground faults"
+      actions:
+        - "Replace worn brushes"
+        - "Clean or replace commutator"
+        - "Rebuild or replace starter motor"
+        - "Replace defective solenoid"
+        - "Repair motor wiring"
+    
+    - name: "Control Circuit Problems"
+      probability: 0.4
+      checks:
+        - "Check starting circuit fuses/breakers"
+        - "Test start button/switch continuity"
+        - "Verify all emergency stops are reset"
+        - "Inspect wiring for damage"
+        - "Test safety interlock switches"
+      actions:
+        - "Replace blown fuses"
+        - "Reset tripped circuit breakers"
+        - "Replace faulty start switch"
+        - "Reset emergency stop buttons"
+        - "Repair damaged wiring"
+        - "Replace defective interlock switches"
+
+## Fault 2
+fault:
+  name: "Engine Starts But Immediately Stops"
+  symptoms:
+    - "Engine cranks and fires but stops within seconds"
+    - "Engine shutdown alarm activates"
+    - "Control panel shows momentary operation then shutdown"
+    - "Repeated starting attempts produce same result"
+    - "Engine runs briefly then stalls"
+  causes:
+    - name: "Engine Safety Shutdown Triggered"
+      probability: 0.6
+      checks:
+        - "Check alarm panel for active alarms"
+        - "Read engine controller error codes"
+        - "Review engine controller event log"
+        - "Verify all sensor readings"
+        - "Test safety shutdown system functionality"
+      actions:
+        - "Address underlying issues causing alarms"
+        - "Reset engine controller"
+        - "Replace faulty sensors"
+        - "Repair safety shutdown system"
+        - "Update controller software if needed"
+    
+    - name: "Faulty Speed/RPM Sensor"
+      probability: 0.5
+      checks:
+        - "Inspect speed sensor mounting and gap"
+        - "Check speed sensor wiring connections"
+        - "Test speed sensor signal output"
+        - "Verify engine controller receives RPM signal"
+        - "Check for debris affecting sensor"
+      actions:
+        - "Adjust speed sensor position/gap"
+        - "Clean sensor and sensor wheel"
+        - "Repair damaged wiring"
+        - "Replace defective speed sensor"
+        - "Update engine controller if needed"
+    
+    - name: "Run Solenoid Malfunction"
+      probability: 0.4
+      checks:
+        - "Check run solenoid electrical supply"
+        - "Test solenoid operation manually"
+        - "Inspect solenoid plunger movement"
+        - "Verify solenoid control circuit"
+        - "Check for binding or mechanical issues"
+      actions:
+        - "Replace defective run solenoid"
+        - "Repair solenoid control circuit"
+        - "Clean and lubricate solenoid mechanism"
+        - "Adjust solenoid linkage"
+        - "Update control system if needed"
+
+## Fault 3
+fault:
+  name: "Main Engine Generator/Alternator Output Problems"
+  symptoms:
+    - "Low or no voltage output from alternator"
+    - "Battery charge indicator warning"
+    - "Flickering electrical systems"
+    - "Gradual battery discharge during operation"
+    - "Generator frequency/voltage fluctuations"
+  causes:
+    - name: "Drive Belt/Coupling Issues"
+      probability: 0.7
+      checks:
+        - "Inspect belt condition (cracks, wear, glazing)"
+        - "Check belt tension"
+        - "Examine pulley alignment"
+        - "Verify coupling integrity"
+        - "Check for unusual belt noise"
+      actions:
+        - "Replace worn or damaged belt"
+        - "Adjust belt tension to specifications"
+        - "Align pulleys properly"
+        - "Replace damaged coupling"
+        - "Clean pulleys and belt path"
+    
+    - name: "Voltage Regulator Failure"
+      probability: 0.6
+      checks:
+        - "Test AVR (Automatic Voltage Regulator) output"
+        - "Check AVR fuse"
+        - "Inspect AVR power supply connections"
+        - "Verify voltage sensing connections"
+        - "Test AVR response to load changes"
+      actions:
+        - "Replace faulty AVR"
+        - "Replace blown AVR fuse"
+        - "Repair AVR power connections"
+        - "Clean and tighten voltage sensing connections"
+        - "Upgrade AVR if recurrent issues exist"
+    
+    - name: "Rectifier/Diode Problems"
+      probability: 0.5
+      checks:
+        - "Test diodes for open or short circuit"
+        - "Check rectifier bridge assembly"
+        - "Inspect for heat damage or discoloration"
+        - "Measure voltage across diodes"
+        - "Test for ground leakage"
+      actions:
+        - "Replace failed diodes"
+        - "Replace entire rectifier assembly if multiple failures"
+        - "Clean and tighten rectifier connections"
+        - "Ensure proper cooling of rectifier assembly"
+        - "Check for system overload conditions"
+
+## Fault 4
+fault:
+  name: "Engine Control System Failure"
+  symptoms:
+    - "Erratic engine behavior"
+    - "Random alarms or shutdowns"
+    - "Control panel display errors"
+    - "Loss of engine control functions"
+    - "Communication errors with engine systems"
+  causes:
+    - name: "ECU (Engine Control Unit) Failure"
+      probability: 0.6
+      checks:
+        - "Read error codes from ECU"
+        - "Check ECU power supply"
+        - "Verify ECU ground connections"
+        - "Test communication networks"
+        - "Inspect for water or physical damage"
+      actions:
+        - "Replace damaged ECU"
+        - "Repair ECU power supply circuit"
+        - "Clean and secure ground connections"
+        - "Update ECU firmware/software"
+        - "Protect ECU from environmental factors"
+    
+    - name: "Sensor Malfunction"
+      probability: 0.7
+      checks:
+        - "Verify sensor readings against known values"
+        - "Check sensor power supply"
+        - "Inspect sensor wiring and connectors"
+        - "Test sensor resistance/output"
+        - "Look for environmental damage (oil, water, heat)"
+      actions:
+        - "Replace faulty sensors"
+        - "Repair damaged sensor wiring"
+        - "Clean sensor connections"
+        - "Recalibrate sensors if applicable"
+        - "Protect sensors from environmental damage"
+    
+    - name: "Wiring Harness Problems"
+      probability: 0.5
+      checks:
+        - "Inspect wiring for physical damage"
+        - "Check for loose connectors"
+        - "Test for short circuits or ground faults"
+        - "Verify connector pin integrity"
+        - "Look for corrosion or water ingress"
+      actions:
+        - "Repair damaged wiring"
+        - "Replace corroded connectors"
+        - "Secure loose connections"
+        - "Apply dielectric grease to connections"
+        - "Install protective covering on harness"
+
+## Fault 5
+fault:
+  name: "Main Engine Fuel Actuator Malfunction"
+  symptoms:
+    - "Engine RPM fluctuations"
+    - "Poor load response"
+    - "Engine hunting or surging"
+    - "Black smoke during acceleration"
+    - "Unable to reach rated power"
+  causes:
+    - name: "Electrical Actuator Failure"
+      probability: 0.6
+      checks:
+        - "Measure actuator resistance"
+        - "Check actuator power supply"
+        - "Verify actuator control signal"
+        - "Test actuator movement"
+        - "Inspect for physical damage"
+      actions:
+        - "Replace faulty actuator"
+        - "Repair actuator wiring"
+        - "Clean actuator connections"
+        - "Adjust actuator linkage"
+        - "Update control system calibration"
+    
+    - name: "Actuator Linkage Problems"
+      probability: 0.5
+      checks:
+        - "Inspect linkage for physical damage"
+        - "Check for binding or sticking"
+        - "Verify proper range of motion"
+        - "Examine for loose connections"
+        - "Test linkage under load"
+      actions:
+        - "Repair damaged linkage"
+        - "Lubricate linkage pivot points"
+        - "Adjust linkage to specifications"
+        - "Tighten loose connections"
+        - "Replace worn linkage components"
+    
+    - name: "Control System Calibration Issues"
+      probability: 0.4
+      checks:
+        - "Verify actuator position feedback"
+        - "Check control system parameters"
+        - "Test system response to commands"
+        - "Compare actual vs. commanded position"
+        - "Inspect for interference with movement"
+      actions:
+        - "Recalibrate control system"
+        - "Update control software"
+        - "Adjust actuator limits"
+        - "Reset system parameters to default"
+        - "Perform control system tuning"
+
+## Fault 6
+fault:
+  name: "Electrical Ground Faults"
+  symptoms:
+    - "Intermittent electrical failures"
+    - "Corrosion at electrical connections"
+    - "Insulation resistance alarms"
+    - "Circuit breakers tripping"
+    - "Electrical shocks when touching equipment"
+  causes:
+    - name: "Insulation Breakdown"
+      probability: 0.7
+      checks:
+        - "Perform megger test on suspect circuits"
+        - "Inspect for visual signs of insulation damage"
+        - "Check for oil or water contamination"
+        - "Test insulation resistance to ground"
+        - "Look for heat damage on cables"
+      actions:
+        - "Replace damaged cables"
+        - "Clean contaminated connections"
+        - "Dry out wet components"
+        - "Apply insulation tape to minor damage"
+        - "Improve cable routing away from heat sources"
+    
+    - name: "Water Ingress"
+      probability: 0.6
+      checks:
+        - "Inspect for water leaks near electrical equipment"
+        - "Check cable gland integrity"
+        - "Test junction box seals"
+        - "Verify drain plug condition"
+        - "Look for condensation in enclosures"
+      actions:
+        - "Seal leaking glands and connections"
+        - "Replace damaged seals and gaskets"
+        - "Install drain holes where appropriate"
+        - "Use desiccant in enclosures prone to condensation"
+        - "Improve ventilation in electrical compartments"
+    
+    - name: "Improper Grounding"
+      probability: 0.5
+      checks:
+        - "Verify ground connections are secure"
+        - "Check ground strap condition"
+        - "Measure ground circuit resistance"
+        - "Inspect for corrosion at ground points"
+        - "Test continuity of ground paths"
+      actions:
+        - "Clean corroded ground connections"
+        - "Tighten loose ground connections"
+        - "Replace damaged ground straps"
+        - "Add ground connections where needed"
+        - "Apply conductive grease to prevent future corrosion"
+
+## Fault 7
+fault:
+  name: "Engine Monitoring System Failure"
+  symptoms:
+    - "Missing or incorrect sensor readings"
+    - "Display panel malfunctions"
+    - "Random alarm activations"
+    - "Data communication errors"
+    - "System restarts or freezes"
+  causes:
+    - name: "Power Supply Issues"
+      probability: 0.6
+      checks:
+        - "Measure power supply voltage"
+        - "Check for voltage fluctuations"
+        - "Inspect power supply connections"
+        - "Test backup power systems"
+        - "Look for interference from other equipment"
+      actions:
+        - "Replace faulty power supply"
+        - "Install voltage stabilizer"
+        - "Clean and secure power connections"
+        - "Repair backup power systems"
+        - "Install isolation transformer if needed"
+    
+    - name: "Communication Network Failure"
+      probability: 0.5
+      checks:
+        - "Test network cable continuity"
+        - "Check network terminators"
+        - "Verify communication protocol settings"
+        - "Inspect for physical damage to network"
+        - "Measure signal quality on network"
+      actions:
+        - "Replace damaged network cables"
+        - "Add or replace network terminators"
+        - "Update communication protocol settings"
+        - "Install network isolators where needed"
+        - "Reduce network load if excessive"
+    
+    - name: "Software/Firmware Issues"
+      probability: 0.4
+      checks:
+        - "Check software version"
+        - "Verify configuration settings"
+        - "Test system memory"
+        - "Look for log files or error messages"
+        - "Monitor system performance"
+      actions:
+        - "Update software/firmware to latest version"
+        - "Restore system to default settings"
+        - "Replace memory if defective"
+        - "Perform system backup and restore"
+        - "Contact manufacturer for specialized support"

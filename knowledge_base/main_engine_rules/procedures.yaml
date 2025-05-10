@@ -1,0 +1,656 @@
+# Marine Main Engine Standard Operating Procedures
+
+## Procedure 1
+procedure:
+  name: "Main Engine Normal Starting Procedure"
+  description: "Standard procedure for starting the main engine under normal conditions"
+  prerequisites:
+    - "Engine room properly manned and ready for operation"
+    - "All lubricating oil levels checked and sufficient"
+    - "Cooling water system operational with proper levels"
+    - "Fuel oil system primed and ready"
+    - "Starting air pressure above minimum required level"
+    - "Turning gear disengaged"
+    - "All indicators on control panel normal"
+  steps:
+    - id: 1
+      action: "Check and confirm all emergency stop buttons are reset"
+      verification: "Emergency stop lights off on control panel"
+      
+    - id: 2
+      action: "Open indicator cocks to allow for drainage of any accumulated water"
+      verification: "Indicator cocks open and clear of water"
+      
+    - id: 3
+      action: "Ensure main engine cooling water system is operating"
+      verification: "Cooling water pressure and flow at normal parameters"
+      
+    - id: 4
+      action: "Start lubricating oil pumps and establish circulation"
+      verification: "Lubricating oil pressure at recommended level (typically 3-5 bar)"
+      
+    - id: 5
+      action: "Verify fuel oil temperature and pressure are correct"
+      verification: "Fuel temperature within range (typically 120-140°C for HFO)"
+      
+    - id: 6
+      action: "Pre-lubricate engine bearings for minimum recommended time"
+      verification: "Pre-lubrication timer complete or minimum 15 minutes elapsed"
+      
+    - id: 7
+      action: "Open starting air valve to engine"
+      verification: "Starting air pressure gauge shows line pressure"
+      
+    - id: 8
+      action: "Place engine telegraph to 'Stand By' position"
+      verification: "Telegraph shows 'Stand By' and control room acknowledged"
+      
+    - id: 9
+      action: "Select 'Local' or 'Remote' control as required"
+      verification: "Control selection indicator shows correct mode"
+      
+    - id: 10
+      action: "Press 'Start' button on control panel"
+      verification: "Engine begins turning over on starting air"
+      
+    - id: 11
+      action: "Monitor engine RPM and ensure engine fires and accelerates"
+      verification: "RPM indicator shows increasing engine speed"
+      
+    - id: 12
+      action: "Monitor all engine parameters during warm-up"
+      verification: "All temperatures and pressures trending toward normal operating range"
+      
+    - id: 13
+      action: "Close indicator cocks once engine is running steadily"
+      verification: "All indicator cocks closed"
+      
+    - id: 14
+      action: "Allow engine to run at idle speed for warm-up period"
+      verification: "Engine running stably at idle (typically 10-15 minutes)"
+  safety_notes:
+    - "Never attempt to start engine with turning gear engaged"
+    - "Abort start procedure if any abnormal noises are heard"
+    - "Maintain minimum 10% starting air reserve at all times"
+    - "Do not exceed maximum number of consecutive start attempts (typically 3)"
+
+## Procedure 2
+procedure:
+  name: "Main Engine Normal Stopping Procedure"
+  description: "Standard procedure for stopping the main engine under normal conditions"
+  prerequisites:
+    - "Engine running at stable speed"
+    - "Engine room properly manned"
+    - "Bridge notified of intended shutdown"
+    - "Appropriate permission received for shutdown"
+  steps:
+    - id: 1
+      action: "Confirm permission from bridge to stop engine"
+      verification: "Verbal or signal confirmation received from bridge"
+      
+    - id: 2
+      action: "Reduce engine load gradually to minimum"
+      verification: "Engine load indicator showing minimum load"
+      
+    - id: 3
+      action: "Allow engine to run at minimum load for cool-down period"
+      verification: "Engine operated at minimum load for at least 5 minutes"
+      
+    - id: 4
+      action: "Set telegraph to 'Stop' position"
+      verification: "Telegraph showing 'Stop' position"
+      
+    - id: 5
+      action: "Press 'Stop' button on control panel"
+      verification: "Engine RPM decreasing to zero"
+      
+    - id: 6
+      action: "Monitor engine until completely stopped"
+      verification: "RPM indicator shows zero"
+      
+    - id: 7
+      action: "Continue lubricating oil circulation for post-lubrication"
+      verification: "Lube oil pumps still running"
+      
+    - id: 8
+      action: "Continue cooling water circulation until engine temperature reduces"
+      verification: "Engine temperature decreasing to below 60°C"
+      
+    - id: 9
+      action: "Close fuel oil supply valves if extended stop period"
+      verification: "Fuel oil supply valves closed and secured"
+      
+    - id: 10
+      action: "Maintain lubricating oil circulation for recommended time"
+      verification: "Post-lubrication timer complete (typically 15-30 minutes)"
+      
+    - id: 11
+      action: "Stop lubricating oil pumps after sufficient cooling"
+      verification: "Lubricating oil pumps stopped"
+      
+    - id: 12
+      action: "Engage turning gear if required for extended stop"
+      verification: "Turning gear properly engaged and indicator light on"
+      
+    - id: 13
+      action: "Log all relevant parameters and reason for shutdown"
+      verification: "Engine log completed with all required information"
+  safety_notes:
+    - "Never stop cooling water circulation immediately after shutdown"
+    - "Always allow sufficient post-lubrication time"
+    - "Engage turning gear for stops longer than 24 hours"
+    - "Open indicator cocks if engine will be worked on"
+
+## Procedure 3
+procedure:
+  name: "Main Engine Emergency Stop Procedure"
+  description: "Procedure for immediately stopping the main engine in emergency situations"
+  prerequisites:
+    - "Emergency situation identified requiring immediate engine stop"
+  steps:
+    - id: 1
+      action: "Press emergency stop button on control panel or local station"
+      verification: "Emergency stop button engaged and alarm sounding"
+      
+    - id: 2
+      action: "Verify engine is stopping"
+      verification: "RPM rapidly decreasing to zero"
+      
+    - id: 3
+      action: "Notify bridge of emergency stop immediately"
+      verification: "Bridge acknowledged emergency stop"
+      
+    - id: 4
+      action: "Ensure cooling water circulation continues"
+      verification: "Cooling water pumps still operating"
+      
+    - id: 5
+      action: "Ensure lubricating oil circulation continues"
+      verification: "Lubricating oil pumps still operating"
+      
+    - id: 6
+      action: "Verify fuel oil supply is cut off"
+      verification: "Fuel cut-off activated and confirmed"
+      
+    - id: 7
+      action: "Monitor all engine parameters for abnormalities"
+      verification: "No additional alarms beyond emergency stop"
+      
+    - id: 8
+      action: "Assess reason for emergency stop and document"
+      verification: "Initial assessment completed and logged"
+      
+    - id: 9
+      action: "Check for any damage or potential hazards"
+      verification: "Safety assessment completed around engine"
+      
+    - id: 10
+      action: "Reset emergency stop system when safe to do so"
+      verification: "Emergency stop button reset but engine not started"
+      
+    - id: 11
+      action: "Maintain cooling and lubrication for at least 30 minutes"
+      verification: "Cooling and lubrication maintained for required time"
+  safety_notes:
+    - "Emergency stop should only be used when necessary to prevent damage or injury"
+    - "Never reset emergency stop until cause has been identified and addressed"
+    - "Personnel safety takes priority over equipment protection"
+    - "Document all emergency stops thoroughly in engine log"
+
+## Procedure 4
+procedure:
+  name: "Main Engine Maneuvering Procedure"
+  description: "Procedure for operating the main engine during ship maneuvering operations"
+  prerequisites:
+    - "Engine warmed up and ready for operation"
+    - "All systems functioning normally"
+    - "Bridge notified of readiness for maneuvering"
+    - "Telegraph and communication systems tested"
+  steps:
+    - id: 1
+      action: "Verify engine control system is functioning correctly"
+      verification: "Control system tests completed successfully"
+      
+    - id: 2
+      action: "Ensure sufficient starting air pressure for multiple starts"
+      verification: "Starting air pressure above 25 bar (or as specified)"
+      
+    - id: 3
+      action: "Test ahead and astern operation at minimum RPM"
+      verification: "Engine responds correctly in both directions"
+      
+    - id: 4
+      action: "Notify bridge that engine is ready for maneuvering"
+      verification: "Bridge acknowledges engine room is ready"
+      
+    - id: 5
+      action: "Set control mode to 'Maneuvering' or 'Bridge Control'"
+      verification: "Control panel indicates bridge has control"
+      
+    - id: 6
+      action: "Acknowledge all telegraph orders promptly"
+      verification: "All telegraph orders acknowledged within 5 seconds"
+      
+    - id: 7
+      action: "Monitor engine parameters during rapid load changes"
+      verification: "Engine parameters remain within acceptable limits"
+      
+    - id: 8
+      action: "Pay special attention to temperatures during astern operation"
+      verification: "Temperatures remain stable during astern operation"
+      
+    - id: 9
+      action: "Ensure lubricating oil pressure remains constant"
+      verification: "Oil pressure stable regardless of engine speed changes"
+      
+    - id: 10
+      action: "Be prepared for emergency maneuvering or engine stop"
+      verification: "Emergency procedures reviewed and team ready"
+      
+    - id: 11
+      action: "Log all significant telegraph orders and responses"
+      verification: "Maneuvering log maintained with times and orders"
+      
+    - id: 12
+      action: "Return to normal operation when maneuvering complete"
+      verification: "Bridge confirms maneuvering completed"
+  safety_notes:
+    - "Avoid prolonged operation at critical RPM ranges"
+    - "Be prepared for rapid direction changes"
+    - "Maintain extra vigilance for abnormal sounds or vibrations"
+    - "Ensure sufficient personnel are available during maneuvering"
+
+## Procedure 5
+procedure:
+  name: "Main Engine Warm-Through Procedure"
+  description: "Procedure for warming through the main engine after extended stop periods"
+  prerequisites:
+    - "Engine stopped for more than 24 hours"
+    - "All fluid levels checked and topped up as necessary"
+    - "No maintenance work in progress on engine"
+    - "Turning gear disengaged"
+  steps:
+    - id: 1
+      action: "Check all expansion tank levels for cooling water system"
+      verification: "Cooling water levels at normal marks"
+      
+    - id: 2
+      action: "Verify lubricating oil level in sump"
+      verification: "Oil level between minimum and maximum marks"
+      
+    - id: 3
+      action: "Start lubricating oil purifier if not already running"
+      verification: "Purifier operating normally"
+      
+    - id: 4
+      action: "Start lubricating oil pumps"
+      verification: "Oil pressure builds to specified value"
+      
+    - id: 5
+      action: "Open indicator cocks on all cylinders"
+      verification: "All indicator cocks confirmed open"
+      
+    - id: 6
+      action: "Start cooling water pumps"
+      verification: "Cooling water pressure and flow established"
+      
+    - id: 7
+      action: "Start jacket water preheater"
+      verification: "Jacket water temperature begins to rise"
+      
+    - id: 8
+      action: "Circulate lubricating oil for minimum 2 hours"
+      verification: "Oil temperature gradually increasing"
+      
+    - id: 9
+      action: "Monitor and maintain jacket water temperature at 50-60°C"
+      verification: "Temperature stabilized within range"
+      
+    - id: 10
+      action: "Test-operate fuel oil system without starting engine"
+      verification: "Fuel oil reaches proper temperature and pressure"
+      
+    - id: 11
+      action: "Operate engine turning gear for minimum 1 hour"
+      verification: "Engine rotates freely with no unusual resistance"
+      
+    - id: 12
+      action: "Disengage turning gear and prepare for starting"
+      verification: "Turning gear disengaged and locked out"
+      
+    - id: 13
+      action: "Proceed with normal starting procedure once warm-through complete"
+      verification: "All temperatures at minimum starting values"
+  safety_notes:
+    - "Never apply heat too quickly to a cold engine"
+    - "Monitor expansion rates by checking alignment marks"
+    - "Ensure good oil circulation before applying heat"
+    - "Do not exceed recommended heating rates (typically 30°C per hour)"
+
+## Procedure 6
+procedure:
+  name: "Main Engine Load Increase Procedure"
+  description: "Procedure for safely increasing load on the main engine"
+  prerequisites:
+    - "Engine running stably at current load"
+    - "All systems functioning normally"
+    - "No active alarms or warnings"
+  steps:
+    - id: 1
+      action: "Verify all engine parameters are normal for current load"
+      verification: "All temperatures and pressures within normal range"
+      
+    - id: 2
+      action: "Check scavenge air pressure is adequate for load increase"
+      verification: "Scavenge pressure following manufacturer's curve"
+      
+    - id: 3
+      action: "Verify turbocharger speed within normal limits"
+      verification: "Turbocharger RPM within specified range"
+      
+    - id: 4
+      action: "Increase load gradually in steps of maximum 10% of MCR"
+      verification: "Load indicator shows controlled increase"
+      
+    - id: 5
+      action: "Pause for 10-15 minutes between load increases"
+      verification: "Engine parameters stabilize after each increase"
+      
+    - id: 6
+      action: "Monitor exhaust gas temperatures for all cylinders"
+      verification: "Temperatures rising evenly across all cylinders"
+      
+    - id: 7
+      action: "Check maximum cylinder pressure is within limits"
+      verification: "Maximum pressure below specified limit"
+      
+    - id: 8
+      action: "Monitor lubricating oil temperature and pressure"
+      verification: "Oil parameters remain stable during load increase"
+      
+    - id: 9
+      action: "Check piston cooling oil outlet temperatures"
+      verification: "Temperatures rising evenly and below limits"
+      
+    - id: 10
+      action: "Observe engine for any unusual noises or vibrations"
+      verification: "Engine running smoothly without abnormal sounds"
+      
+    - id: 11
+      action: "Log all parameters after stabilization at new load"
+      verification: "Engine log updated with new operating data"
+  safety_notes:
+    - "Never exceed maximum load increase rate specified by manufacturer"
+    - "Stop load increase immediately if any parameter approaches limits"
+    - "Pay particular attention to exhaust gas temperature spread"
+    - "Reduce load if excessive black smoke is observed from funnel"
+
+## Procedure 7
+procedure:
+  name: "Main Engine Fuel Change-Over Procedure (HFO to MDO)"
+  description: "Procedure for changing from Heavy Fuel Oil to Marine Diesel Oil"
+  prerequisites:
+    - "MDO settling and service tanks have adequate fuel"
+    - "MDO transfer pump operational"
+    - "Engine running stably on HFO"
+    - "Engine load preferably below 70% of MCR"
+  steps:
+    - id: 1
+      action: "Verify MDO temperature in service tank"
+      verification: "Temperature suitable for engine operation (typically 40-45°C)"
+      
+    - id: 2
+      action: "Reduce engine load if possible"
+      verification: "Engine load reduced to appropriate level"
+      
+    - id: 3
+      action: "Start MDO circulation through transfer system"
+      verification: "MDO flow established through transfer system"
+      
+    - id: 4
+      action: "Verify three-way valve for HFO/MDO selection is operational"
+      verification: "Valve moves freely when manually tested"
+      
+    - id: 5
+      action: "Begin gradual cooling of HFO system"
+      verification: "HFO temperature dropping gradually (max 2°C per minute)"
+      
+    - id: 6
+      action: "Reduce HFO temperature to minimum acceptable value"
+      verification: "HFO temperature at lowest operational value (typically 100-110°C)"
+      
+    - id: 7
+      action: "Start manual change-over by adjusting three-way valve gradually"
+      verification: "Mixed fuel temperature monitored during transition"
+      
+    - id: 8
+      action: "Continue gradual valve adjustment over 15-30 minutes"
+      verification: "Fuel temperature decreasing gradually toward MDO temperature"
+      
+    - id: 9
+      action: "Monitor viscosity during change-over"
+      verification: "Viscosity remains above minimum required (typically 2 cSt)"
+      
+    - id: 10
+      action: "Complete valve shift to 100% MDO position"
+      verification: "Valve position indicator shows full MDO selection"
+      
+    - id: 11
+      action: "Turn off HFO heaters and HFO supply pumps"
+      verification: "HFO heating system secured"
+      
+    - id: 12
+      action: "Purge HFO from supply lines back to storage tank if possible"
+      verification: "Supply lines cleared of HFO"
+      
+    - id: 13
+      action: "Log completion of change-over and fuel viscosity"
+      verification: "Engine log updated with change-over details"
+  safety_notes:
+    - "Never allow fuel temperature to drop too quickly"
+    - "Maintain viscosity above minimum requirement at injection pumps"
+    - "Be prepared to increase fuel pressure if necessary"
+    - "Monitor engine performance closely during and after change-over"
+
+## Procedure 8
+procedure:
+  name: "Main Engine Performance Monitoring Procedure"
+  description: "Routine procedure for monitoring engine performance parameters"
+  prerequisites:
+    - "Engine running at stable load"
+    - "All monitoring systems operational"
+    - "Performance measurement tools available"
+  steps:
+    - id: 1
+      action: "Record engine speed (RPM)"
+      verification: "RPM noted from both local and remote indicators"
+      
+    - id: 2
+      action: "Record engine load (kW or % of MCR)"
+      verification: "Load recorded from power management system"
+      
+    - id: 3
+      action: "Measure and record fuel consumption"
+      verification: "Fuel consumption calculated and recorded"
+      
+    - id: 4
+      action: "Record scavenge air pressure"
+      verification: "Pressure value noted from gauge"
+      
+    - id: 5
+      action: "Record turbocharger speed"
+      verification: "RPM noted from tachometer"
+      
+    - id: 6
+      action: "Measure and record all cylinder exhaust gas temperatures"
+      verification: "All temperatures recorded, noting maximum deviation"
+      
+    - id: 7
+      action: "Record turbocharger inlet and outlet temperatures"
+      verification: "Both temperatures noted and difference calculated"
+      
+    - id: 8
+      action: "Measure and record cylinder compression pressures if equipped"
+      verification: "All compression pressures noted and compared"
+      
+    - id: 9
+      action: "Measure and record maximum cylinder pressures if equipped"
+      verification: "All maximum pressures noted and compared"
+      
+    - id: 10
+      action: "Record lubricating oil consumption rate"
+      verification: "Daily consumption calculated and recorded"
+      
+    - id: 11
+      action: "Check and record indicator diagrams if equipped"
+      verification: "Diagrams obtained for all cylinders"
+      
+    - id: 12
+      action: "Calculate specific fuel consumption"
+      verification: "SFC calculated and compared to reference value"
+      
+    - id: 13
+      action: "Compare all values to previous records and baseline data"
+      verification: "Trends identified and notable changes highlighted"
+      
+    - id: 14
+      action: "Document any performance concerns for follow-up"
+      verification: "Issues logged with maintenance planning system"
+  safety_notes:
+    - "Do not connect indicator equipment while engine is running unless designed for online use"
+    - "Watch for trends rather than absolute values"
+    - "Report significant deviations from baseline immediately"
+    - "Establish minimum-maximum limits for all parameters"
+
+## Procedure 9
+procedure:
+  name: "Main Engine Cylinder Lubrication Adjustment Procedure"
+  description: "Procedure for adjusting cylinder lubrication feed rate"
+  prerequisites:
+    - "Engine running at stable condition"
+    - "Cylinder oil supply adequate"
+    - "Lubricator system operational"
+  steps:
+    - id: 1
+      action: "Check current cylinder oil feed rate setting"
+      verification: "Current setting noted and compared to recommendation"
+      
+    - id: 2
+      action: "Verify actual cylinder oil consumption"
+      verification: "Consumption calculated from tank soundings"
+      
+    - id: 3
+      action: "Inspect cylinder oil distribution system for leaks"
+      verification: "No leaks observed in lubricator drives or piping"
+      
+    - id: 4
+      action: "Check cylinder oil quills/injection points for blockage"
+      verification: "All quills clear and functioning (if visible)"
+      
+    - id: 5
+      action: "Determine appropriate feed rate based on:
+      - Fuel sulfur content
+      - Engine load
+      - Manufacturer's recommendation
+      - Previous inspection results"
+      verification: "New feed rate calculated according to guidelines"
+      
+    - id: 6
+      action: "For mechanical lubricators, adjust stroke setting"
+      verification: "Lubricator stroke adjusted to new setting"
+      
+    - id: 7
+      action: "For electronic lubricators, adjust feed rate in control system"
+      verification: "New feed rate entered in control panel"
+      
+    - id: 8
+      action: "For load-dependent systems, adjust base feed rate and/or factor"
+      verification: "Both base rate and factor adjusted as needed"
+      
+    - id: 9
+      action: "Verify lubricator pumps are operating correctly after adjustment"
+      verification: "Visual observation of lubricator operation"
+      
+    - id: 10
+      action: "Record new settings in engine log"
+      verification: "All adjustments documented with date and reason"
+      
+    - id: 11
+      action: "Monitor scavenge ports for signs of over/under-lubrication"
+      verification: "Schedule scavenge inspection within 1 week"
+  safety_notes:
+    - "Insufficient lubrication can cause scuffing and serious damage"
+    - "Excessive lubrication wastes oil and can cause carbon deposits"
+    - "Always adjust according to fuel sulfur content changes"
+    - "Follow up adjustment with scavenge inspection"
+
+## Procedure 10
+procedure:
+  name: "Main Engine Troubleshooting Authority Procedure"
+  description: "Guidelines for determining when and how to troubleshoot main engine issues"
+  prerequisites:
+    - "Problem or abnormal condition identified"
+    - "Relevant personnel available"
+    - "Access to technical documentation"
+  steps:
+    - id: 1
+      action: "Identify the nature and severity of the problem"
+      verification: "Problem categorized as Critical, Major, or Minor"
+      
+    - id: 2
+      action: "For CRITICAL issues (potential for serious damage or danger):
+      - Initiate appropriate emergency response
+      - Chief Engineer to be notified immediately
+      - Consider engine slowdown or shutdown"
+      verification: "Emergency response initiated as appropriate"
+      
+    - id: 3
+      action: "For MAJOR issues (significant abnormality but not immediate danger):
+      - Second Engineer to evaluate initially
+      - Chief Engineer to be informed
+      - Consider load reduction
+      - Prepare contingency plans"
+      verification: "Senior engineer evaluating situation"
+      
+    - id: 4
+      action: "For MINOR issues (parameters out of normal but within acceptable limits):
+      - Duty engineer to investigate
+      - Document in log book
+      - Monitor for changes"
+      verification: "Issue documented and being monitored"
+      
+    - id: 5
+      action: "Establish troubleshooting team based on issue severity"
+      verification: "Appropriate personnel assigned to problem"
+      
+    - id: 6
+      action: "Define authority limits for each rank:
+      - Watch Engineer: Monitor and report, minor adjustments
+      - Second Engineer: System adjustments, minor repairs
+      - Chief Engineer: Major decisions, complex troubleshooting
+      - Master: Informed of any issue affecting vessel operation"
+      verification: "All personnel understand their authority levels"
+      
+    - id: 7
+      action: "Consult manufacturer documentation before taking action"
+      verification: "Relevant manuals retrieved and reviewed"
+      
+    - id: 8
+      action: "For complex issues, consider:
+      - Contacting technical support
+      - Consulting with shore management
+      - Seeking class surveyor advice"
+      verification: "External support contacted if needed"
+      
+    - id: 9
+      action: "Document all troubleshooting steps taken"
+      verification: "Detailed log maintained of all actions and results"
+      
+    - id: 10
+      action: "Report resolution and root cause"
+      verification: "Final report prepared with cause and solutions"
+  safety_notes:
+    - "Safety takes priority over machinery or operational considerations"
+    - "Never exceed your authority level without proper consultation"
+    - "When in doubt, reduce load or stop engine"
+    - "Always consider commercial impact but never compromise safety"
