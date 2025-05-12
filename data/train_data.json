@@ -1,0 +1,838 @@
+[
+  {
+    "query": "Engine temperature is higher than normal",
+    "similar_queries": [
+      "Main engine running too hot",
+      "High temperature alarm on main engine",
+      "Engine overheating",
+      "ME temperature gauge showing above normal",
+      "Excessive heat from main engine"
+    ],
+    "fault": "temperatures/main_engine_high_temperature"
+  },
+  {
+    "query": "Individual cylinder has high temperature",
+    "similar_queries": [
+      "One cylinder running hotter than others",
+      "Uneven exhaust temperatures across cylinders",
+      "Cylinder overheating",
+      "High temperature in cylinder number 3",
+      "Single cylinder temperature alarm"
+    ],
+    "fault": "temperatures/main_engine_cylinder_overheating"
+  },
+  {
+    "query": "Piston cooling oil temperature is high",
+    "similar_queries": [
+      "High piston cooling oil outlet temperature",
+      "Piston cooling system overheating",
+      "Temperature alarm on piston cooling system",
+      "Hot oil from piston cooling return line",
+      "Piston cooling not working effectively"
+    ],
+    "fault": "temperatures/main_engine_piston_cooling_oil_high_temperature"
+  },
+  {
+    "query": "Exhaust valve is too hot",
+    "similar_queries": [
+      "Exhaust valve overheating",
+      "High exhaust valve temperature alarm",
+      "Exhaust valve getting red hot",
+      "Excessive heat on exhaust valve",
+      "Exhaust valve temperature rising rapidly"
+    ],
+    "fault": "temperatures/main_engine_exhaust_valve_overheating"
+  },
+  {
+    "query": "Turbocharger temperature is high",
+    "similar_queries": [
+      "Turbocharger overheating",
+      "Hot turbocharger bearing",
+      "Turbocharger running too hot",
+      "High temperature alarm on turbocharger",
+      "Excessive heat from turbocharger housing"
+    ],
+    "fault": "temperatures/main_engine_turbocharger_overheating"
+  },
+  {
+    "query": "Lube oil temperature is high",
+    "similar_queries": [
+      "Lubricating oil overheating",
+      "High temperature in lube oil system",
+      "Lube oil coming back too hot",
+      "Lube oil cooler not working properly",
+      "Oil temperature gauge reading high"
+    ],
+    "fault": "temperatures/main_engine_lubricating_oil_high_temperature"
+  },
+  {
+    "query": "Scavenge air is too hot",
+    "similar_queries": [
+      "High scavenge air temperature",
+      "Scavenge air not cooling properly",
+      "Air temperature after cooler is high",
+      "Hot air entering engine cylinders",
+      "Scavenge air temperature alarm activated"
+    ],
+    "fault": "temperatures/main_engine_scavenge_air_high_temperature"
+  },
+  {
+    "query": "Thrust bearing temperature is high",
+    "similar_queries": [
+      "Main engine thrust bearing overheating",
+      "High thrust bearing temperature alarm",
+      "Thrust bearing running too hot",
+      "Excessive temperature on thrust bearing",
+      "Thrust bearing heat increasing rapidly"
+    ],
+    "fault": "temperatures/main_engine_thrust_bearing_high_temperature"
+  },
+  {
+    "query": "Governor oil temperature is rising",
+    "similar_queries": [
+      "Governor oil too hot",
+      "High temperature in governor system",
+      "Governor hydraulic oil overheating",
+      "Governor speed control oil temperature high",
+      "Woodward governor running hot"
+    ],
+    "fault": "temperatures/main_engine_governor_oil_high_temperature"
+  },
+  {
+    "query": "Crankcase temperature is high",
+    "similar_queries": [
+      "Hot crankcase alarm",
+      "Crankcase overheating",
+      "Engine crankcase temperature rising",
+      "Excessive heat inside crankcase",
+      "High temperature in engine crankcase area"
+    ],
+    "fault": "temperatures/main_engine_high_crankcase_temperature"
+  },
+  {
+    "query": "Fuel valve cooling water is too hot",
+    "similar_queries": [
+      "High temperature in fuel valve cooling system",
+      "Fuel injector cooling water overheating",
+      "Fuel valve cooling water temperature alarm",
+      "Injector cooling not working properly",
+      "Hot water from fuel valve cooling system"
+    ],
+    "fault": "temperatures/main_engine_fuel_valve_cooling_water_high_temperature"
+  },
+  {
+    "query": "Charge air manifold temperature is high",
+    "similar_queries": [
+      "Hot air in intake manifold",
+      "Charge air system overheating",
+      "High temperature after air cooler",
+      "Intake manifold temperature alarm",
+      "Air inlet to engine too hot"
+    ],
+    "fault": "temperatures/main_engine_charge_air_manifold_high_temperature"
+  },
+  {
+    "query": "Cylinder liner temperature is high",
+    "similar_queries": [
+      "Liner overheating",
+      "High cylinder wall temperature",
+      "Engine liner temperature alarm",
+      "Excessive heat in cylinder liner",
+      "Cylinder wall getting too hot"
+    ],
+    "fault": "temperatures/main_engine_cylinder_liner_high_temperature"
+  },
+  {
+    "query": "Exhaust gas temperature is too high",
+    "similar_queries": [
+      "High exhaust temperature",
+      "Exhaust gas overheating",
+      "Excessive temperature in exhaust system",
+      "Exhaust temperature above normal range",
+      "Hot gases from engine exhaust"
+    ],
+    "fault": "temperatures/main_engine_exhaust_gas_high_temperature"
+  },
+  {
+    "query": "Differential expansion temperature is high",
+    "similar_queries": [
+      "Thermal expansion alarm activated",
+      "Differential expansion issue in engine",
+      "High temperature differential in engine block",
+      "Uneven thermal expansion in engine",
+      "Engine expansion monitoring alarm"
+    ],
+    "fault": "temperatures/main_engine_differential_expansion_high_temperature"
+  },
+  {
+    "query": "Low lubricating oil pressure",
+    "similar_queries": [
+      "Lube oil pressure dropping",
+      "Oil pressure alarm activated",
+      "Insufficient lubricating oil pressure",
+      "Main engine oil pressure below normal",
+      "Low pressure in lube oil system"
+    ],
+    "fault": "pressures/main_engine_low_lubricating_oil_pressure"
+  },
+  {
+    "query": "High crankcase pressure",
+    "similar_queries": [
+      "Crankcase pressure alarm activated",
+      "Excessive pressure in crankcase",
+      "Rising pressure inside engine crankcase",
+      "Crankcase overpressure warning",
+      "High pressure in engine crankcase"
+    ],
+    "fault": "pressures/main_engine_high_crankcase_pressure"
+  },
+  {
+    "query": "Low fuel oil pressure",
+    "similar_queries": [
+      "Fuel oil pressure dropping",
+      "Insufficient pressure in fuel system",
+      "Low pressure alarm on fuel system",
+      "Not enough fuel pressure to engine",
+      "Fuel pressure below normal operating range"
+    ],
+    "fault": "pressures/main_engine_low_fuel_oil_pressure"
+  },
+  {
+    "query": "Cooling water pressure is low",
+    "similar_queries": [
+      "Insufficient cooling water pressure",
+      "Low pressure in cooling system",
+      "Cooling water pressure alarm activated",
+      "Not enough pressure in engine cooling circuit",
+      "Cooling water pump not delivering enough pressure"
+    ],
+    "fault": "pressures/main_engine_low_cooling_water_pressure"
+  },
+  {
+    "query": "High scavenge air pressure",
+    "similar_queries": [
+      "Excessive scavenge air pressure",
+      "Scavenge air pressure too high",
+      "Air pressure in scavenge space above normal",
+      "Charge air pressure alarm activated",
+      "Too much pressure in air intake system"
+    ],
+    "fault": "pressures/main_engine_high_scavenge_air_pressure"
+  },
+  {
+    "query": "Low scavenge air pressure",
+    "similar_queries": [
+      "Not enough scavenge air pressure",
+      "Scavenge air pressure below normal",
+      "Insufficient charge air pressure",
+      "Low air pressure to engine cylinders",
+      "Scavenge air pressure dropping"
+    ],
+    "fault": "pressures/main_engine_low_scavenge_air_pressure"
+  },
+  {
+    "query": "High fuel injection pressure",
+    "similar_queries": [
+      "Fuel injection pressure too high",
+      "Excessive pressure in fuel injection system",
+      "Fuel pressure to injectors above normal",
+      "High pressure in injection pumps",
+      "Abnormal injection pressure readings"
+    ],
+    "fault": "pressures/main_engine_high_fuel_injection_pressure"
+  },
+  {
+    "query": "Low fuel injection pressure",
+    "similar_queries": [
+      "Fuel injection pressure too low",
+      "Insufficient pressure for fuel injection",
+      "Not enough pressure at fuel injectors",
+      "Injection pressure below normal range",
+      "Low pressure readings at injection pumps"
+    ],
+    "fault": "pressures/main_engine_low_fuel_injection_pressure"
+  },
+  {
+    "query": "High compression pressure",
+    "similar_queries": [
+      "Compression pressure too high",
+      "Excessive cylinder compression",
+      "Above normal compression readings",
+      "Cylinder pressure exceeding limits",
+      "High firing pressure in cylinders"
+    ],
+    "fault": "pressures/main_engine_high_compression_pressure"
+  },
+  {
+    "query": "Low compression pressure",
+    "similar_queries": [
+      "Not enough compression in cylinders",
+      "Compression pressure too low",
+      "Cylinder compression below normal",
+      "Poor compression readings",
+      "Insufficient pressure during compression stroke"
+    ],
+    "fault": "pressures/main_engine_low_compression_pressure"
+  },
+  {
+    "query": "High starting air pressure drop",
+    "similar_queries": [
+      "Starting air pressure dropping quickly",
+      "Excessive loss of starting air pressure",
+      "Starting air depleting too fast",
+      "Abnormal air pressure loss when starting",
+      "Air pressure falls rapidly during start attempt"
+    ],
+    "fault": "pressures/main_engine_high_starting_air_pressure_drop"
+  },
+  {
+    "query": "Low starting air pressure",
+    "similar_queries": [
+      "Not enough starting air pressure",
+      "Starting air pressure below minimum",
+      "Insufficient air for engine start",
+      "Starting air pressure too low",
+      "Can't maintain starting air pressure"
+    ],
+    "fault": "pressures/main_engine_low_starting_air_pressure"
+  },
+  {
+    "query": "High differential pressure across air filter",
+    "similar_queries": [
+      "Air filter pressure differential too high",
+      "Excessive pressure drop across air filter",
+      "Air filter restriction indicator activated",
+      "High pressure difference before and after air filter",
+      "Air filter appears to be clogged"
+    ],
+    "fault": "pressures/main_engine_high_differential_pressure_across_air_filter"
+  },
+  {
+    "query": "Low piston cooling oil pressure",
+    "similar_queries": [
+      "Piston cooling pressure insufficient",
+      "Not enough pressure in piston cooling system",
+      "Piston cooling oil alarm activated",
+      "Pressure to piston cooling below normal",
+      "Piston cooling pressure drop"
+    ],
+    "fault": "pressures/main_engine_low_piston_cooling_oil_pressure"
+  },
+  {
+    "query": "High differential pressure across lube oil filter",
+    "similar_queries": [
+      "Lube oil filter pressure differential alarm",
+      "Oil filter becoming restricted",
+      "Excessive pressure drop in oil filter",
+      "Pressure difference across oil filter too high",
+      "Oil filter clogging indicator activated"
+    ],
+    "fault": "pressures/main_engine_high_differential_pressure_across_lubricating_oil_filter"
+  },
+  {
+    "query": "High fuel oil pressure",
+    "similar_queries": [
+      "Fuel oil pressure too high",
+      "Excessive pressure in fuel system",
+      "Fuel pressure above normal range",
+      "Abnormally high fuel system pressure",
+      "Fuel pressure exceeding limits"
+    ],
+    "fault": "pressures/main_engine_high_fuel_oil_pressure"
+  },
+  {
+    "query": "Low control air pressure",
+    "similar_queries": [
+      "Insufficient control air pressure",
+      "Control air system pressure too low",
+      "Not enough air pressure for controls",
+      "Control air pressure below minimum",
+      "Air pressure for pneumatic controls dropping"
+    ],
+    "fault": "pressures/main_engine_low_control_air_pressure"
+  },
+  {
+    "query": "High crankcase pressure",
+    "similar_queries": [
+      "Excessive pressure in crankcase",
+      "Crankcase pressure alarm triggered",
+      "Abnormal pressure inside engine crankcase",
+      "Rising crankcase pressure readings",
+      "Pressure building up inside crankcase"
+    ],
+    "fault": "pressures/main_engine_high_crankcase_pressure"
+  },
+  {
+    "query": "High charge air pressure",
+    "similar_queries": [
+      "Charge air pressure too high",
+      "Excessive pressure in air charging system",
+      "Charge air pressure above normal limits",
+      "High pressure after turbocharger",
+      "Scavenge air pressure exceeding specifications"
+    ],
+    "fault": "pressures/main_engine_high_charge_air_pressure"
+  },
+  {
+    "query": "High exhaust back pressure",
+    "similar_queries": [
+      "Exhaust back pressure too high",
+      "Excessive pressure in exhaust system",
+      "High pressure in exhaust manifold",
+      "Exhaust system appears restricted",
+      "Abnormal back pressure in exhaust line"
+    ],
+    "fault": "pressures/main_engine_high_exhaust_back_pressure"
+  },
+  {
+    "query": "Low hydraulic system pressure",
+    "similar_queries": [
+      "Hydraulic pressure too low",
+      "Insufficient pressure in hydraulic system",
+      "Hydraulic system pressure alarm",
+      "Not enough hydraulic pressure for operation",
+      "Hydraulic pressure dropping below normal"
+    ],
+    "fault": "pressures/main_engine_hydraulic_system_low_pressure"
+  },
+  {
+    "query": "Engine won't start",
+    "similar_queries": [
+      "Engine fails to start when cranking",
+      "Engine not starting on command",
+      "No ignition when trying to start engine",
+      "Engine cranks but doesn't fire",
+      "Unable to start main engine"
+    ],
+    "fault": "other/engine_fails_to_start_electrical"
+  },
+  {
+    "query": "Engine starts but stops immediately",
+    "similar_queries": [
+      "Engine dies right after starting",
+      "Engine shuts down after brief start",
+      "Engine won't stay running",
+      "Engine starts then cuts out",
+      "Can't keep engine running after start"
+    ],
+    "fault": "other/engine_starts_but_immediately_stops"
+  },
+  {
+    "query": "Generator output problems",
+    "similar_queries": [
+      "Generator not producing correct voltage",
+      "Alternator output issues",
+      "No power output from generator",
+      "Generator voltage fluctuating",
+      "Main engine generator not working properly"
+    ],
+    "fault": "other/main_engine_generator_alternator_output_problems"
+  },
+  {
+    "query": "Engine control system failure",
+    "similar_queries": [
+      "Engine controls not responding",
+      "Control system malfunction",
+      "Engine control unit not working",
+      "Electronic controls failure",
+      "Can't control engine properly"
+    ],
+    "fault": "other/engine_control_system_failure"
+  },
+  {
+    "query": "Fuel actuator malfunction",
+    "similar_queries": [
+      "Fuel rack actuator not working correctly",
+      "Fuel control actuator issues",
+      "Engine governor actuator problem",
+      "Fuel actuator sticking",
+      "Fuel metering issues with actuator"
+    ],
+    "fault": "other/main_engine_fuel_actuator_malfunction"
+  },
+  {
+    "query": "Electrical ground fault",
+    "similar_queries": [
+      "Ground fault alarm activated",
+      "Electrical ground issue detected",
+      "Insulation failure causing ground fault",
+      "Earth fault in electrical system",
+      "Short circuit to ground detected"
+    ],
+    "fault": "other/electrical_ground_faults"
+  },
+  {
+    "query": "Engine monitoring system failure",
+    "similar_queries": [
+      "Monitoring system not working",
+      "Engine parameters not displaying",
+      "Alarm system malfunction",
+      "Engine data readouts incorrect",
+      "Monitoring display failure"
+    ],
+    "fault": "other/engine_monitoring_system_failure"
+  },
+  {
+    "query": "Auxiliary engine fails to start",
+    "similar_queries": [
+      "Aux engine won't start",
+      "Can't start the auxiliary engine",
+      "Auxiliary generator fails to start",
+      "Aux engine not cranking",
+      "No start on auxiliary power unit"
+    ],
+    "fault": "other/auxiliary_engine_fails_to_start"
+  },
+  {
+    "query": "Auxiliary engine vibration",
+    "similar_queries": [
+      "Excessive vibration from auxiliary engine",
+      "Auxiliary engine shaking abnormally",
+      "Aux engine has unusual vibration",
+      "High vibration levels on auxiliary generator",
+      "Auxiliary engine mount vibration"
+    ],
+    "fault": "other/auxiliary_engine_excessive_vibration"
+  },
+  {
+    "query": "Auxiliary generator output problems",
+    "similar_queries": [
+      "Auxiliary generator not producing power",
+      "Aux gen electrical output issues",
+      "No voltage from auxiliary generator",
+      "Auxiliary power output fluctuating",
+      "Auxiliary generator not maintaining voltage"
+    ],
+    "fault": "other/auxiliary_engine_generator_output_problems"
+  },
+  {
+    "query": "Low lube oil pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine oil pressure low",
+      "Aux engine lube oil pressure alarm",
+      "Not enough oil pressure in auxiliary engine",
+      "Aux engine oil pressure dropping",
+      "Low pressure in auxiliary lube system"
+    ],
+    "fault": "pressures/auxiliary_engine_low_lubricating_oil_pressure"
+  },
+  {
+    "query": "Low fuel pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine fuel pressure too low",
+      "Aux engine not getting enough fuel pressure",
+      "Fuel pressure insufficient on auxiliary",
+      "Aux generator fuel pressure alarm",
+      "Auxiliary engine fuel system pressure drop"
+    ],
+    "fault": "pressures/auxiliary_engine_low_fuel_pressure"
+  },
+  {
+    "query": "High crankcase pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine crankcase pressure alarm",
+      "Excessive pressure in aux engine crankcase",
+      "Aux generator crankcase pressure high",
+      "Abnormal pressure in auxiliary engine crankcase",
+      "Auxiliary engine oil mist detector alarm"
+    ],
+    "fault": "pressures/auxiliary_engine_high_crankcase_pressure"
+  },
+  {
+    "query": "Low charge air pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine boost pressure low",
+      "Not enough charge air in auxiliary engine",
+      "Aux engine intake air pressure insufficient",
+      "Low scavenge pressure on auxiliary",
+      "Auxiliary turbocharger not providing enough pressure"
+    ],
+    "fault": "pressures/auxiliary_engine_low_charge_air_pressure"
+  },
+  {
+    "query": "High fuel pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine fuel pressure too high",
+      "Excessive fuel pressure to auxiliary engine",
+      "Aux generator fuel system pressure alarm",
+      "Fuel pressure above normal on auxiliary",
+      "Abnormally high aux engine fuel pressure"
+    ],
+    "fault": "pressures/auxiliary_engine_high_fuel_pressure"
+  },
+  {
+    "query": "Low cooling water pressure on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine cooling water pressure insufficient",
+      "Aux engine coolant pressure alarm",
+      "Not enough pressure in auxiliary cooling system",
+      "Low pressure in aux engine water circuit",
+      "Auxiliary generator cooling pressure problem"
+    ],
+    "fault": "pressures/auxiliary_engine_low_cooling_water_pressure"
+  },
+  {
+    "query": "How to start the auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine starting procedure",
+      "What's the correct way to start an auxiliary engine",
+      "Step by step startup for auxiliary engine",
+      "Procedure for auxiliary engine startup",
+      "Starting sequence for auxiliary generator"
+    ],
+    "fault": "procedures/auxiliary_engine_starting_procedure"
+  },
+  {
+    "query": "How to stop the auxiliary engine normally",
+    "similar_queries": [
+      "Normal stopping procedure for auxiliary engine",
+      "Correct way to shutdown auxiliary engine",
+      "Auxiliary engine normal stop sequence",
+      "Proper shutdown of auxiliary generator",
+      "Standard procedure to stop auxiliary engine"
+    ],
+    "fault": "procedures/auxiliary_engine_normal_stopping_procedure"
+  },
+  {
+    "query": "Emergency stop procedure for auxiliary engine",
+    "similar_queries": [
+      "How to emergency stop the auxiliary engine",
+      "Auxiliary engine emergency shutdown steps",
+      "Emergency procedure for stopping aux engine",
+      "Quick shutdown of auxiliary engine in emergency",
+      "Aux generator emergency stop sequence"
+    ],
+    "fault": "procedures/auxiliary_engine_emergency_stop_procedure"
+  },
+  {
+    "query": "Load sharing between auxiliary engines",
+    "similar_queries": [
+      "How to balance load between auxiliary engines",
+      "Procedure for auxiliary engine load sharing",
+      "Balancing multiple auxiliary engines",
+      "Synchronizing and load sharing auxiliary generators",
+      "Equal load distribution across auxiliary engines"
+    ],
+    "fault": "procedures/auxiliary_engine_load_sharing_procedure"
+  },
+  {
+    "query": "Changing fuel type on auxiliary engine",
+    "similar_queries": [
+      "Fuel changeover procedure for auxiliary engine",
+      "How to switch from MDO to HFO on auxiliary",
+      "Changing from heavy fuel to diesel on aux engine",
+      "Auxiliary engine fuel change procedure",
+      "Proper way to change fuel types on aux generator"
+    ],
+    "fault": "procedures/auxiliary_engine_fuel_change_over_procedure"
+  },
+  {
+    "query": "How to monitor auxiliary engine performance",
+    "similar_queries": [
+      "Auxiliary engine performance monitoring procedure",
+      "Steps for checking auxiliary engine performance",
+      "Regular monitoring of auxiliary engine parameters",
+      "Auxiliary generator performance checks",
+      "Performance data collection for auxiliary engine"
+    ],
+    "fault": "procedures/auxiliary_engine_performance_monitoring"
+  },
+  {
+    "query": "Crankcase inspection on auxiliary engine",
+    "similar_queries": [
+      "How to inspect auxiliary engine crankcase",
+      "Procedure for checking inside auxiliary crankcase",
+      "Safety steps for auxiliary crankcase inspection",
+      "Opening auxiliary engine crankcase safely",
+      "Crankcase examination procedure for aux engine"
+    ],
+    "fault": "procedures/auxiliary_engine_crankcase_inspection"
+  },
+  {
+    "query": "How to change air filter on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine air filter replacement",
+      "Procedure for replacing aux engine air filter",
+      "Steps to change auxiliary air intake filter",
+      "Air filter maintenance on auxiliary engine",
+      "Proper way to install new auxiliary air filter"
+    ],
+    "fault": "procedures/auxiliary_engine_air_filter_replacement"
+  },
+  {
+    "query": "Cooling water treatment for auxiliary engine",
+    "similar_queries": [
+      "How to treat auxiliary engine cooling water",
+      "Adding chemicals to auxiliary engine cooling system",
+      "Auxiliary engine jacket water treatment",
+      "Cooling water maintenance for auxiliary engines",
+      "Treating and testing auxiliary engine coolant"
+    ],
+    "fault": "procedures/auxiliary_engine_jacket_water_treatment"
+  },
+  {
+    "query": "Main engine start procedure",
+    "similar_queries": [
+      "How to start the main engine properly",
+      "Step by step main engine starting",
+      "Correct procedure for main engine startup",
+      "Main propulsion engine starting sequence",
+      "Safe starting procedure for main engine"
+    ],
+    "fault": "procedures/main_engine_normal_starting_procedure"
+  },
+  {
+    "query": "Main engine stopping procedure",
+    "similar_queries": [
+      "How to stop the main engine normally",
+      "Proper shutdown of main engine",
+      "Main engine normal stop sequence",
+      "Correct way to stop main propulsion",
+      "Standard procedure for stopping main engine"
+    ],
+    "fault": "procedures/main_engine_normal_stopping_procedure"
+  },
+  {
+    "query": "Main engine emergency stop",
+    "similar_queries": [
+      "Emergency shutdown of main engine",
+      "Main engine emergency stopping procedure",
+      "How to quickly stop main engine in emergency",
+      "Emergency stop sequence for main propulsion",
+      "Main engine crash stop procedure"
+    ],
+    "fault": "procedures/main_engine_emergency_stop_procedure"
+  },
+  {
+    "query": "Engine maneuvering procedure",
+    "similar_queries": [
+      "Main engine operation during maneuvering",
+      "How to handle engine during ship maneuvering",
+      "Procedure for engine control in port approach",
+      "Main engine maneuvering operations",
+      "Engine room procedures during ship maneuvering"
+    ],
+    "fault": "procedures/main_engine_maneuvering_procedure"
+  },
+  {
+    "query": "Warming through the main engine",
+    "similar_queries": [
+      "Main engine warm-up procedure",
+      "How to warm main engine before starting",
+      "Proper warming of main engine after shutdown",
+      "Main engine warm-through after long stop",
+      "Temperature preparation for main engine start"
+    ],
+    "fault": "procedures/main_engine_warm_through_procedure"
+  },
+  {
+    "query": "How to increase main engine load",
+    "similar_queries": [
+      "Main engine load increase procedure",
+      "Proper way to apply load to main engine",
+      "Safe loading of main propulsion engine",
+      "Gradually increasing main engine power",
+      "Main engine power ramp-up procedure"
+    ],
+    "fault": "procedures/main_engine_load_increase_procedure"
+  },
+  {
+    "query": "Changing from heavy fuel to diesel",
+    "similar_queries": [
+      "Fuel changeover procedure from HFO to MDO",
+      "How to switch main engine from heavy fuel to diesel",
+      "Main engine fuel change procedure",
+      "Changing fuels before port arrival",
+      "Safe procedure for HFO to MDO change"
+    ],
+    "fault": "procedures/main_engine_fuel_change_over_procedure_hfo_to_mdo"
+  },
+  {
+    "query": "How to monitor main engine performance",
+    "similar_queries": [
+      "Main engine performance monitoring procedure",
+      "Taking performance readings from main engine",
+      "Regular monitoring of engine parameters",
+      "Main engine efficiency monitoring",
+      "Recording and analyzing main engine data"
+    ],
+    "fault": "procedures/main_engine_performance_monitoring_procedure"
+  },
+  {
+    "query": "Adjusting cylinder lubrication",
+    "similar_queries": [
+      "How to adjust cylinder oil feed rate",
+      "Main engine cylinder lubrication settings",
+      "Procedure for changing cylinder oil dosage",
+      "Adjusting cylinder lubricator settings",
+      "Setting correct cylinder oil feed rate"
+    ],
+    "fault": "procedures/main_engine_cylinder_lubrication_adjustment_procedure"
+  },
+  {
+    "query": "Troubleshooting authority for engine issues",
+    "similar_queries": [
+      "Who can troubleshoot different engine problems",
+      "Engine troubleshooting responsibility levels",
+      "Authority for engine maintenance decisions",
+      "Engine breakdown response chain of command",
+      "Decision-making authority for engine issues"
+    ],
+    "fault": "procedures/main_engine_troubleshooting_authority_procedure"
+  },
+  {
+    "query": "High cooling water temperature on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine cooling water too hot",
+      "Aux engine overheating cooling system",
+      "High temperature in auxiliary cooling circuit",
+      "Auxiliary generator cooling water temperature alarm",
+      "Excessive auxiliary engine coolant temperature"
+    ],
+    "fault": "temperatures/auxiliary_engine_high_cooling_water_temperature"
+  },
+  {
+    "query": "High exhaust gas temperature on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine exhaust too hot",
+      "Aux engine high exhaust temperature alarm",
+      "Hot exhaust gases from auxiliary engine",
+      "Auxiliary generator exhaust overheating",
+      "Excessive exhaust temperature on auxiliary"
+    ],
+    "fault": "temperatures/auxiliary_engine_high_exhaust_gas_temperature"
+  },
+  {
+    "query": "High lube oil temperature on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine oil temperature too high",
+      "Aux engine lubricating oil overheating",
+      "Hot oil in auxiliary engine system",
+      "Auxiliary generator oil temperature alarm",
+      "Excessive heat in auxiliary lube oil"
+    ],
+    "fault": "temperatures/auxiliary_engine_high_lubricating_oil_temperature"
+  },
+  {
+    "query": "High charge air temperature on auxiliary engine",
+    "similar_queries": [
+      "Auxiliary engine intake air too hot",
+      "Aux engine charge air overheating",
+      "High temperature after auxiliary turbocharger",
+      "Auxiliary intake manifold temperature alarm",
+      "Hot charge air in auxiliary engine"
+    ],
+    "fault": "temperatures/auxiliary_engine_high_charge_air_temperature"
+  },
+  {
+    "query": "Hot spots on auxiliary engine surface",
+    "similar_queries": [
+      "Localized overheating on auxiliary engine",
+      "Hot areas on auxiliary engine casing",
+      "Auxiliary engine surface temperature issue",
+      "Heat spots on auxiliary generator housing",
+      "Excessive surface heat on auxiliary engine"
+    ],
+    "fault": "temperatures/auxiliary_engine_hot_spots_on_external_surfaces"
+  }
+]
