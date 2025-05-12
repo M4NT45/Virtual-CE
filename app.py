@@ -1,6 +1,8 @@
 from flask import Flask, render_template, jsonify, request
 from models.schema import db, YamlPath, Query
 from services.rule_engine import RuleEngine
+from services.neural_engine import NeuralEngine
+from services.hybrid_engine import HybridEngine
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
@@ -8,6 +10,8 @@ app.config.from_object('config.Config')
 db.init_app(app)
 
 rule_engine = RuleEngine()
+neural_engine = NeuralEngine()
+hybrid_engine = HybridEngine()
 
 @app.route('/')
 def index():
@@ -22,8 +26,8 @@ def diagnose():
     db.session.add(query_record)
     db.session.commit()
     
-    # Process with rule engine
-    results = rule_engine.process(user_query)
+    # Process with hybrid engine
+    results = hybrid_engine.process(user_query)
     
     return jsonify(results)
 
