@@ -24,16 +24,16 @@ def index():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-# @app.route('/api/diagnose', methods=['POST'])
-# def diagnose():
-#     data = request.json
-#     user_query = data.get('query', '')
-#     engine_type = data.get('engine', 'hybrid')
+@app.route('/api/diagnose', methods=['POST'])
+def diagnose():
+    data = request.json
+    user_query = data.get('query', '')
+    engine_type = data.get('engine', 'hybrid')
     
-#     with session_maker() as session:
-#         query_record = Query(text=user_query)
-#         session.add(query_record)
-#         session.commit()
+    with session_maker() as session:
+        query_record = Query(text=user_query)
+        session.add(query_record)
+        session.commit()
         
 #     if engine_type == 'rule':
 #         results = rule_engine.process(user_query)
