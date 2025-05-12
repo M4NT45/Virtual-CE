@@ -2,207 +2,146 @@ document.addEventListener('DOMContentLoaded', function() {
     const queryForm = document.getElementById('query-form');
     const queryInput = document.getElementById('query');
     const chatHistory = document.getElementById('chat-history');
-    const submitBtn = document.getElementById('submit-btn');
-
-    // Auto-resize textarea as user types
-    queryInput.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
+    const engineSelect = document.getElementById('engine-type');
+    
+    // Update tooltip text based on selected engine
+    engineSelect.addEventListener('change', function() {
+        const engineTooltip = document.querySelector('.engine-tooltip');
+        const selectedEngine = engineSelect.value;
         
-        // Reset to default height if empty
-        if (this.value === '') {
-            this.style.height = '';
+        if (selectedEngine === 'rule') {
+            engineTooltip.textContent = 'Uses structured fault trees and decision rules for precise diagnosis';
+        } else if (selectedEngine === 'neural') {
+            engineTooltip.textContent = 'Uses semantic similarity to understand natural language descriptions';
+        } else { // hybrid
+            engineTooltip.textContent = 'Combines rule-based knowledge with neural semantic understanding for best results';
         }
     });
-
-    // Handle form submission
+    
     queryForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const query = queryInput.value.trim();
         
-        if (query === '') return;
+        const userQuery = queryInput.value.trim();
+        if (!userQuery) return;
         
         // Add user message to chat
-        addMessage(query, 'user');
+        addMessage('user', userQuery);
         
         // Clear input
         queryInput.value = '';
-        queryInput.style.height = '';
         
-        // Show loading indicator
-        const loadingMessage = addLoadingMessage();
+        // Get selected engine
+        const selectedEngine = engineSelect.value;
         
-        // Disable submit button while processing
-        submitBtn.disabled = true;
+        // Show typing indicator
+        showTypingIndicator();
         
-        // Send query to backend
-        fetchDiagnosis(query)
-            .then(response => {
-                // Remove loading message
-                loadingMessage.remove();
-                
-                // Add response to chat
-                addDiagnosisMessage(response);
+        // Send query to backend with selected engine
+        fetch('/api/diagnose', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: userQuery,
+                engine: selectedEngine
             })
-            .catch(error => {
-                // Remove loading message
-                loadingMessage.remove();
-                
-                // Add error message
-                addErrorMessage('Sorry, there was an error processing your query. Please try again.');
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                // Re-enable submit button
-                submitBtn.disabled = false;
-                
-                // Scroll to bottom
-                scrollToBottom();
-            });
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hide typing indicator
+            hideTypingIndicator();
+            
+            // Format and display response
+            const formattedResponse = formatDiagnosisResponse(data, selectedEngine);
+            addMessage('assistant', formattedResponse);
+            
+            // Scroll to bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            hideTypingIndicator();
+            addMessage('assistant', 'Sorry, I encountered an error processing your request.');
+        });
     });
-
-    // Function to add messages to the chat
-    function addMessage(content, role) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${role}`;
-        
-        const messageContent = document.createElement('div');
-        messageContent.className = 'message-content';
-        messageContent.innerHTML = `<p>${content}</p>`;
-        
-        messageDiv.appendChild(messageContent);
-        chatHistory.appendChild(messageDiv);
-        
-        scrollToBottom();
-        return messageDiv;
+    
+    // Add typing indicator
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message assistant typing';
+        typingDiv.innerHTML = '<div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+        chatHistory.appendChild(typingDiv);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
     }
-
-    // Function to add loading indicator
-    function addLoadingMessage() {
-        const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'message assistant';
-        
-        const loadingContent = document.createElement('div');
-        loadingContent.className = 'loading';
-        
-        // Add three loading dots
-        for (let i = 0; i < 3; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'loading-dot';
-            loadingContent.appendChild(dot);
+    
+    // Remove typing indicator
+    function hideTypingIndicator() {
+        const typingIndicator = document.querySelector('.typing');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+    
+    // Add message to chat
+    function addMessage(sender, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerHTML = `<div class="message-content">${content}</div>`;
+        chatHistory.appendChild(messageDiv);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+    
+    // Format diagnosis response
+    function formatDiagnosisResponse(data, engineType) {
+        // Customize based on your data structure
+        let engineLabel = '';
+        if (engineType === 'rule') {
+            engineLabel = '<span class="engine-label rule">Rule-Based Analysis</span>';
+        } else if (engineType === 'neural') {
+            engineLabel = '<span class="engine-label neural">Neural Analysis</span>';
+        } else {
+            engineLabel = '<span class="engine-label hybrid">Hybrid Analysis</span>';
         }
         
-        loadingDiv.appendChild(loadingContent);
-        chatHistory.appendChild(loadingDiv);
+        let html = `<p>${engineLabel} Based on your description, I've identified the following issue:</p>`;
         
-        scrollToBottom();
-        return loadingDiv;
-    }
-
-    // Function to add error message
-    function addErrorMessage(message) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message assistant';
+        if (data.fault) {
+            html += `<h3>${data.fault}</h3>`;
+        }
         
-        const messageContent = document.createElement('div');
-        messageContent.className = 'message-content';
-        messageContent.innerHTML = `<p style="color: var(--error-color);">${message}</p>`;
-        
-        messageDiv.appendChild(messageContent);
-        chatHistory.appendChild(messageDiv);
-        
-        scrollToBottom();
-        return messageDiv;
-    }
-
-    // Function to add diagnosis response
-    function addDiagnosisMessage(diagnosis) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = 'message assistant';
-        
-        const messageContent = document.createElement('div');
-        messageContent.className = 'message-content';
-        
-        // Format the diagnostic response
-        let html = '';
-        
-        if (diagnosis.error) {
-            html = `<p>${diagnosis.error}</p>`;
-        } else {
-            // Calculate confidence percentage
-            const confidencePercent = Math.round(diagnosis.confidence * 100);
-            const confidenceClass = confidencePercent > 80 ? 'success-color' : 
-                                   confidencePercent > 50 ? 'accent-color' : 'error-color';
+        if (data.causes && data.causes.length > 0) {
+            html += '<p>Potential causes (ranked by probability):</p><ol>';
             
-            html = `
-                <h3>${diagnosis.fault}</h3>
-                <p class="confidence">Confidence: <span style="color: var(--${confidenceClass});">${confidencePercent}%</span></p>
-                <div class="fault-item">
-                    <h4>Symptoms</h4>
-                    <ul>
-                        ${diagnosis.symptoms.map(symptom => `<li>${symptom}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-            
-            // Add causes section
-            html += `<div class="diagnosis-details">`;
-            
-            diagnosis.causes.forEach(cause => {
-                const probability = Math.round(cause.probability * 100);
-                
+            data.causes.forEach(cause => {
+                const percentage = Math.round(cause.probability * 100);
                 html += `
-                    <div class="fault-item">
-                        <h4>${cause.name} (${probability}% probability)</h4>
-                        <div class="checks-actions">
-                            <div>
-                                <h5>Checks to perform:</h5>
+                <li>
+                    <div class="cause">
+                        <h4>${cause.name} <span class="probability">${percentage}%</span></h4>
+                        <div class="cause-details">
+                            <div class="checks">
+                                <h5>Recommended Checks:</h5>
                                 <ul>
                                     ${cause.checks.map(check => `<li>${check}</li>`).join('')}
                                 </ul>
                             </div>
-                            <div>
-                                <h5>Recommended actions:</h5>
+                            <div class="actions">
+                                <h5>Recommended Actions:</h5>
                                 <ul>
                                     ${cause.actions.map(action => `<li>${action}</li>`).join('')}
                                 </ul>
                             </div>
                         </div>
                     </div>
-                `;
+                </li>`;
             });
             
-            html += `</div>`;
+            html += '</ol>';
+        } else {
+            html += '<p>I couldn\'t identify specific causes for this issue. Please provide more details or try a different description.</p>';
         }
         
-        messageContent.innerHTML = html;
-        messageDiv.appendChild(messageContent);
-        chatHistory.appendChild(messageDiv);
-        
-        scrollToBottom();
-        return messageDiv;
-    }
-
-    // Function to scroll chat to bottom
-    function scrollToBottom() {
-        const chatContainer = document.querySelector('.chat-container');
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-    }
-
-    // Function to fetch diagnosis from backend
-    async function fetchDiagnosis(query) {
-        const response = await fetch('/diagnose', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `query=${encodeURIComponent(query)}`
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        return await response.json();
+        return html;
     }
 });

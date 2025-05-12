@@ -1,6 +1,6 @@
 import os
 import yaml
-from models.schema import YamlPath, db
+from models.yaml_path_class import YamlPath
 
 class YamlReader:
     def __init__(self):

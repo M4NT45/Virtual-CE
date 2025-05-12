@@ -16,8 +16,21 @@
             </div>
             <div class="subtitle">Marine Machinery Fault Diagnosis Assistant</div>
         </header>
-
         <main>
+            <!-- Engine selection dropdown -->
+            <div class="engine-selector">
+                <label for="engine-type">Diagnosis Engine:</label>
+                <select id="engine-type">
+                    <option value="hybrid" selected>Hybrid Engine (Recommended)</option>
+                    <option value="rule">Rule-Based Engine</option>
+                    <option value="neural">Neural Engine</option>
+                </select>
+                <div class="engine-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span class="engine-tooltip">Hybrid combines rule-based knowledge with neural semantic understanding for best results</span>
+                </div>
+            </div>
+
             <div class="chat-container">
                 <div id="chat-history">
                     <div class="welcome-message">
@@ -35,7 +48,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="input-area">
                 <form id="query-form">
                     <textarea id="query" placeholder="Describe the machinery issue..." rows="2"></textarea>
@@ -45,12 +57,10 @@
                 </form>
             </div>
         </main>
-
         <footer>
             <p>Virtual Chief Engineer &copy; 2025 | Hybrid Fault Diagnosis System</p>
         </footer>
     </div>
-
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

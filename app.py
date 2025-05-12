@@ -12,25 +12,31 @@ from services.hybrid_engine import HybridEngine
 app = Flask(__name__)
 app.config.from_object('config.Config')
 
-rule_engine = RuleEngine()
-neural_engine = NeuralEngine()
-hybrid_engine = HybridEngine()
+# rule_engine = RuleEngine()
+# neural_engine = NeuralEngine()
+# hybrid_engine = HybridEngine()
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/api/diagnose', methods=['POST'])
-def diagnose():
-    user_query = request.json.get('query', '')
+# @app.route('/api/diagnose', methods=['POST'])
+# def diagnose():
+#     data = request.json
+#     user_query = data.get('query', '')
+#     engine_type = data.get('engine', 'hybrid')
     
-    with session_maker() as session:
-        query_record = Query(text=user_query)
-        session.add(query_record)
-        session.commit()
-
-    results = hybrid_engine.process(user_query)
-    return jsonify(results)
+#     with session_maker() as session:
+#         query_record = Query(text=user_query)
+#         session.add(query_record)
+#         session.commit()
+        
+#     if engine_type == 'rule':
+#         results = rule_engine.process(user_query)
+#     elif engine_type == 'neural':
+#         results = neural_engine.process(user_query)
+#     else:  # hybrid
+#         results = hybrid_engine.process(user_query)
 
 if __name__ == '__main__':
     app.run(debug=True)
