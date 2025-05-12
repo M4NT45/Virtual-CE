@@ -41,10 +41,10 @@ def train_model():
     )
     
     # Create directory if it doesn't exist
-    os.makedirs('transformer/model', exist_ok=True)
+    os.makedirs('transformer/marine_miniLM', exist_ok=True)
     
     # Save the fine-tuned model
-    model.save('transformer/model/marine_miniLM')
+    model.save('transformer/marine_miniLM')
     
 if __name__ == "__main__":
     train_model()
