@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from models.schema import db, YamlPath, Query
+from models.DB_class import Base
 from services.rule_engine import RuleEngine
 from services.neural_engine import NeuralEngine
 from services.hybrid_engine import HybridEngine
@@ -30,10 +30,6 @@ def diagnose():
     results = hybrid_engine.process(user_query)
     
     return jsonify(results)
-
-@app.route('/api/health')
-def health_check():
-    return jsonify({"status": "healthy"})
 
 if __name__ == '__main__':
     with app.app_context():
