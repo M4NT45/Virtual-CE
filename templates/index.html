@@ -1,16 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Chief Engineer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <h1>Virtual Chief Engineer</h1>
-    <form id="query-form">
-        <textarea id="query" placeholder="Describe the machinery issue..."></textarea>
-        <button type="submit">Diagnose</button>
-    </form>
-    <div id="results"></div>
-    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-anchor"></i>
+                <h1>Virtual Chief Engineer</h1>
+            </div>
+            <div class="subtitle">Marine Machinery Fault Diagnosis Assistant</div>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div id="chat-history">
+                    <div class="welcome-message">
+                        <div class="message assistant">
+                            <div class="message-content">
+                                <p>Welcome to Virtual Chief Engineer. I'm here to help diagnose marine machinery faults. Please describe the issue you're experiencing, and I'll analyze it using my knowledge base.</p>
+                                <p>For example, you can ask about:</p>
+                                <ul>
+                                    <li>"The main engine exhaust temperature is higher than normal"</li>
+                                    <li>"Auxiliary engine won't start when I press the button"</li>
+                                    <li>"There's excessive vibration from the fuel oil purifier"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <form id="query-form">
+                    <textarea id="query" placeholder="Describe the machinery issue..." rows="2"></textarea>
+                    <button type="submit" id="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p>Virtual Chief Engineer &copy; 2025 | Hybrid Fault Diagnosis System</p>
+        </footer>
+    </div>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
