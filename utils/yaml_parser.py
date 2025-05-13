@@ -1,14 +1,22 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import os
 import yaml
+from sqlalchemy import select
 from models.yaml_path_class import YamlPath
 
 class YamlReader:
-    def __init__(self):
+    def __init__(self, session):
         self.yaml_paths = {}
+        self.session = session
         self._load_paths_from_db()
-    
+        
     def _load_paths_from_db(self):
-        paths = YamlPath.query.all()
+        query = select(YamlPath)
+        paths = self.session.execute(query).scalars().all()
+        
         for path in paths:
             self.yaml_paths[path.subsystem] = path.path
     

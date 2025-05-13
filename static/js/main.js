@@ -94,6 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Format diagnosis response
     function formatDiagnosisResponse(data, engineType) {
+        // Check if data is an array and get the best match (highest confidence)
+        const bestMatch = Array.isArray(data) && data.length > 0 ? data[0] : data;
+        
         // Customize based on your data structure
         let engineLabel = '';
         if (engineType === 'rule') {
@@ -106,37 +109,35 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let html = `<p>${engineLabel} Based on your description, I've identified the following issue:</p>`;
         
-        if (data.fault) {
-            html += `<h3>${data.fault}</h3>`;
+        if (bestMatch && bestMatch.fault) {
+            html += `<h3>${bestMatch.fault}</h3>`;
         }
         
-        if (data.causes && data.causes.length > 0) {
+        if (bestMatch && bestMatch.causes && bestMatch.causes.length > 0) {
             html += '<p>Potential causes (ranked by probability):</p><ol>';
-            
-            data.causes.forEach(cause => {
+            bestMatch.causes.forEach(cause => {
                 const percentage = Math.round(cause.probability * 100);
                 html += `
-                <li>
-                    <div class="cause">
-                        <h4>${cause.name} <span class="probability">${percentage}%</span></h4>
-                        <div class="cause-details">
-                            <div class="checks">
-                                <h5>Recommended Checks:</h5>
-                                <ul>
-                                    ${cause.checks.map(check => `<li>${check}</li>`).join('')}
-                                </ul>
-                            </div>
-                            <div class="actions">
-                                <h5>Recommended Actions:</h5>
-                                <ul>
-                                    ${cause.actions.map(action => `<li>${action}</li>`).join('')}
-                                </ul>
+                    <li>
+                        <div class="cause">
+                            <h4>${cause.name} <span class="probability">${percentage}%</span></h4>
+                            <div class="cause-details">
+                                <div class="checks">
+                                    <h5>Recommended Checks:</h5>
+                                    <ul>
+                                        ${cause.checks.map(check => `<li>${check}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="actions">
+                                    <h5>Recommended Actions:</h5>
+                                    <ul>
+                                        ${cause.actions.map(action => `<li>${action}</li>`).join('')}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>`;
+                    </li>`;
             });
-            
             html += '</ol>';
         } else {
             html += '<p>I couldn\'t identify specific causes for this issue. Please provide more details or try a different description.</p>';

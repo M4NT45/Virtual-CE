@@ -12,7 +12,6 @@ from services.hybrid_engine import HybridEngine
 app = Flask(__name__)
 app.config.from_object('config.Config')
 
-# rule_engine = RuleEngine()
 # neural_engine = NeuralEngine()
 # hybrid_engine = HybridEngine()
 
@@ -35,12 +34,16 @@ def diagnose():
         session.add(query_record)
         session.commit()
         
-#     if engine_type == 'rule':
-#         results = rule_engine.process(user_query)
+    rule_engine = RuleEngine()
+    
+    if engine_type == 'rule':
+        results = rule_engine.process(user_query)
 #     elif engine_type == 'neural':
 #         results = neural_engine.process(user_query)
 #     else:  # hybrid
 #         results = hybrid_engine.process(user_query)
+
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(debug=True)

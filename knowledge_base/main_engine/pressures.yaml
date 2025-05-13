@@ -873,7 +873,6 @@ fault:
         - "Restore cooling water flow"
         - "Replace cooler if necessary"
         - "Improve water treatment"
-    - name: "
 
 ## Fault 15
 fault:
