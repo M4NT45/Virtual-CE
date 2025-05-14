@@ -1,22 +1,18 @@
 import re
-import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from symspellpy import SymSpell, Verbosity
 import pkg_resources
 
-# Initialize components
 lemmatizer = WordNetLemmatizer()
 
-# Initialize SymSpell
 sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
 dictionary_path = pkg_resources.resource_filename(
     "symspellpy", "frequency_dictionary_en_82_765.txt")
-# Load dictionary
+
 sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1)
 
-# Marine engineering specific terms to preserve (won't be spell-checked)
 marine_terms = {
     'hfo', 'mdo', 'lshfo', 'lsfo', 'vlsfo', 'mgb', 'mcr', 'rpm', 'turbocharger', 
     'scavenge', 'purifier', 'aux', 'auxiliary', 'mgo', 'lub', 'lube', 'fo', 'lo', 
@@ -27,21 +23,17 @@ marine_terms = {
     'cooler', 'intercooler', 'aftercooler'
 }
 
-# Add common manufacturer names
 manufacturer_terms = {
     'wartsila', 'man', 'sulzer', 'yanmar', 'caterpillar', 'cat', 'mak', 'bergen', 
     'rolls-royce', 'rolls', 'royce', 'mitsubishi', 'daihatsu', 'cummins', 'deutz', 
     'pielstick', 'abb', 'woodward', 'alfa', 'laval', 'alfalaval'
 }
 
-# Combine domain-specific terms
 domain_terms = marine_terms.union(manufacturer_terms)
 
-# Regex patterns for common formatting
-unit_pattern = re.compile(r'(\d+)([a-zA-Z]+)')  # e.g., "10bar" -> "10 bar"
-range_pattern = re.compile(r'(\d+)-(\d+)([a-zA-Z]+)')  # e.g., "10-15bar" -> "10-15 bar"
+unit_pattern = re.compile(r'(\d+)([a-zA-Z]+)')
+range_pattern = re.compile(r'(\d+)-(\d+)([a-zA-Z]+)')
 
-# Common marine engineering abbreviation expansion
 abbreviations = {
     'temp': 'temperature',
     'aux': 'auxiliary',
@@ -80,7 +72,6 @@ abbreviations = {
     'op': 'operating'
 }
 
-# Marine-specific corrections to add to dictionary
 marine_corrections = {
     'purifyer': 'purifier',
     'purifiyer': 'purifier',
@@ -97,26 +88,19 @@ marine_corrections = {
     'diesal': 'diesel'
 }
 
-# Add marine-specific terms to the dictionary
 for term in domain_terms:
-    sym_spell.create_dictionary_entry(term, 1000)  # High frequency to prioritize
+    sym_spell.create_dictionary_entry(term, 1000)
 
-# Add corrections
 for misspelled, correct in marine_corrections.items():
-    sym_spell.create_dictionary_entry(correct, 1000)  # Ensure correct term is in dict
+    sym_spell.create_dictionary_entry(correct, 1000)
 
 def spell_correct_word(word):
-    """
-    Correct spelling for a single word using SymSpell
-    """
-    # Skip spell checking for domain terms, short words, numbers, and words with digits
     if (word in domain_terms or 
         len(word) <= 2 or 
         word.isdigit() or 
         any(char.isdigit() for char in word)):
         return word
-        
-    # Handle contractions
+
     if word == "wont":
         return "will not"
     if word == "cant":
@@ -126,44 +110,28 @@ def spell_correct_word(word):
     if word == "doesnt":
         return "does not"
     
-    # Check if word needs correction
     suggestions = sym_spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
     if suggestions and suggestions[0].distance <= 2:
         return suggestions[0].term
     return word
 
 def preprocess_user_query(query):
-    """
-    Preprocess user query by:
-    1. Normalizing spacing and formatting
-    2. Correcting spelling mistakes (preserving marine terms)
-    3. Expanding common abbreviations
-    4. Removing excessive stopwords
-    5. Lemmatizing words
-    """
-    # Step 1: Normalize spacing and formatting
-    # Convert to lowercase
+
     text = query.lower()
-    
-    # Fix unit formatting (e.g. "10bar" -> "10 bar")
+
     text = unit_pattern.sub(r'\1 \2', text)
     text = range_pattern.sub(r'\1-\2 \3', text)
-    
-    # Normalize spacing
+
     text = re.sub(r'\s+', ' ', text)
-    
-    # Standardize common variations
+
     text = text.replace("can't", "cannot")
     text = text.replace("won't", "will not")
     text = text.replace("isn't", "is not")
-    
-    # Step 2: Tokenize the text
+
     tokens = word_tokenize(text)
-    
-    # Step 3: Spell check individual words
+
     corrected_tokens = [spell_correct_word(token) for token in tokens]
-    
-    # Step 4: Expand abbreviations
+
     expanded_tokens = []
     for token in corrected_tokens:
         if token in abbreviations:
@@ -172,142 +140,153 @@ def preprocess_user_query(query):
         else:
             expanded_tokens.append(token)
     
-    # Step 5: Remove stopwords (but preserve important ones)
-    # Don't remove: not, no, nor, than, too, very, against, down, up, over, under
     important_stopwords = {'not', 'no', 'nor', 'than', 'too', 'very', 
                          'against', 'down', 'up', 'over', 'under', 'is', 'has', 'have', 'had'}
     stop_words = set(stopwords.words('english')) - important_stopwords
-    filtered_tokens = [token for token in expanded_tokens if token not in stop_words or token in important_stopwords]
     
-    # Step 6: Lemmatize words (convert to base form)
+    filtered_tokens = [token for token in expanded_tokens if token not in stop_words]
+
     lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
     
-    # Step 7: Reconstruct the query
     processed_query = ' '.join(lemmatized_tokens)
-    
-    # Step 8: Handle negations properly
+
     processed_query = processed_query.replace("not ", "not_")
     processed_query = processed_query.replace("no ", "no_")
     processed_query = processed_query.replace("n't ", "not_")
     
-    return processed_query, text  # Return both processed query and normalized original
+    return processed_query, text
 
-def add_missing_context(query, processed_query):
-    """
-    Add contextual information that might be missing in the query
-    """
-    enhanced_query = processed_query
+def add_missing_context(processed_query, conversation_state=None):
+
+    component_terms = ['temperature', 'pressure', 'vibration', 'leak', 'noise', 'alarm', 
+                      'smoke', 'start', 'power', 'speed', 'rpm', 'fuel', 'oil', 'water',
+                      'coolant', 'exhaust', 'filter', 'pump', 'valve', 'injector', 'bearing',
+                      'turbocharger', 'cooling', 'lubrication', 'electrical', 'ignition']
     
-    # Check if the query mentions a component without specifying engine type
-    component_terms = ['temperature', 'pressure', 'vibration', 'leak', 'noise', 'alarm']
-    engine_terms = ['engine', 'main', 'auxiliary', 'aux', 'generator', 'gen']
+    engine_terms = ['main', 'auxiliary', 'aux', 'generator', 'gen']
+    
+    problem_indicators = ['wrong', 'issue', 'problem', 'fault', 'error', 'trouble', 'fail', 
+                         'not work', 'broken', 'malfunction', 'not run', 'stop', 'high', 'low',
+                         'bad', 'strange', 'unusual', 'excessive', 'insufficient', 'poor', 'stuck',
+                         'leaking', 'overheating', 'running hot', 'won\'t start', 'stalls', 
+                         'rough', 'noisy', 'vibrating', 'smoking', 'alarm', 'warning', 'emergency',
+                         'shutdown', 'tripped', 'irregular', 'intermittent', 'erratic', 'damaged',
+                         'worn', 'burning', 'smell', 'knocking', 'rattling', 'grinding', 'loud']
     
     has_component = any(term in processed_query for term in component_terms)
     has_engine = any(term in processed_query for term in engine_terms)
+    has_problem = any(term in processed_query for term in problem_indicators)
     
-    # If query mentions a component but not an engine, assume main engine
+    def extract_engine_type(query):
+        if "main" in query:
+            return "main engine"
+        elif any(term in query for term in ['auxiliary', 'aux', 'generator', 'gen']):
+            return "auxiliary engine"
+        else:
+            return "main engine" 
+
+    if conversation_state and conversation_state.get('awaiting_clarification') == 'engine':
+        
+        engine_response = processed_query.lower()
+
+        clarified_engine = extract_engine_type(engine_response)
+        
+        original_query = conversation_state.get('original_query', '')
+        
+        if has_problem or any(term in original_query for term in problem_indicators):
+            if not has_component and not any(term in original_query for term in component_terms):
+                return {
+                    "enhanced_query": None,
+                    "needs_clarification": True,
+                    "awaiting_clarification": "component",
+                    "clarification_message": f"What specific issue are you observing with the {clarified_engine}? (temperature, pressure, noise, not starting, etc.)",
+                    "original_query": clarified_engine + " " + original_query,
+                    "clarified_engine": clarified_engine
+                }
+        
+
+        enhanced_query = clarified_engine + " " + original_query
+        return {
+            "enhanced_query": enhanced_query,
+            "needs_clarification": False,
+            "awaiting_clarification": None,
+            "original_query": None
+        }
+    
+    if conversation_state and conversation_state.get('awaiting_clarification') == 'component':
+        component_response = processed_query.lower()
+        clarified_engine = conversation_state.get('clarified_engine', 'engine')
+        
+        mentioned_components = []
+        for component in component_terms:
+            if component in component_response:
+                mentioned_components.append(component)
+        
+        if mentioned_components:
+            primary_component = mentioned_components[0]
+            enhanced_query = clarified_engine + " " + primary_component + " issue"
+            if len(mentioned_components) > 1:
+                enhanced_query += " with " + " and ".join(mentioned_components[1:])
+        else:
+            if "not" in component_response or "won't" in component_response or "doesn't" in component_response:
+                enhanced_query = clarified_engine + " not functioning properly"
+            else:
+                for indicator in problem_indicators:
+                    if indicator in component_response:
+                        enhanced_query = clarified_engine + " " + indicator + " issue"
+                        break
+                else:
+                    enhanced_query = clarified_engine + " operational issue"
+        
+        return {
+            "enhanced_query": enhanced_query,
+            "needs_clarification": False,
+            "awaiting_clarification": None,
+            "original_query": None
+        }
+    
     if has_component and not has_engine:
-        enhanced_query = "main engine " + enhanced_query
+        return {
+            "enhanced_query": None,
+            "needs_clarification": True,
+            "awaiting_clarification": "engine",
+            "clarification_message": "Which engine are you referring to? (Main Engine, Auxiliary Engine, Generator)",
+            "original_query": processed_query
+        }
     
-    return enhanced_query
+    elif has_engine and has_problem and not has_component:
+        engine_type = extract_engine_type(processed_query)
+        
+        return {
+            "enhanced_query": None,
+            "needs_clarification": True,
+            "awaiting_clarification": "component",
+            "clarification_message": f"What specific issue are you observing with the {engine_type}? (temperature, pressure, noise, not starting, etc.)",
+            "original_query": processed_query,
+            "clarified_engine": engine_type
+        }
+    
+    else:
+        return {
+            "enhanced_query": processed_query,
+            "needs_clarification": False,
+            "awaiting_clarification": None,
+            "original_query": None
+        }
 
-def extract_entities(query):
-    """
-    Extract key entities that might be useful for diagnosis
-    """
-    entities = {
-        'component': None,
-        'symptom': None,
-        'value': None,
-        'unit': None
-    }
-    
-    # Extract temperature values with units
-    temp_pattern = re.compile(r'(\d+)(?:\s*)(degree|deg|celsius|c|fahrenheit|f)')
-    temp_match = temp_pattern.search(query.lower())
-    if temp_match:
-        entities['value'] = temp_match.group(1)
-        entities['unit'] = temp_match.group(2)
-    
-    # Extract pressure values with units
-    pressure_pattern = re.compile(r'(\d+)(?:\s*)(bar|psi|kpa|mpa)')
-    pressure_match = pressure_pattern.search(query.lower())
-    if pressure_match:
-        entities['value'] = pressure_match.group(1)
-        entities['unit'] = pressure_match.group(2)
-    
-    # Extract common components
-    component_patterns = [
-        (r'(main|auxiliary|aux)?\s*engine', 'engine'),
-        (r'turbocharger', 'turbocharger'),
-        (r'(fuel|lube|lubricating|cooling)\s*pump', 'pump'),
-        (r'(cylinder|piston|liner|bearing|valve)', r'\1'),
-        (r'(jacket|cooling)\s*water', 'cooling water'),
-        (r'(air|exhaust)\s*filter', 'filter')
-    ]
-    
-    for pattern, component_type in component_patterns:
-        match = re.search(pattern, query.lower())
-        if match:
-            entities['component'] = component_type
-            break
-    
-    # Extract symptoms
-    symptom_patterns = [
-        (r'(high|low|excessive)\s*(temperature|pressure|vibration|noise)', r'\1 \2'),
-        (r'(leak|leaking|leakage)', 'leak'),
-        (r'(overheat|overheating)', 'overheating'),
-        (r'(not\s*start|won\'t\s*start|fails\s*to\s*start)', 'not starting'),
-        (r'(alarm|warning)', 'alarm'),
-        (r'(smoke|smoking)', 'smoke')
-    ]
-    
-    for pattern, symptom_type in symptom_patterns:
-        match = re.search(pattern, query.lower())
-        if match:
-            entities['symptom'] = symptom_type
-            break
-    
-    return entities
+def process_query(user_query, conversation_state=None):
 
-def process_query(user_query):
-    """
-    Main function to process user queries
-    """
-    # Preprocess the query
     processed_query, normalized_query = preprocess_user_query(user_query)
-    
-    # Add missing context if needed
-    enhanced_query = add_missing_context(user_query, processed_query)
-    
-    # Extract entities
-    entities = extract_entities(user_query)
+    context_result = add_missing_context(processed_query, conversation_state)
     
     return {
         'original_query': user_query,
         'normalized_query': normalized_query,
         'processed_query': processed_query,
-        'enhanced_query': enhanced_query,
-        'entities': entities
+        'enhanced_query': context_result.get("enhanced_query"),
+        'needs_clarification': context_result.get("needs_clarification", False),
+        'clarification_message': context_result.get("clarification_message"),
+        'awaiting_clarification': context_result.get("awaiting_clarification"),
+        'original_query_for_clarification': context_result.get("original_query"),
+        'clarified_engine': context_result.get("clarified_engine")
     }
-
-# Example usage
-if __name__ == "__main__":
-    test_queries = [
-        "Main engine temp is too high",
-        "aux engine wont start when i press button",
-        "theres a lot of vibration comming from the fuel oil purifyer",
-        "engine temperature reached 95c",
-        "turbocharger making wierd noise",
-        "temp alarm on cylinder 3",
-        "cooling water press dropped to 1.5bar",
-        "there is smoke coming from exhoust"
-    ]
-    
-    for query in test_queries:
-        result = process_query(query)
-        print(f"Original: {result['original_query']}")
-        print(f"Processed: {result['processed_query']}")
-        print(f"Enhanced: {result['enhanced_query']}")
-        print(f"Entities: {result['entities']}")
-        print("-" * 50)
