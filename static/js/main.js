@@ -52,9 +52,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide typing indicator
             hideTypingIndicator();
             
-            // Format and display response
-            const formattedResponse = formatDiagnosisResponse(data, selectedEngine);
-            addMessage('assistant', formattedResponse);
+            // Check if this is a clarification request
+            if (data.type === 'clarification') {
+                handleClarificationRequest(data, selectedEngine);
+            } else {
+                // Format and display regular diagnosis response
+                const formattedResponse = formatDiagnosisResponse(data, selectedEngine);
+                addMessage('assistant', formattedResponse);
+            }
             
             // Scroll to bottom
             chatHistory.scrollTop = chatHistory.scrollHeight;
@@ -65,6 +70,113 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage('assistant', 'Sorry, I encountered an error processing your request.');
         });
     });
+    
+    // Handle clarification requests
+    function handleClarificationRequest(data, selectedEngine) {
+        const awaiting = data.awaiting;
+        const message = data.message;
+        
+        let clarificationHtml = `
+            <div class="clarification-request">
+                <p>${message}</p>
+                <div class="clarification-options">`;
+        
+        // Add appropriate options based on what we're clarifying
+        if (awaiting === 'engine') {
+            clarificationHtml += `
+                <button class="clarification-btn" data-value="Main Engine">Main Engine</button>
+                <button class="clarification-btn" data-value="Auxiliary Engine">Auxiliary Engine</button>
+                <button class="clarification-btn" data-value="Generator">Generator</button>`;
+        } else if (awaiting === 'component') {
+            clarificationHtml += `
+                <button class="clarification-btn" data-value="Temperature">Temperature</button>
+                <button class="clarification-btn" data-value="Pressure">Pressure</button>
+                <button class="clarification-btn" data-value="Vibration">Vibration</button>
+                <button class="clarification-btn" data-value="Noise">Noise</button>
+                <button class="clarification-btn" data-value="Not starting">Not Starting</button>
+                <button class="clarification-btn" data-value="Leak">Leak</button>`;
+        }
+        
+        clarificationHtml += `
+                </div>
+                <div class="custom-clarification">
+                    <input type="text" id="custom-clarification" placeholder="Or type your response...">
+                    <button id="submit-custom-clarification">Submit</button>
+                </div>
+            </div>`;
+        
+        // Add clarification request to chat
+        addMessage('assistant', clarificationHtml);
+        
+        // Add event listeners to clarification buttons
+        document.querySelectorAll('.clarification-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const clarificationValue = this.getAttribute('data-value');
+                submitClarification(clarificationValue, selectedEngine);
+            });
+        });
+        
+        // Add event listener to custom clarification button
+        document.getElementById('submit-custom-clarification').addEventListener('click', function() {
+            const customValue = document.getElementById('custom-clarification').value.trim();
+            if (customValue) {
+                submitClarification(customValue, selectedEngine);
+            }
+        });
+        
+        // Also allow Enter key in the custom input
+        document.getElementById('custom-clarification').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const customValue = this.value.trim();
+                if (customValue) {
+                    submitClarification(customValue, selectedEngine);
+                }
+            }
+        });
+    }
+    
+    // Submit clarification response
+    function submitClarification(clarificationValue, selectedEngine) {
+        // Add user clarification to chat
+        addMessage('user', clarificationValue);
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Send clarification to backend
+        fetch('/api/diagnose', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: clarificationValue,
+                engine: selectedEngine
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hide typing indicator
+            hideTypingIndicator();
+            
+            // Check if we need more clarification
+            if (data.type === 'clarification') {
+                handleClarificationRequest(data, selectedEngine);
+            } else {
+                // Format and display diagnosis response
+                const formattedResponse = formatDiagnosisResponse(data, selectedEngine);
+                addMessage('assistant', formattedResponse);
+            }
+            
+            // Scroll to bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            hideTypingIndicator();
+            addMessage('assistant', 'Sorry, I encountered an error processing your clarification.');
+        });
+    }
     
     // Add typing indicator
     function showTypingIndicator() {
@@ -107,7 +219,16 @@ document.addEventListener('DOMContentLoaded', function() {
             engineLabel = '<span class="engine-label hybrid">Hybrid Analysis</span>';
         }
         
-        let html = `<p>${engineLabel} Based on your description, I've identified the following issue:</p>`;
+        // Add enhanced query information if available
+        let queryInfo = '';
+        if (data.original_query && data.enhanced_query && data.original_query !== data.enhanced_query) {
+            queryInfo = `
+                <div class="query-info">
+                    <p><strong>I understood your query as:</strong> ${data.enhanced_query}</p>
+                </div>`;
+        }
+        
+        let html = `<p>${engineLabel} ${queryInfo} Based on your description, I've identified the following issue:</p>`;
         
         if (bestMatch && bestMatch.fault) {
             html += `<h3>${bestMatch.fault}</h3>`;
@@ -145,4 +266,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return html;
     }
+    
+    // Add a reset conversation button (optional)
+    const resetButton = document.createElement('button');
+    resetButton.textContent = 'Reset Conversation';
+    resetButton.className = 'reset-button';
+    resetButton.addEventListener('click', function() {
+        fetch('/api/reset_conversation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => response.json())
+        .then(() => {
+            // Clear chat history
+            chatHistory.innerHTML = '';
+            addMessage('assistant', 'Conversation has been reset. How can I help you with marine machinery diagnosis?');
+        });
+    });
+    document.querySelector('.chat-container').appendChild(resetButton);
 });
