@@ -1,32 +1,41 @@
 from sentence_transformers import SentenceTransformer, util
-import torch
-import numpy as np
 from utils.yaml_parser import YamlReader
+from models.DB_class import session_maker
 
 class NeuralEngine:
     def __init__(self):
         self.model = SentenceTransformer('transformer/model/marine_miniLM')
-        self.yaml_reader = YamlReader()
+        self.session_maker = session_maker
         self.fault_embeddings = {}
         self._precompute_embeddings()
-    
+        
     def _precompute_embeddings(self):
         # Precompute embeddings for all faults
-        all_faults = self.yaml_reader.get_all_faults()
-        for fault in all_faults:
-            name = fault['fault']['name']
+        with self.session_maker() as session:
+            yaml_reader = YamlReader(session)
+            all_faults = yaml_reader.get_all_faults()
             
-            # Create text representation for embedding
-            text = name + " "
-            for symptom in fault['fault']['symptoms']:
-                text += symptom + " "
-            
-            # Generate embedding
-            embedding = self.model.encode(text, convert_to_tensor=True)
-            self.fault_embeddings[name] = {
-                'embedding': embedding,
-                'fault': fault
-            }
+            for fault in all_faults:
+                if 'fault' not in fault:
+                    continue
+                    
+                name = fault['fault']['name']
+                
+                # Create text representation for embedding
+                text = name + " "
+                
+                # Add symptoms to text
+                symptoms = fault['fault'].get('symptoms', [])
+                for symptom in symptoms:
+                    text += symptom + " "
+                
+                # Generate embedding
+                embedding = self.model.encode(text, convert_to_tensor=True)
+                
+                self.fault_embeddings[name] = {
+                    'embedding': embedding,
+                    'fault': fault
+                }
     
     def process(self, query):
         # Encode query
@@ -41,8 +50,10 @@ class NeuralEngine:
                 results.append({
                     'fault': name,
                     'confidence': float(similarity),
-                    'causes': data['fault']['fault']['causes'],
-                    'source': 'neural_engine'
+                    'causes': data['fault']['fault'].get('causes', []),
+                    'source': 'neural_engine',
+                    'source_file': data['fault'].get('_source_file', 'unknown'),
+                    'fault_number': data['fault'].get('_fault_number', 0)
                 })
         
         # Sort by confidence
