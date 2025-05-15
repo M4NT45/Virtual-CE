@@ -85,7 +85,7 @@ def diagnose():
     enhanced_query = query_result.get('enhanced_query')
     
     if engine_type == 'rule':
-        diagnostic_results = rule_engine.process(enhanced_query)
+        diagnostic_results = rule_engine.process(user_query, processed_data=query_result)
     # elif engine_type == 'neural':
     #     diagnostic_results = neural_engine.process(enhanced_query)
     # else:  # hybrid

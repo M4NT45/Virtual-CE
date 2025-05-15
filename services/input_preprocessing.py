@@ -210,7 +210,8 @@ def add_missing_context(processed_query, conversation_state=None):
             "enhanced_query": enhanced_query,
             "needs_clarification": False,
             "awaiting_clarification": None,
-            "original_query": None
+            "original_query": None,
+            "clarified_engine": clarified_engine 
         }
     
     if conversation_state and conversation_state.get('awaiting_clarification') == 'component':

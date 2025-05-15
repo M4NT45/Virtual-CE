@@ -76,63 +76,134 @@ document.addEventListener('DOMContentLoaded', function() {
         const awaiting = data.awaiting;
         const message = data.message;
         
-        let clarificationHtml = `
-            <div class="clarification-request">
-                <p>${message}</p>
-                <div class="clarification-options">`;
+        // Add dark theme styling to the document if not already present
+        if (!document.getElementById('dark-theme-styles')) {
+            const darkThemeStyles = document.createElement('style');
+            darkThemeStyles.id = 'dark-theme-styles';
+            darkThemeStyles.textContent = `
+                .dark-clarification-container {
+                    background-color: #242444;
+                    border-radius: 10px;
+                    padding: 20px;
+                    color: #e6e6e6;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+                
+                .dark-clarification-container p {
+                    color: #a0a0a0;
+                    margin-bottom: 15px;
+                    text-align: center;
+                }
+                
+                .dark-engine-options {
+                    display: flex;
+                    justify-content: center;
+                    gap: 15px;
+                    margin: 15px 0;
+                }
+                
+                .dark-engine-btn {
+                    background-color: #34344a;
+                    color: #e6e6e6;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 12px 24px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    min-width: 150px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
+                
+                .dark-engine-btn:hover {
+                    background-color: #4a4a6b;
+                }
+                
+                .dark-engine-btn.selected {
+                    background-color: #3d56b2;
+                }
+            `;
+            document.head.appendChild(darkThemeStyles);
+        }
+        
+        let clarificationHtml = '';
         
         // Add appropriate options based on what we're clarifying
         if (awaiting === 'engine') {
-            clarificationHtml += `
-                <button class="clarification-btn" data-value="Main Engine">Main Engine</button>
-                <button class="clarification-btn" data-value="Auxiliary Engine">Auxiliary Engine</button>
-                <button class="clarification-btn" data-value="Generator">Generator</button>`;
+            clarificationHtml = `
+                <div class="dark-clarification-container">
+                    <p>${message}</p>
+                    <div class="dark-engine-options">
+                        <button class="dark-engine-btn" data-value="Main Engine">Main Engine</button>
+                        <button class="dark-engine-btn" data-value="Auxiliary Engine">Auxiliary Engine</button>
+                    </div>
+                </div>`;
         } else if (awaiting === 'component') {
-            clarificationHtml += `
-                <button class="clarification-btn" data-value="Temperature">Temperature</button>
-                <button class="clarification-btn" data-value="Pressure">Pressure</button>
-                <button class="clarification-btn" data-value="Vibration">Vibration</button>
-                <button class="clarification-btn" data-value="Noise">Noise</button>
-                <button class="clarification-btn" data-value="Not starting">Not Starting</button>
-                <button class="clarification-btn" data-value="Leak">Leak</button>`;
+            clarificationHtml = `
+                <div class="clarification-request">
+                    <p>${message}</p>
+                    <div class="clarification-options component-options">
+                        <button class="clarification-btn" data-value="Temperature">Temperature</button>
+                        <button class="clarification-btn" data-value="Pressure">Pressure</button>
+                        <button class="clarification-btn" data-value="Vibration">Vibration</button>
+                        <button class="clarification-btn" data-value="Noise">Noise</button>
+                        <button class="clarification-btn" data-value="Not starting">Not Starting</button>
+                        <button class="clarification-btn" data-value="Leak">Leak</button>
+                    </div>
+                    <div class="custom-clarification">
+                        <input type="text" id="custom-clarification" placeholder="Or type your response...">
+                        <button id="submit-custom-clarification">Submit</button>
+                    </div>
+                </div>`;
         }
-        
-        clarificationHtml += `
-                </div>
-                <div class="custom-clarification">
-                    <input type="text" id="custom-clarification" placeholder="Or type your response...">
-                    <button id="submit-custom-clarification">Submit</button>
-                </div>
-            </div>`;
         
         // Add clarification request to chat
         addMessage('assistant', clarificationHtml);
         
         // Add event listeners to clarification buttons
-        document.querySelectorAll('.clarification-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const clarificationValue = this.getAttribute('data-value');
-                submitClarification(clarificationValue, selectedEngine);
+        if (awaiting === 'engine') {
+            document.querySelectorAll('.dark-engine-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Add selected class to the clicked button
+                    document.querySelectorAll('.dark-engine-btn').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    const clarificationValue = this.getAttribute('data-value');
+                    
+                    // Wait a moment to show the selection before submitting
+                    setTimeout(() => {
+                        submitClarification(clarificationValue, selectedEngine);
+                    }, 300);
+                });
             });
-        });
-        
-        // Add event listener to custom clarification button
-        document.getElementById('submit-custom-clarification').addEventListener('click', function() {
-            const customValue = document.getElementById('custom-clarification').value.trim();
-            if (customValue) {
-                submitClarification(customValue, selectedEngine);
-            }
-        });
-        
-        // Also allow Enter key in the custom input
-        document.getElementById('custom-clarification').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const customValue = this.value.trim();
+        } else {
+            document.querySelectorAll('.clarification-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const clarificationValue = this.getAttribute('data-value');
+                    submitClarification(clarificationValue, selectedEngine);
+                });
+            });
+            
+            // Add event listener to custom clarification button
+            document.getElementById('submit-custom-clarification').addEventListener('click', function() {
+                const customValue = document.getElementById('custom-clarification').value.trim();
                 if (customValue) {
                     submitClarification(customValue, selectedEngine);
                 }
-            }
-        });
+            });
+            
+            // Also allow Enter key in the custom input
+            document.getElementById('custom-clarification').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const customValue = this.value.trim();
+                    if (customValue) {
+                        submitClarification(customValue, selectedEngine);
+                    }
+                }
+            });
+        }
     }
     
     // Submit clarification response
