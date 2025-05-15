@@ -2,330 +2,240 @@
 
 ## Fault 1
 fault:
-  name: "Auxiliary Engine Low Lubricating Oil Pressure"
+  name: "Lubricating Oil Pressure Lacking or Too Low"
   symptoms:
     - "Low oil pressure alarm"
-    - "Possible automatic engine shutdown"
-    - "Abnormal engine bearing noise"
-    - "Oil pressure gauge showing below normal readings"
-    - "Engine performance degradation"
+    - "Oil pressure gauge showing low readings"
+    - "Possible engine automatic slowdown or shutdown"
+    - "Abnormal engine noise"
   causes:
-    - name: "Oil Pump Failure"
-      probability: 0.7
+    - name: "Pressure Indicator Issues"
+      probability: 0.3
       checks:
-        - "Check oil pump drive mechanism"
-        - "Inspect oil pump relief valve operation"
-        - "Verify pump shaft rotation"
-        - "Test pump pressure output directly at pump"
-        - "Inspect pump gears or rotors for damage"
+        - "Check the pressure difference indicator"
+        - "Inspect pressure gauge for proper operation"
+        - "Verify gauge pipe is not clogged"
       actions:
-        - "Replace damaged oil pump"
-        - "Repair or replace pump drive mechanism"
-        - "Clean or replace oil pump relief valve"
-        - "Adjust relief valve pressure setting"
-        - "Clean pump inlet strainer"
+        - "Replace faulty pressure gauge"
+        - "Clean clogged gauge pipe"
+        - "Recalibrate pressure indicators"
     
     - name: "Low Oil Level"
-      probability: 0.6
+      probability: 0.7
       checks:
-        - "Check oil level in sump"
-        - "Inspect for external oil leaks"
-        - "Check for oil contamination in cooling water"
-        - "Verify correct dipstick is being used"
-        - "Monitor oil consumption rate"
+        - "Check lubricating oil level in oil sump"
+        - "Inspect for visible oil leaks"
       actions:
         - "Add oil to correct level"
-        - "Repair external oil leaks"
-        - "Check for internal leaks and repair"
-        - "Verify correct oil dipstick is installed"
-        - "Investigate abnormal oil consumption"
+        - "Repair any oil leaks"
+        - "Monitor oil consumption"
     
-    - name: "Oil Filter Restriction"
+    - name: "Pressure Control Valve Issues"
+      probability: 0.6
+      checks:
+        - "Inspect lubricating oil pressure control valve"
+        - "Check for jamming or improper adjustment"
+      actions:
+        - "Adjust pressure control valve"
+        - "Repair or replace jamming valve"
+        - "Clean valve components"
+    
+    - name: "Oil Filter System Problems"
       probability: 0.5
       checks:
-        - "Check oil filter differential pressure"
-        - "Inspect filter bypass valve operation"
-        - "Examine oil filter element condition"
-        - "Verify correct filter installation"
-        - "Check filter housing for cracks"
+        - "Check position of three-way cock of lubricating oil filter"
+        - "Inspect filter for clogging"
       actions:
-        - "Replace oil filter element"
-        - "Clean or replace filter bypass valve"
-        - "Verify correct filter installation procedure"
-        - "Repair damaged filter housing"
-        - "Inspect oil for contaminants causing filter clogging"
+        - "Correct position of three-way cock"
+        - "Clean or replace oil filter"
+    
+    - name: "Lubricating Oil System Leaks"
+      probability: 0.6
+      checks:
+        - "Check for leakage in lubricating oil suction pipe connections"
+        - "Inspect internal oil pipes for looseness or damage"
+      actions:
+        - "Tighten loose connections"
+        - "Replace damaged pipes"
+        - "Repair leaks in oil system"
+    
+    - name: "Oil Quality Issues"
+      probability: 0.4
+      checks:
+        - "Check for oil diluted with diesel fuel"
+        - "Verify oil viscosity"
+        - "Sample oil for analysis"
+      actions:
+        - "Replace contaminated oil"
+        - "Use correct viscosity oil"
+        - "Identify and fix source of fuel contamination"
 
 ## Fault 2
 fault:
-  name: "Auxiliary Engine Low Fuel Pressure"
+  name: "Too High Lubricating Oil Pressure"
   symptoms:
-    - "Low fuel pressure alarm"
-    - "Engine power loss"
-    - "Difficulty starting"
-    - "Uneven running"
-    - "Engine may stop under load"
+    - "Oil pressure gauge showing excessive readings"
+    - "Possible oil filter bypass activation"
   causes:
-    - name: "Fuel Filter Restriction"
+    - name: "Pressure Gauge Issues"
+      probability: 0.4
+      checks:
+        - "Verify pressure gauge accuracy"
+        - "Compare with portable measurement device"
+      actions:
+        - "Replace faulty pressure gauge"
+        - "Recalibrate pressure indicators"
+    
+    - name: "Pressure Control Valve Problems"
       probability: 0.8
       checks:
-        - "Check fuel filter differential pressure"
-        - "Inspect filter elements for contamination"
-        - "Verify filter housing for leaks"
-        - "Check filter bypass valve operation"
-        - "Inspect fuel quality in day tank"
+        - "Inspect pressure control valve for proper operation"
+        - "Check for jamming or improper adjustment"
       actions:
-        - "Replace fuel filter elements"
-        - "Clean filter housings"
-        - "Repair leaking connections"
-        - "Clean or replace bypass valve"
-        - "Purify fuel if contaminated"
-    
-    - name: "Fuel Transfer Pump Issues"
-      probability: 0.6
-      checks:
-        - "Verify fuel pump operation"
-        - "Check pump drive mechanism"
-        - "Inspect pump inlet and outlet pressures"
-        - "Test pump relief valve operation"
-        - "Check for air in fuel system"
-      actions:
-        - "Repair or replace fuel pump"
-        - "Replace pump drive components"
-        - "Clean pump inlet strainer"
-        - "Adjust or replace relief valve"
-        - "Bleed air from fuel system"
-    
-    - name: "Fuel Line Restriction"
-      probability: 0.5
-      checks:
-        - "Inspect fuel lines for kinks or damage"
-        - "Check for partially closed valves"
-        - "Verify fuel tank pickup is not restricted"
-        - "Inspect for contamination in fuel lines"
-        - "Check quick-closing valve position"
-      actions:
-        - "Replace damaged fuel lines"
-        - "Fully open all fuel valves"
-        - "Clean fuel tank pickup strainer"
-        - "Flush fuel lines to remove contamination"
-        - "Reset quick-closing valve if tripped"
+        - "Adjust pressure control valve"
+        - "Repair or replace faulty control valve"
+        - "Clean valve components"
 
 ## Fault 3
 fault:
-  name: "Auxiliary Engine High Crankcase Pressure"
+  name: "Starting Air Pressure Issues"
   symptoms:
-    - "High crankcase pressure alarm"
-    - "Oil mist detector alarm"
-    - "Possible automatic engine shutdown"
-    - "Oil leaks from crankcase door seals"
-    - "Abnormal engine noise"
+    - "Engine fails to start or rotate"
+    - "Slow cranking speed during starting attempt"
+    - "Air starting system alarms"
   causes:
-    - name: "Piston Ring Blow-by"
+    - name: "Low Starting Air Pressure"
       probability: 0.7
       checks:
-        - "Check cylinder compression pressures"
-        - "Inspect scavenge air spaces for oil"
-        - "Monitor crankcase oil mist concentration"
-        - "Compare exhaust temperatures across cylinders"
-        - "Check engine power balance across cylinders"
+        - "Check starting air pressure"
+        - "Verify shut-off valve on starting air inlet pipe is open"
+        - "Inspect air compressor operation"
       actions:
-        - "Overhaul affected cylinders"
-        - "Replace worn piston rings"
-        - "Check cylinder liner wear"
-        - "Verify piston ring end gaps"
-        - "Clean or replace air cooler if fouled with oil"
+        - "Open shut-off valve if closed"
+        - "Wait for air receivers to reach required pressure"
+        - "Repair or service air compressor if needed"
     
-    - name: "Crankcase Ventilation Restriction"
-      probability: 0.6
+    - name: "High Starting Air Pressure"
+      probability: 0.3
       checks:
-        - "Inspect crankcase breather"
-        - "Check oil separator in ventilation system"
-        - "Verify breather flame arrestor is clean"
-        - "Test pressure relief valves on crankcase"
-        - "Check ventilation piping for restrictions"
+        - "Verify if starting air pressure exceeds 10 bar"
+        - "Check starting interlock function"
       actions:
-        - "Clean or replace crankcase breather"
-        - "Clean oil separator"
-        - "Replace clogged flame arrestor"
-        - "Service pressure relief valves"
-        - "Clear any blockages in ventilation piping"
+        - "Adjust pressure reducing valve"
+        - "Bleed excess pressure from system"
+        - "Repair or calibrate pressure regulator"
     
-    - name: "Turbocharger Oil Seal Leakage"
+    - name: "Starting Air System Component Failures"
       probability: 0.5
       checks:
-        - "Inspect turbocharger for oil leakage"
-        - "Check turbine end for oil traces"
-        - "Inspect compressor end for oil traces"
-        - "Verify turbocharger shaft end float"
-        - "Check turbocharger oil drain line"
+        - "Check starting air solenoid valve function"
+        - "Inspect air starter for proper operation"
+        - "Verify starting automation outside engine"
       actions:
-        - "Replace turbocharger oil seals"
-        - "Clean oil drain lines"
-        - "Verify correct oil pressure to turbocharger"
-        - "Replace turbocharger if bearings damaged"
-        - "Check for excessive engine backpressure"
+        - "Replace faulty starting air solenoid valve"
+        - "Repair or replace defective air starter"
+        - "Troubleshoot and fix starting automation issues"
 
 ## Fault 4
 fault:
-  name: "Auxiliary Engine Low Charge Air Pressure"
+  name: "Low Fuel Feed Pressure"
   symptoms:
-    - "Low boost pressure reading"
-    - "Black exhaust smoke"
-    - "Reduced engine power"
-    - "High exhaust temperature"
-    - "Poor engine response to load changes"
+    - "Engine performance issues"
+    - "Unstable engine speed"
+    - "Uneven exhaust gas temperatures"
+    - "Potential engine stalling under load"
   causes:
-    - name: "Air Filter Restriction"
+    - name: "Fuel Filter Issues"
       probability: 0.8
       checks:
-        - "Check air filter differential pressure"
-        - "Inspect air filter element condition"
-        - "Verify air intake system for restrictions"
-        - "Check for water or oil contamination of filter"
-        - "Inspect intake silencer"
+        - "Inspect fuel filter for clogging"
+        - "Check position of three-way cock of fuel filter"
       actions:
-        - "Clean or replace air filter element"
-        - "Remove any foreign objects from air intake"
-        - "Clean intake silencer"
-        - "Ensure proper installation of air filter"
-        - "Check for intake system air leaks"
+        - "Clean or replace clogged fuel filter"
+        - "Set three-way cock to correct position"
     
-    - name: "Turbocharger Issues"
+    - name: "Fuel Supply System Problems"
       probability: 0.7
       checks:
-        - "Check turbocharger for free rotation"
-        - "Inspect turbine and compressor wheels for damage"
-        - "Verify turbocharger shaft end float"
-        - "Look for signs of fouling on turbine or compressor"
-        - "Check for exhaust gas leaks before turbocharger"
+        - "Verify valve in fuel inlet pipe is open"
+        - "Check fuel day tank level"
+        - "Inspect fuel feed pump operation"
       actions:
-        - "Clean turbocharger components"
-        - "Replace damaged turbocharger"
-        - "Repair exhaust leaks"
-        - "Balance turbocharger if necessary"
-        - "Check variable geometry system if equipped"
+        - "Open fuel inlet valve if closed"
+        - "Fill fuel day tank if empty"
+        - "Start, repair, or replace fuel feed pump"
     
-    - name: "Charge Air Cooler Leakage"
-      probability: 0.5
+    - name: "Fuel Quality Issues"
+      probability: 0.4
       checks:
-        - "Pressure test charge air cooler"
-        - "Inspect for physical damage to cooler"
-        - "Check for coolant in charge air system"
-        - "Verify charge air piping integrity"
-        - "Inspect cooler sealing gaskets"
+        - "Check for water in preheated fuel (vapor lock in injection pumps)"
+        - "Verify fuel temperature and viscosity"
       actions:
-        - "Repair or replace leaking charge air cooler"
-        - "Replace damaged charge air piping"
-        - "Renew sealing gaskets"
-        - "Pressure test system after repair"
-        - "Clean charge air cooler internally and externally"
+        - "Drain water from fuel system"
+        - "Ensure proper fuel heating"
+        - "Use fuel of appropriate quality"
 
 ## Fault 5
 fault:
-  name: "Auxiliary Engine High Fuel Pressure"
+  name: "Insufficient Charge Air Pressure"
   symptoms:
-    - "High fuel pressure alarm"
-    - "Fuel leaks from high-pressure components"
-    - "Erratic engine performance"
-    - "Black smoke from exhaust"
-    - "Possible fuel injector issues"
+    - "Dark exhaust gases"
+    - "Reduced engine power"
+    - "Higher than normal exhaust temperatures"
   causes:
-    - name: "Fuel Pressure Regulator Failure"
-      probability: 0.7
-      checks:
-        - "Test pressure regulator operation"
-        - "Check regulator diaphragm for damage"
-        - "Verify regulator spring tension"
-        - "Inspect for debris preventing proper seating"
-        - "Test manual adjustment of regulator"
-      actions:
-        - "Clean pressure regulator"
-        - "Replace damaged diaphragm"
-        - "Adjust regulator to correct pressure"
-        - "Replace regulator if severely damaged"
-        - "Verify correct fuel return line flow"
-    
-    - name: "Fuel Return Line Restriction"
+    - name: "Air Intake Issues"
       probability: 0.6
       checks:
-        - "Inspect fuel return lines for restrictions"
-        - "Check for partially closed valves in return system"
-        - "Verify return line sizes are correct"
-        - "Test fuel return flow rate"
-        - "Check for kinked or damaged return lines"
+        - "Inspect air intake for clogging"
+        - "Check air filter condition"
       actions:
-        - "Clear restrictions in return lines"
-        - "Open fully any partially closed valves"
-        - "Replace undersize return lines"
-        - "Repair damaged return piping"
-        - "Ensure correct routing of return lines"
+        - "Clean air intake system"
+        - "Replace dirty air filter"
     
-    - name: "Incorrect Pump Timing"
-      probability: 0.4
+    - name: "Turbocharger Problems"
+      probability: 0.8
       checks:
-        - "Verify fuel pump timing marks"
-        - "Check cam timing"
-        - "Inspect timing gear backlash"
-        - "Test injection timing electronically if equipped"
-        - "Inspect timing chain or belt tension"
+        - "Check turbocharger compressor for dirt/fouling"
+        - "Inspect turbocharger turbine for fouling"
+        - "Verify turbocharger free rotation"
       actions:
-        - "Adjust fuel pump timing"
-        - "Correct cam timing if misaligned"
-        - "Replace worn timing gears"
-        - "Reset electronic injection timing"
-        - "Adjust or replace timing chain/belt"
+        - "Clean dirty turbocharger compressor"
+        - "Clean fouled turbocharger turbine"
+        - "Repair or replace damaged turbocharger"
+    
+    - name: "Charge Air Cooler Issues"
+      probability: 0.7
+      checks:
+        - "Inspect charge air cooler for clogging on air side"
+        - "Check charge air temperature"
+      actions:
+        - "Clean clogged charge air cooler"
+        - "Verify proper cooling water flow to air cooler"
 
 ## Fault 6
 fault:
-  name: "Auxiliary Engine Low Cooling Water Pressure"
+  name: "High Exhaust Pipe Pressure"
   symptoms:
-    - "Low cooling water pressure alarm"
-    - "Rising engine temperature"
-    - "Cooling water pump noise"
-    - "Possible air in cooling system"
-    - "Coolant loss over time"
+    - "Reduced engine performance"
+    - "High exhaust gas temperatures"
+    - "Possible turbocharger surging"
   causes:
-    - name: "Cooling Water Pump Failure"
+    - name: "Exhaust System Restrictions"
+      probability: 0.8
+      checks:
+        - "Measure exhaust pipe pressure after turbine"
+        - "Inspect exhaust pipe for partial blockage"
+        - "Check exhaust silencer for clogging"
+      actions:
+        - "Clean blocked exhaust pipe"
+        - "Remove obstructions from exhaust system"
+        - "Clean or replace clogged silencer components"
+    
+    - name: "Turbine Fouling"
       probability: 0.7
       checks:
-        - "Check pump impeller condition"
-        - "Verify pump shaft rotation"
-        - "Inspect mechanical seal for leakage"
-        - "Check pump drive belt tension (if applicable)"
-        - "Test pump motor operation (if electric)"
+        - "Inspect turbocharger turbine for heavy fouling"
+        - "Check turbine nozzle ring condition"
       actions:
-        - "Replace damaged impeller"
-        - "Repair or replace pump shaft"
-        - "Replace leaking mechanical seal"
-        - "Adjust or replace drive belt"
-        - "Repair or replace pump motor"
-    
-    - name: "External Coolant Leakage"
-      probability: 0.6
-      checks:
-        - "Inspect all cooling system joints and connections"
-        - "Check heat exchanger for external leaks"
-        - "Verify expansion tank cap sealing"
-        - "Inspect water pump seals"
-        - "Pressure test cooling system"
-      actions:
-        - "Tighten loose connections"
-        - "Replace damaged gaskets or O-rings"
-        - "Replace expansion tank cap"
-        - "Repair heat exchanger leaks"
-        - "Replace water pump if seal failing"
-    
-    - name: "Air in Cooling System"
-      probability: 0.5
-      checks:
-        - "Check for air bubbles in coolant"
-        - "Verify correct filling procedure was followed"
-        - "Inspect functioning of automatic air vents"
-        - "Check expansion tank level"
-        - "Test for combustion gas leakage into coolant"
-      actions:
-        - "Bleed air from cooling system high points"
-        - "Refill system following correct procedure"
-        - "Clean or replace automatic air vents"
-        - "Top up expansion tank to correct level"
-        - "Repair internal leaks allowing gas into coolant"
+        - "Clean fouled turbine"
+        - "Clean or replace clogged turbine nozzle ring"
