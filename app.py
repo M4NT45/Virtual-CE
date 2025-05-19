@@ -87,7 +87,7 @@ def diagnose():
         diagnostic_results = rule_engine.process(enhanced_query, processed_data=query_result)
     elif engine_type == 'neural':
         diagnostic_results = neural_engine.process(enhanced_query, processed_data=query_result)
-    else:  # hybrid
+    else:
         diagnostic_results = hybrid_engine.process(enhanced_query, processed_data=query_result)
         
     return jsonify(diagnostic_results)

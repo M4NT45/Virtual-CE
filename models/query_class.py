@@ -18,6 +18,3 @@ class Query(db.Base):
     engine_type = Column(String(20), nullable=True)
 
     parent_query_id = Column(Integer, nullable=True)
-    
-    def __repr__(self):
-        return f"<Query(id={self.id}, text='{self.text[:30]}...', timestamp={self.timestamp})>"
