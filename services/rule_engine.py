@@ -51,30 +51,66 @@ class RuleEngine:
             'leakage': ['leak', 'drip', 'spill', 'escape']
         }
         
-        # Important terms that should increase relevance when matching
+        # Enhanced important terms with better directional handling
         self.important_terms = {
+            # High temperature terms
+            'high temperature': 12,
+            'elevated temperature': 12,
+            'temperature high': 12,
+            'too hot': 12,
+            'overheating': 12,
+            'above normal': 12,
+            'overheat': 9,
+            
+            # Low temperature terms  
+            'low temperature': 12,
+            'temperature low': 12,
+            'cold': 12,
+            'below normal': 12,
+            
+            # High pressure terms
+            'high pressure': 12,
+            'pressure high': 12,
+            'above normal pressure': 12,
+            
+            # Low pressure terms
+            'low pressure': 12,
+            'pressure low': 12,
+            'pressure lacking': 12,
+            'no pressure': 15,
+            'insufficient pressure': 12,
+            'pressure drop': 12,
+            
+            # Specific combinations for single cylinder
+            'one cylinder high': 15,
+            'single cylinder high': 15,
+            'one cylinder above': 15,
+            'single cylinder above': 15,
+            'one cylinder below': 15,
+            'single cylinder below': 15,
+            'individual cylinder': 12,
+            
+            # Smoke types
             'black smoke': 10,
             'white smoke': 10,
             'blue smoke': 10,
             'gray smoke': 10,
             'smoke': 8,
             'exhaust gas': 7,
-            'temperature high': 9,
-            'high temperature': 9,
-            'overheat': 9,
-            'pressure low': 9,
-            'low pressure': 9,
-            'no pressure': 10,
-            'knocking': 9,
+            
+            # Operation issues
             'won\'t start': 10,
             'will not start': 10,
             'fails to start': 10,
             'stops': 8,
             'shutdown': 8,
             'emergency': 9,
-            'leaking': 8,
+            'knocking': 9,
+            
+            # Contamination
             'water in oil': 10,
-            'oil in water': 10
+            'oil in water': 10,
+            'leaking': 8
         }
 
     def process(self, query, processed_data=None):
@@ -202,6 +238,18 @@ class RuleEngine:
         fault_name = fault['fault'].get('name', '').lower()
         symptoms = [s.lower() for s in fault['fault'].get('symptoms', [])]
         
+        # EARLY CHECK: Apply penalties first to avoid wasting calculations
+        # 1. Check for directional mismatch (HIGH vs LOW, ABOVE vs BELOW)
+        directional_mismatch = self._check_directional_mismatch(query_lower, fault_name)
+        
+        # 2. Check for specificity mismatch (ONE vs ALL cylinders)
+        specificity_mismatch = self._check_specificity_mismatch(query_lower, fault_name)
+        
+        # Early exit with very low confidence if severe mismatches detected
+        if directional_mismatch:
+            print(f"    Directional mismatch detected for {fault_name[:30]}... - setting confidence to 0.1")
+            return 0.1  # Very low but not zero to maintain some relevance
+        
         # Get fault categories
         fault_categories = []
         combined_fault_text = fault_name + " " + " ".join(symptoms)
@@ -212,13 +260,13 @@ class RuleEngine:
         # Start with baseline confidence
         confidence = 0
         
-        # 1. Check for important terms
+        # 3. Check for important terms
         for term, boost in self.important_terms.items():
             if term in query_lower and term in combined_fault_text:
                 confidence += boost
                 print(f"Important term match: '{term}' - +{boost}")
         
-        # 2. Category match bonus - prioritize faults that match the query category
+        # 4. Category match bonus - prioritize faults that match the query category
         category_match = False
         for category in query_categories:
             if category in fault_categories:
@@ -226,7 +274,7 @@ class RuleEngine:
                 category_match = True
                 print(f"Category match: '{category}' - +5")
         
-        # 3. Direct name match
+        # 5. Direct name match
         if query_lower in fault_name:
             confidence += 8
             print(f"Query contained in fault name - +8")
@@ -234,7 +282,7 @@ class RuleEngine:
             confidence += 6
             print(f"Fault name contained in query - +6")
 
-        # 4. Word overlap in fault name
+        # 6. Word overlap in fault name
         fault_name_words = set(fault_name.split())
         name_overlap = query_words.intersection(fault_name_words)
         if name_overlap:
@@ -243,7 +291,7 @@ class RuleEngine:
             confidence += word_score
             print(f"Word overlap in name ({len(name_overlap)} words) - +{word_score:.2f}")
 
-        # 5. Symptom matches
+        # 7. Symptom matches
         symptom_match = False
         for symptom in symptoms:
             # Direct containment
@@ -268,10 +316,81 @@ class RuleEngine:
                 symptom_match = True
                 print(f"Word overlap in symptom ({len(symptom_overlap)} words) - +{symptom_score:.2f}")
         
-        # If no category or symptom match, drastically reduce confidence
+        # 8. Apply specificity mismatch penalty after calculating base confidence
+        if specificity_mismatch:
+            confidence *= 0.5  # Apply moderate penalty (50% reduction)
+            print(f"Specificity mismatch detected - confidence reduced to {confidence:.2f}")
+        
+        # 9. If no category or symptom match, drastically reduce confidence
         if not category_match and not symptom_match and confidence < 8:
             confidence *= 0.3
             print(f"No category or symptom match - confidence reduced by 70%")
         
         # Round to make confidence values more readable
         return round(confidence, 2)
+    
+    def _check_directional_mismatch(self, query_lower, fault_name):
+        """
+        Check if there's a directional mismatch between query and fault
+        (e.g., query asks for HIGH but fault is about LOW)
+        """
+        
+        # Define directional indicators
+        query_high_indicators = ['high', 'above', 'elevated', 'too hot', 'hot', 'increase', 'rise']
+        query_low_indicators = ['low', 'below', 'cold', 'lacking', 'decrease', 'drop', 'insufficient']
+        
+        fault_high_indicators = ['high', 'above', 'elevated', 'increase', 'rise']
+        fault_low_indicators = ['low', 'below', 'lacking', 'decrease', 'drop', 'insufficient']
+        
+        # Check for mismatch
+        query_has_high = any(term in query_lower for term in query_high_indicators)
+        query_has_low = any(term in query_lower for term in query_low_indicators)
+        fault_has_high = any(term in fault_name for term in fault_high_indicators)
+        fault_has_low = any(term in fault_name for term in fault_low_indicators)
+        
+        # Directional mismatch occurs when:
+        # 1. Query indicates HIGH but fault indicates LOW
+        # 2. Query indicates LOW but fault indicates HIGH
+        mismatch = ((query_has_high and fault_has_low) or 
+                   (query_has_low and fault_has_high))
+        
+        if mismatch:
+            print(f"    Directional mismatch: Query={'HIGH' if query_has_high else 'LOW'}, "
+                  f"Fault={'HIGH' if fault_has_high else 'LOW'}")
+        
+        return mismatch
+    
+    def _check_specificity_mismatch(self, query_lower, fault_name):
+        """
+        Check if there's a specificity mismatch between query and fault
+        (e.g., query asks for ONE cylinder but fault is about ALL cylinders)
+        """
+        
+        # Define specificity indicators
+        query_specific_indicators = ['one', 'single', 'individual', 'specific']
+        query_general_indicators = ['all', 'every', 'multiple', 'general']
+        
+        fault_specific_indicators = ['one', 'single', 'individual']
+        fault_general_indicators = ['all', 'every', 'multiple']
+        
+        # Only check if dealing with cylinder-related faults
+        if 'cylinder' not in query_lower and 'cylinder' not in fault_name:
+            return False
+        
+        # Check for mismatch
+        query_has_specific = any(term in query_lower for term in query_specific_indicators)
+        query_has_general = any(term in query_lower for term in query_general_indicators)
+        fault_has_specific = any(term in fault_name for term in fault_specific_indicators)
+        fault_has_general = any(term in fault_name for term in fault_general_indicators)
+        
+        # Specificity mismatch occurs when:
+        # 1. Query indicates ONE cylinder but fault is about ALL cylinders
+        # 2. Query indicates ALL cylinders but fault is about ONE cylinder
+        mismatch = ((query_has_specific and fault_has_general) or 
+                   (query_has_general and fault_has_specific))
+        
+        if mismatch:
+            print(f"    Specificity mismatch: Query={'SPECIFIC' if query_has_specific else 'GENERAL'}, "
+                  f"Fault={'SPECIFIC' if fault_has_specific else 'GENERAL'}")
+        
+        return mismatch
