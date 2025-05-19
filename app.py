@@ -11,7 +11,6 @@ import time
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
-app.secret_key = 'your_secret_key_here'
 
 rule_engine = RuleEngine()
 neural_engine = NeuralEngine()
