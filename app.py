@@ -15,7 +15,7 @@ app.secret_key = 'your_secret_key_here'
 
 rule_engine = RuleEngine()
 neural_engine = NeuralEngine()
-# hybrid_engine = HybridEngine()
+hybrid_engine = HybridEngine()
 
 @app.route('/')
 def index():
@@ -87,15 +87,9 @@ def diagnose():
         diagnostic_results = rule_engine.process(enhanced_query, processed_data=query_result)
     elif engine_type == 'neural':
         diagnostic_results = neural_engine.process(enhanced_query, processed_data=query_result)
-    # else:  # hybrid
-    #     diagnostic_results = hybrid_engine.process(enhanced_query, processed_data=query_result)
-    
-    # Add query information to results
-    # diagnostic_results.update({
-    #     "original_query": user_query,
-    #     "enhanced_query": enhanced_query
-    # })
-    
+    else:  # hybrid
+        diagnostic_results = hybrid_engine.process(enhanced_query, processed_data=query_result)
+        
     return jsonify(diagnostic_results)
 
 @app.route('/api/reset_conversation', methods=['POST'])
