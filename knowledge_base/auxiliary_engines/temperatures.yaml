@@ -3,6 +3,7 @@
 ## Fault 1
 fault:
   name: "Exhaust Gas Temperature of All Cylinders Abnormally High"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Temperature gauges showing elevated readings for all cylinders"
     - "Possible engine performance degradation"
@@ -53,6 +54,7 @@ fault:
 ## Fault 2
 fault:
   name: "Exhaust Gas Temperature of One Cylinder Above Normal"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Single cylinder showing elevated temperature"
     - "Possible uneven engine running"
@@ -123,6 +125,7 @@ fault:
 ## Fault 3
 fault:
   name: "Exhaust Gas Temperature of One Cylinder Below Normal"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Single cylinder showing abnormally low temperature"
     - "Potential uneven engine running"
@@ -153,6 +156,7 @@ fault:
 ## Fault 4
 fault:
   name: "Very Unequal Exhaust Gas Temperatures"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Significant variation in cylinder temperatures"
     - "Uneven engine running"
@@ -194,6 +198,7 @@ fault:
 ## Fault 5
 fault:
   name: "High Lubricating Oil Temperature"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Oil temperature gauge showing elevated readings"
     - "Possible oil pressure fluctuations"
@@ -243,6 +248,7 @@ fault:
 ## Fault 6
 fault:
   name: "Abnormally High Cooling Water Outlet Temperature"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "High cooling water temperature readings"
     - "Large difference between inlet and outlet temperatures"
@@ -290,6 +296,7 @@ fault:
 ## Fault 7
 fault:
   name: "Blue-Whitish or Gray-Whitish Exhaust Gases"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Abnormal exhaust gas color"
     - "Possible increase in oil consumption"

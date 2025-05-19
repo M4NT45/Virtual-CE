@@ -3,6 +3,7 @@
 ## Fault 1
 fault:
   name: "Main Engine High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High jacket water temperature"
     - "High exhaust gas temperature"
@@ -60,6 +61,7 @@ fault:
 ## Fault 2
 fault:
   name: "Main Engine Cylinder Overheating"
+  subsystem: "main_engine"
   symptoms:
     - "High individual cylinder temperature"
     - "Uneven exhaust gas temperatures across cylinders"
@@ -117,6 +119,7 @@ fault:
 ## Fault 3
 fault:
   name: "Main Engine Piston Cooling Oil High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High piston cooling oil outlet temperature"
     - "High cylinder liner temperature"
@@ -168,6 +171,7 @@ fault:
 ## Fault 4
 fault:
   name: "Main Engine Exhaust Valve Overheating"
+  subsystem: "main_engine"
   symptoms:
     - "High exhaust valve temperature"
     - "Increased exhaust gas temperature from affected cylinder"
@@ -218,6 +222,7 @@ fault:
 ## Fault 5
 fault:
   name: "Main Engine Turbocharger Overheating"
+  subsystem: "main_engine"
   symptoms:
     - "High turbocharger bearing temperature"
     - "High turbocharger exhaust gas outlet temperature"
@@ -272,6 +277,7 @@ fault:
 ## Fault 6
 fault:
   name: "Main Engine Lubricating Oil High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High lubricating oil temperature alarm"
     - "Increased bearing temperatures"
@@ -324,6 +330,7 @@ fault:
 ## Fault 7
 fault:
   name: "Main Engine Scavenge Air High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High scavenge air temperature alarms"
     - "Reduced engine power"
@@ -378,6 +385,7 @@ fault:
 ## Fault 8
 fault:
   name: "Main Engine Thrust Bearing High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High thrust bearing temperature alarm"
     - "Increased axial vibration"
@@ -433,6 +441,7 @@ fault:
 ## Fault 9
 fault:
   name: "Main Engine Governor Oil High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High governor oil temperature"
     - "Unstable engine speed"
@@ -484,6 +493,7 @@ fault:
 ## Fault 10
 fault:
   name: "Main Engine High Crankcase Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High crankcase temperature alarm"
     - "Oil mist detector warnings"
@@ -536,6 +546,7 @@ fault:
 ## Fault 11
 fault:
   name: "Main Engine Fuel Valve Cooling Water High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High fuel valve cooling water temperature alarm"
     - "Increased exhaust gas temperatures"
@@ -589,6 +600,7 @@ fault:
 ## Fault 12
 fault:
   name: "Main Engine Charge Air Manifold High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High charge air manifold temperature alarm"
     - "Reduced engine power"
@@ -644,6 +656,7 @@ fault:
 ## Fault 13
 fault:
   name: "Main Engine Cylinder Liner High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High cylinder liner temperature alarm"
     - "Increased lubricating oil consumption"
@@ -699,6 +712,7 @@ fault:
 ## Fault 14
 fault:
   name: "Main Engine Exhaust Gas High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High exhaust gas temperature alarm"
     - "Increased fuel consumption"
@@ -757,6 +771,7 @@ fault:
 ## Fault 15
 fault:
   name: "Main Engine Differential Expansion High Temperature"
+  subsystem: "main_engine"
   symptoms:
     - "High differential expansion alarm"
     - "Abnormal engine noise"

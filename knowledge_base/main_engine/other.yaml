@@ -3,6 +3,7 @@
 ## Fault 1
 fault:
   name: "Engine Fails to Start (Electrical)"
+  subsystem: "main_engine"
   symptoms:
     - "No cranking when start button is pressed"
     - "Click sound but no cranking"
@@ -59,6 +60,7 @@ fault:
 ## Fault 2
 fault:
   name: "Engine Starts But Immediately Stops"
+  subsystem: "main_engine"
   symptoms:
     - "Engine cranks and fires but stops within seconds"
     - "Engine shutdown alarm activates"
@@ -114,6 +116,7 @@ fault:
 ## Fault 3
 fault:
   name: "Main Engine Generator/Alternator Output Problems"
+  subsystem: "main_engine"
   symptoms:
     - "Low or no voltage output from alternator"
     - "Battery charge indicator warning"
@@ -169,6 +172,7 @@ fault:
 ## Fault 4
 fault:
   name: "Engine Control System Failure"
+  subsystem: "main_engine"
   symptoms:
     - "Erratic engine behavior"
     - "Random alarms or shutdowns"
@@ -224,6 +228,7 @@ fault:
 ## Fault 5
 fault:
   name: "Main Engine Fuel Actuator Malfunction"
+  subsystem: "main_engine"
   symptoms:
     - "Engine RPM fluctuations"
     - "Poor load response"
@@ -279,6 +284,7 @@ fault:
 ## Fault 6
 fault:
   name: "Electrical Ground Faults"
+  subsystem: "main_engine"
   symptoms:
     - "Intermittent electrical failures"
     - "Corrosion at electrical connections"
@@ -334,6 +340,7 @@ fault:
 ## Fault 7
 fault:
   name: "Engine Monitoring System Failure"
+  subsystem: "main_engine"
   symptoms:
     - "Missing or incorrect sensor readings"
     - "Display panel malfunctions"

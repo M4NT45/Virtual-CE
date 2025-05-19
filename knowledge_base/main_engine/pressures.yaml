@@ -3,6 +3,7 @@
 ## Fault 1
 fault:
   name: "Main Engine Low Lubricating Oil Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low lubricating oil pressure alarm"
     - "Engine automatic slowdown or shutdown"
@@ -38,6 +39,7 @@ fault:
 ## Fault 2
 fault:
   name: "Main Engine High Crankcase Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High crankcase pressure alarm"
     - "Oil mist detector alarm"
@@ -97,6 +99,7 @@ fault:
 ## Fault 3
 fault:
   name: "Main Engine Low Fuel Oil Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low fuel oil pressure alarm"
     - "Reduced engine power"
@@ -168,6 +171,7 @@ fault:
 ## Fault 4
 fault:
   name: "Main Engine Low Cooling Water Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low cooling water pressure alarm"
     - "Rising engine temperature"
@@ -239,6 +243,7 @@ fault:
 ## Fault 5
 fault:
   name: "Main Engine High Scavenge Air Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High scavenge air pressure alarm"
     - "Increased engine power"
@@ -298,6 +303,7 @@ fault:
 ## Fault 6
 fault:
   name: "Main Engine Low Scavenge Air Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low scavenge air pressure alarm"
     - "Reduced engine power"
@@ -369,6 +375,7 @@ fault:
 ## Fault 7
 fault:
   name: "Main Engine High Fuel Injection Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High fuel pressure indication"
     - "Increased engine noise"
@@ -428,6 +435,7 @@ fault:
 ## Fault 8
 fault:
   name: "Main Engine Low Fuel Injection Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low fuel injection pressure indication"
     - "Poor engine performance"
@@ -499,6 +507,7 @@ fault:
 ## Fault 9
 fault:
   name: "Main Engine High Compression Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High compression pressure readings"
     - "Increased mechanical stress"
@@ -558,6 +567,7 @@ fault:
 ## Fault 10
 fault:
   name: "Main Engine Low Compression Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low compression pressure readings"
     - "Difficult starting"
@@ -629,6 +639,7 @@ fault:
 ## Fault 11
 fault:
   name: "Main Engine High Starting Air Pressure Drop"
+  subsystem: "main_engine"
   symptoms:
     - "Excessive pressure drop in starting air system"
     - "Difficulty starting engine"
@@ -700,6 +711,7 @@ fault:
 ## Fault 12
 fault:
   name: "Main Engine Low Starting Air Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low starting air pressure alarm"
     - "Difficulty starting engine"
@@ -771,6 +783,7 @@ fault:
 ## Fault 13
 fault:
   name: "Main Engine High Differential Pressure Across Air Filter"
+  subsystem: "main_engine"
   symptoms:
     - "High differential pressure alarm"
     - "Reduced engine power"
@@ -830,6 +843,7 @@ fault:
 ## Fault 14
 fault:
   name: "Main Engine Low Piston Cooling Oil Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low piston cooling oil pressure alarm"
     - "High piston temperature"
@@ -877,6 +891,7 @@ fault:
 ## Fault 15
 fault:
   name: "Main Engine High Differential Pressure Across Lubricating Oil Filter"
+  subsystem: "main_engine"
   symptoms:
     - "High differential pressure alarm"
     - "Lubricating oil filter bypass indicator activation"
@@ -948,6 +963,7 @@ fault:
 ## Fault 16
 fault:
   name: "Main Engine High Fuel Oil Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High fuel pressure alarm"
     - "Potential leakage from high pressure pipes"
@@ -1007,6 +1023,7 @@ fault:
 ## Fault 17
 fault:
   name: "Main Engine Low Control Air Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low control air pressure alarm"
     - "Erratic engine control"
@@ -1078,6 +1095,7 @@ fault:
 ## Fault 18
 fault:
   name: "Main Engine High Crankcase Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High crankcase pressure alarm"
     - "Oil mist detector warnings"
@@ -1137,6 +1155,7 @@ fault:
 ## Fault 19
 fault:
   name: "Main Engine High Charge Air Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High scavenge/charge air pressure alarm"
     - "Increased engine power output"
@@ -1196,6 +1215,7 @@ fault:
 ## Fault 20
 fault:
   name: "Main Engine High Exhaust Back Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "High exhaust back pressure alarm"
     - "Reduced engine power"
@@ -1267,6 +1287,7 @@ fault:
 ## Fault 21
 fault:
   name: "Main Engine Hydraulic System Low Pressure"
+  subsystem: "main_engine"
   symptoms:
     - "Low hydraulic pressure alarm"
     - "Slow hydraulic actuator response"

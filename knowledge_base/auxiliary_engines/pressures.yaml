@@ -3,6 +3,7 @@
 ## Fault 1
 fault:
   name: "Lubricating Oil Pressure Lacking or Too Low"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Low oil pressure alarm"
     - "Oil pressure gauge showing low readings"
@@ -73,6 +74,7 @@ fault:
 ## Fault 2
 fault:
   name: "Too High Lubricating Oil Pressure"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Oil pressure gauge showing excessive readings"
     - "Possible oil filter bypass activation"
@@ -99,6 +101,7 @@ fault:
 ## Fault 3
 fault:
   name: "Starting Air Pressure Issues"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Engine fails to start or rotate"
     - "Slow cranking speed during starting attempt"
@@ -139,6 +142,7 @@ fault:
 ## Fault 4
 fault:
   name: "Low Fuel Feed Pressure"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Engine performance issues"
     - "Unstable engine speed"
@@ -178,6 +182,7 @@ fault:
 ## Fault 5
 fault:
   name: "Insufficient Charge Air Pressure"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Dark exhaust gases"
     - "Reduced engine power"
@@ -215,6 +220,7 @@ fault:
 ## Fault 6
 fault:
   name: "High Exhaust Pipe Pressure"
+  subsystem: "auxiliary_engine"
   symptoms:
     - "Reduced engine performance"
     - "High exhaust gas temperatures"

@@ -1,7 +1,6 @@
 from flask import Flask, render_template, jsonify, request, session
 from sqlalchemy import select
 from models.DB_class import session_maker
-from models.yaml_path_class import YamlPath
 from models.query_class import Query
 from services.rule_engine import RuleEngine
 from services.neural_engine import NeuralEngine
@@ -15,7 +14,7 @@ app.config.from_object('config.Config')
 app.secret_key = 'your_secret_key_here'
 
 rule_engine = RuleEngine()
-# neural_engine = NeuralEngine()
+neural_engine = NeuralEngine()
 # hybrid_engine = HybridEngine()
 
 @app.route('/')
@@ -85,11 +84,11 @@ def diagnose():
     enhanced_query = query_result.get('enhanced_query')
     
     if engine_type == 'rule':
-        diagnostic_results = rule_engine.process(user_query, processed_data=query_result)
-    # elif engine_type == 'neural':
-    #     diagnostic_results = neural_engine.process(enhanced_query)
+        diagnostic_results = rule_engine.process(enhanced_query, processed_data=query_result)
+    elif engine_type == 'neural':
+        diagnostic_results = neural_engine.process(enhanced_query, processed_data=query_result)
     # else:  # hybrid
-    #     diagnostic_results = hybrid_engine.process(enhanced_query)
+    #     diagnostic_results = hybrid_engine.process(enhanced_query, processed_data=query_result)
     
     # Add query information to results
     # diagnostic_results.update({
