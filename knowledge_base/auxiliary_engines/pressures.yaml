@@ -1,0 +1,247 @@
+# Auxiliary Engine Pressure-Related Fault Trees
+
+## Fault 1
+fault:
+  name: "Lubricating Oil Pressure Lacking or Too Low"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Low oil pressure alarm"
+    - "Oil pressure gauge showing low readings"
+    - "Possible engine automatic slowdown or shutdown"
+    - "Abnormal engine noise"
+  causes:
+    - name: "Pressure Indicator Issues"
+      probability: 0.3
+      checks:
+        - "Check the pressure difference indicator"
+        - "Inspect pressure gauge for proper operation"
+        - "Verify gauge pipe is not clogged"
+      actions:
+        - "Replace faulty pressure gauge"
+        - "Clean clogged gauge pipe"
+        - "Recalibrate pressure indicators"
+    
+    - name: "Low Oil Level"
+      probability: 0.7
+      checks:
+        - "Check lubricating oil level in oil sump"
+        - "Inspect for visible oil leaks"
+      actions:
+        - "Add oil to correct level"
+        - "Repair any oil leaks"
+        - "Monitor oil consumption"
+    
+    - name: "Pressure Control Valve Issues"
+      probability: 0.6
+      checks:
+        - "Inspect lubricating oil pressure control valve"
+        - "Check for jamming or improper adjustment"
+      actions:
+        - "Adjust pressure control valve"
+        - "Repair or replace jamming valve"
+        - "Clean valve components"
+    
+    - name: "Oil Filter System Problems"
+      probability: 0.5
+      checks:
+        - "Check position of three-way cock of lubricating oil filter"
+        - "Inspect filter for clogging"
+      actions:
+        - "Correct position of three-way cock"
+        - "Clean or replace oil filter"
+    
+    - name: "Lubricating Oil System Leaks"
+      probability: 0.6
+      checks:
+        - "Check for leakage in lubricating oil suction pipe connections"
+        - "Inspect internal oil pipes for looseness or damage"
+      actions:
+        - "Tighten loose connections"
+        - "Replace damaged pipes"
+        - "Repair leaks in oil system"
+    
+    - name: "Oil Quality Issues"
+      probability: 0.4
+      checks:
+        - "Check for oil diluted with diesel fuel"
+        - "Verify oil viscosity"
+        - "Sample oil for analysis"
+      actions:
+        - "Replace contaminated oil"
+        - "Use correct viscosity oil"
+        - "Identify and fix source of fuel contamination"
+
+## Fault 2
+fault:
+  name: "Too High Lubricating Oil Pressure"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Oil pressure gauge showing excessive readings"
+    - "Possible oil filter bypass activation"
+  causes:
+    - name: "Pressure Gauge Issues"
+      probability: 0.4
+      checks:
+        - "Verify pressure gauge accuracy"
+        - "Compare with portable measurement device"
+      actions:
+        - "Replace faulty pressure gauge"
+        - "Recalibrate pressure indicators"
+    
+    - name: "Pressure Control Valve Problems"
+      probability: 0.8
+      checks:
+        - "Inspect pressure control valve for proper operation"
+        - "Check for jamming or improper adjustment"
+      actions:
+        - "Adjust pressure control valve"
+        - "Repair or replace faulty control valve"
+        - "Clean valve components"
+
+## Fault 3
+fault:
+  name: "Starting Air Pressure Issues"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine fails to start or rotate"
+    - "Slow cranking speed during starting attempt"
+    - "Air starting system alarms"
+  causes:
+    - name: "Low Starting Air Pressure"
+      probability: 0.7
+      checks:
+        - "Check starting air pressure"
+        - "Verify shut-off valve on starting air inlet pipe is open"
+        - "Inspect air compressor operation"
+      actions:
+        - "Open shut-off valve if closed"
+        - "Wait for air receivers to reach required pressure"
+        - "Repair or service air compressor if needed"
+    
+    - name: "High Starting Air Pressure"
+      probability: 0.3
+      checks:
+        - "Verify if starting air pressure exceeds 10 bar"
+        - "Check starting interlock function"
+      actions:
+        - "Adjust pressure reducing valve"
+        - "Bleed excess pressure from system"
+        - "Repair or calibrate pressure regulator"
+    
+    - name: "Starting Air System Component Failures"
+      probability: 0.5
+      checks:
+        - "Check starting air solenoid valve function"
+        - "Inspect air starter for proper operation"
+        - "Verify starting automation outside engine"
+      actions:
+        - "Replace faulty starting air solenoid valve"
+        - "Repair or replace defective air starter"
+        - "Troubleshoot and fix starting automation issues"
+
+## Fault 4
+fault:
+  name: "Low Fuel Feed Pressure"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine performance issues"
+    - "Unstable engine speed"
+    - "Uneven exhaust gas temperatures"
+    - "Potential engine stalling under load"
+  causes:
+    - name: "Fuel Filter Issues"
+      probability: 0.8
+      checks:
+        - "Inspect fuel filter for clogging"
+        - "Check position of three-way cock of fuel filter"
+      actions:
+        - "Clean or replace clogged fuel filter"
+        - "Set three-way cock to correct position"
+    
+    - name: "Fuel Supply System Problems"
+      probability: 0.7
+      checks:
+        - "Verify valve in fuel inlet pipe is open"
+        - "Check fuel day tank level"
+        - "Inspect fuel feed pump operation"
+      actions:
+        - "Open fuel inlet valve if closed"
+        - "Fill fuel day tank if empty"
+        - "Start, repair, or replace fuel feed pump"
+    
+    - name: "Fuel Quality Issues"
+      probability: 0.4
+      checks:
+        - "Check for water in preheated fuel (vapor lock in injection pumps)"
+        - "Verify fuel temperature and viscosity"
+      actions:
+        - "Drain water from fuel system"
+        - "Ensure proper fuel heating"
+        - "Use fuel of appropriate quality"
+
+## Fault 5
+fault:
+  name: "Insufficient Charge Air Pressure"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Dark exhaust gases"
+    - "Reduced engine power"
+    - "Higher than normal exhaust temperatures"
+  causes:
+    - name: "Air Intake Issues"
+      probability: 0.6
+      checks:
+        - "Inspect air intake for clogging"
+        - "Check air filter condition"
+      actions:
+        - "Clean air intake system"
+        - "Replace dirty air filter"
+    
+    - name: "Turbocharger Problems"
+      probability: 0.8
+      checks:
+        - "Check turbocharger compressor for dirt/fouling"
+        - "Inspect turbocharger turbine for fouling"
+        - "Verify turbocharger free rotation"
+      actions:
+        - "Clean dirty turbocharger compressor"
+        - "Clean fouled turbocharger turbine"
+        - "Repair or replace damaged turbocharger"
+    
+    - name: "Charge Air Cooler Issues"
+      probability: 0.7
+      checks:
+        - "Inspect charge air cooler for clogging on air side"
+        - "Check charge air temperature"
+      actions:
+        - "Clean clogged charge air cooler"
+        - "Verify proper cooling water flow to air cooler"
+
+## Fault 6
+fault:
+  name: "High Exhaust Pipe Pressure"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Reduced engine performance"
+    - "High exhaust gas temperatures"
+    - "Possible turbocharger surging"
+  causes:
+    - name: "Exhaust System Restrictions"
+      probability: 0.8
+      checks:
+        - "Measure exhaust pipe pressure after turbine"
+        - "Inspect exhaust pipe for partial blockage"
+        - "Check exhaust silencer for clogging"
+      actions:
+        - "Clean blocked exhaust pipe"
+        - "Remove obstructions from exhaust system"
+        - "Clean or replace clogged silencer components"
+    
+    - name: "Turbine Fouling"
+      probability: 0.7
+      checks:
+        - "Inspect turbocharger turbine for heavy fouling"
+        - "Check turbine nozzle ring condition"
+      actions:
+        - "Clean fouled turbine"
+        - "Clean or replace clogged turbine nozzle ring"

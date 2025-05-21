@@ -1,0 +1,326 @@
+# Auxiliary Engine Temperature-Related Fault Trees
+
+## Fault 1
+fault:
+  name: "Exhaust Gas Temperature of All Cylinders Abnormally High"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Temperature gauges showing elevated readings for all cylinders"
+    - "Possible engine performance degradation"
+    - "Increased fuel consumption"
+    - "Potential alarms on engine monitoring system"
+  causes:
+    - name: "Engine Overload"
+      probability: 0.8
+      checks:
+        - "Check injection pump rack positions"
+        - "Verify engine load against recommended parameters"
+        - "Monitor fuel consumption rate"
+      actions:
+        - "Reduce engine load to manufacturer specifications"
+        - "Adjust injection pump rack positions if necessary"
+        - "Check propeller pitch settings if applicable"
+    
+    - name: "Charge Air System Issues"
+      probability: 0.7
+      checks:
+        - "Check charge air temperature"
+        - "Inspect charge air cooler for clogging on water or air side"
+        - "Verify water temperature and flow to air cooler"
+        - "Check engine room temperature"
+      actions:
+        - "Clean charge air cooler if clogged"
+        - "Ensure sufficient cooling water flow"
+        - "Verify cooling water temperature is within specifications"
+        - "Improve engine room ventilation if necessary"
+    
+    - name: "Deposits in Cylinder Head Ports"
+      probability: 0.5
+      checks:
+        - "Inspect cylinder head inlet or exhaust ports for deposits"
+      actions:
+        - "Schedule cleaning of cylinder head ports"
+        - "Consider water washing procedure if applicable"
+    
+    - name: "High Exhaust Pipe Pressure"
+      probability: 0.4
+      checks:
+        - "Check exhaust pipe pressure after turbine"
+        - "Inspect exhaust system for restrictions"
+      actions:
+        - "Clean exhaust system components"
+        - "Remove any obstructions in exhaust path"
+
+## Fault 2
+fault:
+  name: "Exhaust Gas Temperature of One Cylinder Above Normal"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Single cylinder showing elevated temperature"
+    - "Possible uneven engine running"
+    - "Potential engine vibration increase"
+  causes:
+    - name: "Faulty Exhaust Gas Thermometer/Sensor"
+      probability: 0.3
+      checks:
+        - "Compare with portable temperature measurement device"
+        - "Check sensor wiring and connections"
+        - "Verify sensor calibration"
+      actions:
+        - "Recalibrate sensor if possible"
+        - "Replace faulty thermometer/sensor"
+        - "Repair damaged wiring"
+    
+    - name: "Exhaust Valve Issues"
+      probability: 0.7
+      checks:
+        - "Check if exhaust valve is jamming when open"
+        - "Inspect for 'negative' valve clearance"
+        - "Check sealing surface for blow-by (burning)"
+        - "Measure valve clearance"
+      actions:
+        - "Adjust valve clearance to specifications"
+        - "Repair or replace damaged exhaust valve"
+        - "Replace burned valve seats if necessary"
+    
+    - name: "Faulty Injection Valve"
+      probability: 0.8
+      checks:
+        - "Check opening pressure of injection valve"
+        - "Inspect for sticking of nozzle needle"
+        - "Check for broken spring"
+        - "Inspect nozzle for cracks"
+      actions:
+        - "Replace injection valve"
+        - "Adjust opening pressure to specifications"
+        - "Replace broken springs"
+    
+    - name: "Late Injection"
+      probability: 0.5
+      checks:
+        - "Verify camshaft timing"
+        - "Check injection timing"
+      actions:
+        - "Adjust injection timing to specifications"
+        - "Correct camshaft drive alignment"
+    
+    - name: "Insufficient Fuel Supply"
+      probability: 0.4
+      checks:
+        - "Check fuel filters for clogging"
+        - "Verify fuel supply pressure"
+      actions:
+        - "Clean or replace clogged fuel filters"
+        - "Repair fuel supply system if pressure is low"
+    
+    - name: "Injection Pump Fault"
+      probability: 0.6
+      checks:
+        - "Inspect for fuel rack sticking in high load position"
+        - "Check injection pump operation"
+      actions:
+        - "Repair or replace faulty injection pump"
+        - "Ensure proper movement of fuel rack"
+
+## Fault 3
+fault:
+  name: "Exhaust Gas Temperature of One Cylinder Below Normal"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Single cylinder showing abnormally low temperature"
+    - "Potential uneven engine running"
+    - "Possible smoke from exhaust"
+  causes:
+    - name: "Faulty Exhaust Gas Thermometer/Sensor"
+      probability: 0.3
+      checks:
+        - "Compare with portable temperature measurement device"
+        - "Check sensor wiring and connections"
+        - "Verify sensor calibration"
+      actions:
+        - "Recalibrate sensor if possible"
+        - "Replace faulty thermometer/sensor"
+        - "Repair damaged wiring"
+    
+    - name: "Fuel Supply Issues"
+      probability: 0.8
+      checks:
+        - "Check for leaky injection pipe or pipe fittings"
+        - "Inspect injection pump operation"
+        - "Examine fuel filters and supply system"
+      actions:
+        - "Tighten or replace leaky pipes and fittings"
+        - "Repair or replace faulty injection pump"
+        - "Clean or replace clogged fuel filters"
+
+## Fault 4
+fault:
+  name: "Very Unequal Exhaust Gas Temperatures"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Significant variation in cylinder temperatures"
+    - "Uneven engine running"
+    - "Possible vibration increase"
+    - "Potential power loss"
+  causes:
+    - name: "Low Fuel Feed Pressure"
+      probability: 0.7
+      checks:
+        - "Measure fuel feed pressure"
+        - "Inspect fuel supply system"
+        - "Check flow through injection pumps"
+      actions:
+        - "Repair or adjust fuel pressure regulation"
+        - "Clean or replace fuel filters"
+        - "Repair fuel supply pump if necessary"
+      warning: "Dangerous! Causes high thermal overload in individual cylinders."
+    
+    - name: "Injection System Issues"
+      probability: 0.8
+      checks:
+        - "Inspect injection pump operation"
+        - "Check injection valves"
+        - "Examine fuel rack positions"
+      actions:
+        - "Replace or repair faulty injection pumps"
+        - "Clean or replace injection valves"
+        - "Adjust fuel rack positions"
+    
+    - name: "Exhaust System Obstructions"
+      probability: 0.5
+      checks:
+        - "Inspect exhaust pipe for partial clogging"
+        - "Check turbine nozzle ring condition"
+      actions:
+        - "Clean exhaust pipe"
+        - "Clean or replace turbine nozzle ring"
+
+## Fault 5
+fault:
+  name: "High Lubricating Oil Temperature"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Oil temperature gauge showing elevated readings"
+    - "Possible oil pressure fluctuations"
+    - "Potential lubricating oil alarms"
+  causes:
+    - name: "Faulty Thermometer"
+      probability: 0.2
+      checks:
+        - "Compare with portable temperature measurement device"
+        - "Check thermometer calibration"
+      actions:
+        - "Replace faulty thermometer"
+        - "Recalibrate temperature gauge"
+    
+    - name: "Insufficient Cooling Water Flow"
+      probability: 0.7
+      checks:
+        - "Check cooling water pump operation"
+        - "Inspect for air in the system"
+        - "Verify valve positions"
+        - "Measure raw water temperature"
+      actions:
+        - "Repair or replace faulty pump"
+        - "Bleed air from the system"
+        - "Open closed valves"
+        - "Ensure adequate raw water supply"
+    
+    - name: "Oil Cooler Issues"
+      probability: 0.8
+      checks:
+        - "Inspect oil cooler for clogging"
+        - "Check for deposits on tubes"
+      actions:
+        - "Clean oil cooler"
+        - "Remove deposits from tubes"
+        - "Replace severely clogged oil cooler"
+    
+    - name: "Faulty Thermostat Valve"
+      probability: 0.5
+      checks:
+        - "Test thermostat valve operation"
+        - "Check thermostat settings"
+      actions:
+        - "Replace faulty thermostat valve"
+        - "Adjust thermostat settings if possible"
+
+## Fault 6
+fault:
+  name: "Abnormally High Cooling Water Outlet Temperature"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "High cooling water temperature readings"
+    - "Large difference between inlet and outlet temperatures"
+    - "Potential engine temperature alarms"
+  causes:
+    - name: "Faulty Thermometer"
+      probability: 0.3
+      checks:
+        - "Compare readings from different thermometers"
+        - "Check thermometer calibration"
+      actions:
+        - "Replace faulty thermometer"
+        - "Recalibrate temperature gauges"
+    
+    - name: "Circulating Water Cooler Issues"
+      probability: 0.7
+      checks:
+        - "Inspect cooler for clogging"
+        - "Check for deposits on tubes"
+      actions:
+        - "Clean circulating water cooler"
+        - "Remove deposits from tubes"
+        - "Replace severely clogged cooler"
+    
+    - name: "Insufficient Cooling Water Flow"
+      probability: 0.8
+      checks:
+        - "Check circulating water pump operation"
+        - "Inspect for air in the system"
+        - "Verify valve positions"
+      actions:
+        - "Repair or replace faulty circulating water pump"
+        - "Bleed air from the system"
+        - "Open closed valves"
+    
+    - name: "Thermostat Valve Issues"
+      probability: 0.6
+      checks:
+        - "Test thermostat valve operation"
+        - "Check thermostat settings"
+      actions:
+        - "Replace faulty thermostat valve"
+        - "Adjust thermostat settings if possible"
+
+## Fault 7
+fault:
+  name: "Blue-Whitish or Gray-Whitish Exhaust Gases"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Abnormal exhaust gas color"
+    - "Possible increase in oil consumption"
+    - "Potential white smoke from exhaust"
+  causes:
+    - name: "Excessive Lubricating Oil Consumption"
+      probability: 0.8
+      checks:
+        - "Check for gas blow-by past piston rings"
+        - "Inspect oil scraper rings and cylinder liners"
+        - "Look for sticking compression rings"
+        - "Examine rings for correct installation"
+        - "Check for ring scuffing (burning marks)"
+      actions:
+        - "Replace worn or broken oil scraper rings"
+        - "Replace worn cylinder liners"
+        - "Fix or replace sticking compression rings"
+        - "Correct ring installation"
+    
+    - name: "Water Leakage"
+      probability: 0.5
+      checks:
+        - "Inspect turbocharger for water leakage"
+        - "Check multiduct for leaks"
+      actions:
+        - "Repair or replace leaking turbocharger components"
+        - "Fix multiduct leaks"

@@ -1,0 +1,518 @@
+# Auxiliary Engine Other Fault Trees (Electrical, Mechanical, etc.)
+
+## Fault 1
+fault:
+  name: "Crankshaft Does Not Rotate at Starting Attempt"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine does not turn over when start button pressed"
+    - "No movement of crankshaft"
+    - "Possible warning alarms"
+  causes:
+    - name: "Turning Device Engaged"
+      probability: 0.5
+      checks:
+        - "Check if turning device is engaged"
+        - "Verify turning device indicator status"
+      actions:
+        - "Disengage turning device"
+        - "Ensure turning device is completely removed"
+      warning: "Engine cannot be started when turning device is engaged. Always check that turning device is removed before starting."
+    
+    - name: "Starting Air System Issues"
+      probability: 0.8
+      checks:
+        - "Check starting air pressure"
+        - "Verify shut-off valve on starting air inlet pipe is open"
+        - "Check for starting air pressure too high (>10 bar) causing interlock"
+        - "Inspect starting air solenoid valve function"
+      actions:
+        - "Ensure adequate starting air pressure"
+        - "Open shut-off valve if closed"
+        - "Reduce air pressure if too high"
+        - "Repair or replace faulty solenoid valve"
+    
+    - name: "Starting System Problems"
+      probability: 0.7
+      checks:
+        - "Test starting automation outside engine"
+        - "Inspect air starter condition"
+      actions:
+        - "Repair faulty starting automation"
+        - "Fix or replace defective air starter"
+
+## Fault 2
+fault:
+  name: "Crankshaft Rotates but Engine Fails to Ignite"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine cranks but does not start"
+    - "No firing in any cylinder"
+    - "Possible unusual noise during cranking"
+  causes:
+    - name: "Insufficient Cranking Speed"
+      probability: 0.4
+      checks:
+        - "Check for low starting air pressure"
+        - "Verify air starter function"
+      actions:
+        - "Ensure adequate starting air pressure"
+        - "Repair or service air starter"
+    
+    - name: "Engine Safety Systems Active"
+      probability: 0.6
+      checks:
+        - "Verify automatic shut-down device is in start position"
+        - "Check overspeed trip device solenoid valve"
+      actions:
+        - "Reset automatic shut-down device"
+        - "Repair faulty overspeed trip device solenoid valve"
+    
+    - name: "Fuel Control Issues"
+      probability: 0.7
+      checks:
+        - "Check load limit of control shaft or governor setting"
+        - "Verify governor response"
+        - "Inspect fuel control mechanism for jamming"
+      actions:
+        - "Adjust load limit to appropriate value"
+        - "Repair or replace faulty governor"
+        - "Fix jamming fuel control mechanism"
+    
+    - name: "Fuel System Problems"
+      probability: 0.8
+      checks:
+        - "Check if fuel system is properly vented"
+        - "Verify pipe connections between injection pumps and valves"
+        - "Inspect fuel filter for clogging"
+        - "Check position of three-way cock, valves, and fuel level"
+      actions:
+        - "Vent fuel and injection system"
+        - "Tighten loose pipe connections"
+        - "Clean or replace clogged fuel filter"
+        - "Set three-way cock correctly"
+        - "Open closed valves or fill empty fuel day tank"
+        - "Start fuel feed pump if stopped"
+    
+    - name: "Temperature-Related Issues"
+      probability: 0.5
+      checks:
+        - "Check for low air and engine temperatures with low ignition quality fuel"
+        - "Verify fuel preheating and precirculation"
+      actions:
+        - "Preheat circulating water"
+        - "Ensure fuel is properly preheated"
+        - "Establish fuel precirculation"
+    
+    - name: "Compression Issues"
+      probability: 0.6
+      checks:
+        - "Check for low compression pressure"
+        - "Inspect for inlet or exhaust valve jamming in open position"
+        - "Check for 'negative' valve clearance (strong blowing noise)"
+      actions:
+        - "Adjust valve clearances"
+        - "Repair or replace jamming valves"
+
+## Fault 3
+fault:
+  name: "Engine Ignites Irregularly, Some Cylinders Do Not Fire"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Uneven running"
+    - "Misfiring cylinders"
+    - "Possible increased vibration"
+    - "Reduced power output"
+  causes:
+    - name: "Injection System Issues"
+      probability: 0.8
+      checks:
+        - "Check injection pump control rack adjustment"
+        - "Inspect injection pumps for faults (sticking plunger or tappet, broken springs)"
+        - "Examine injection valves for defects or clogged nozzle holes"
+      actions:
+        - "Adjust injection pump control rack"
+        - "Repair or replace faulty injection pumps"
+        - "Clean or replace injection valves"
+    
+    - name: "Compression Problems"
+      probability: 0.7
+      checks:
+        - "Check for ruined piston rings"
+        - "Measure compression pressure"
+      actions:
+        - "Replace damaged piston rings"
+        - "Address causes of low compression"
+    
+    - name: "Valve and Fuel Supply Issues"
+      probability: 0.6
+      checks:
+        - "Inspect for jamming valves"
+        - "Check fuel supply adequacy"
+        - "Verify temperature conditions"
+      actions:
+        - "Fix jamming valves"
+        - "Ensure adequate fuel supply"
+        - "Address temperature-related issues"
+
+## Fault 4
+fault:
+  name: "Engine Speed Not Stable"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Fluctuating engine RPM"
+    - "Inconsistent power output"
+    - "Possible hunting"
+  causes:
+    - name: "Governor Issues"
+      probability: 0.8
+      checks:
+        - "Check governor adjustment (especially compensation setting)"
+        - "Verify governor response"
+      actions:
+        - "Adjust governor settings"
+        - "Repair or replace faulty governor"
+    
+    - name: "Fuel System Problems"
+      probability: 0.7
+      checks:
+        - "Inspect fuel control mechanism"
+        - "Check fuel feed pressure"
+        - "Look for water in preheated fuel (causing vapor lock in injection pumps)"
+      actions:
+        - "Fix jamming fuel control mechanism"
+        - "Correct fuel feed pressure"
+        - "Remove water from fuel system"
+    
+    - name: "External Control Issues"
+      probability: 0.5
+      checks:
+        - "Verify operation of loading automation outside engine"
+        - "Check controllable pitch propeller function if applicable"
+      actions:
+        - "Repair faulty loading automation"
+        - "Address propeller control issues"
+
+## Fault 5
+fault:
+  name: "Knocks or Detonations in Engine"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Abnormal knocking sounds"
+    - "Detonation noises"
+    - "Possible vibration increase"
+  causes:
+    - name: "Bearing Issues"
+      probability: 0.7
+      checks:
+        - "Check big end bearing clearance (look for loose screws)"
+        - "Inspect bearings for damage"
+      actions:
+        - "Tighten loose screws"
+        - "Replace damaged bearings"
+      warning: "If reason cannot be found immediately, stop the engine!"
+    
+    - name: "Valve Train Problems"
+      probability: 0.6
+      checks:
+        - "Check for broken valve springs"
+        - "Inspect for broken injection pump tappet springs"
+        - "Look for jamming inlet or exhaust valves"
+        - "Measure valve clearances"
+      actions:
+        - "Replace broken springs"
+        - "Fix jamming valves"
+        - "Adjust valve clearances"
+    
+    - name: "Cylinder Loading Issues"
+      probability: 0.5
+      checks:
+        - "Check for overloaded cylinders"
+        - "Inspect injection pump rack positions"
+      actions:
+        - "Adjust injection pump rack positions"
+        - "Balance load across cylinders"
+    
+    - name: "Mechanical Looseness"
+      probability: 0.6
+      checks:
+        - "Inspect injection pump/valve tappet guide block for looseness"
+        - "Check for initial phase of piston seizure"
+      actions:
+        - "Secure loose components"
+        - "Address piston seizure immediately if detected"
+    
+    - name: "Combustion Issues"
+      probability: 0.4
+      checks:
+        - "Check for insufficient preheating with low ignition quality fuel"
+        - "Verify fuel injection timing"
+      actions:
+        - "Ensure adequate preheating"
+        - "Correct fuel injection timing"
+
+## Fault 6
+fault:
+  name: "Dark Exhaust Gases"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Black smoke from exhaust"
+    - "Visible dark emissions"
+    - "Possible reduced engine performance"
+  causes:
+    - name: "Injection Timing Issues"
+      probability: 0.7
+      checks:
+        - "Check for late injection due to wrongly set camshaft drive"
+        - "Verify fuel injection timing"
+      actions:
+        - "Adjust camshaft drive setting"
+        - "Correct fuel injection timing"
+    
+    - name: "Injection System Problems"
+      probability: 0.8
+      checks:
+        - "Inspect injection pump control rack adjustment"
+        - "Check injection pumps and valves"
+      actions:
+        - "Adjust injection pump control rack"
+        - "Repair or replace faulty pumps or valves"
+    
+    - name: "Engine Overload"
+      probability: 0.6
+      checks:
+        - "Check the positions of the fuel injection pump racks"
+        - "Verify engine load against specifications"
+      actions:
+        - "Adjust injection pump racks"
+        - "Reduce engine load to specifications"
+    
+    - name: "Charge Air System Issues"
+      probability: 0.7
+      checks:
+        - "Check for clogged air intake"
+        - "Inspect turbocharger compressor for dirt"
+        - "Look for clogged charge air cooler on air side"
+        - "Examine turbocharger turbine for fouling"
+      actions:
+        - "Clean air intake"
+        - "Clean dirty turbocharger compressor"
+        - "Clean clogged charge air cooler"
+        - "Clean fouled turbocharger turbine"
+      note: "Engines starting on heavy fuel may smoke if left idling."
+
+## Fault 7
+fault:
+  name: "Water in Lubricating Oil"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Milky appearance of oil"
+    - "Water droplets in oil samples"
+    - "Possible emulsion in oil system"
+  causes:
+    - name: "Leaky Oil Cooler"
+      probability: 0.8
+      checks:
+        - "Pressure test oil cooler"
+        - "Inspect oil cooler for damage"
+      actions:
+        - "Repair or replace leaky oil cooler"
+        - "Check oil cooler connections"
+    
+    - name: "Cylinder Liner O-Ring Leakage"
+      probability: 0.7
+      checks:
+        - "Check for leakage at cylinder liner O-rings"
+        - "Perform pressure test of cooling water system"
+      actions:
+        - "Replace damaged O-rings"
+        - "Always pressure test cooling water system after draining or cylinder liner dismantling"
+    
+    - name: "Faulty Oil Separator"
+      probability: 0.3
+      checks:
+        - "Inspect lubricating oil separator function"
+        - "Refer to separator instruction book"
+      actions:
+        - "Repair or service faulty separator"
+        - "Follow maintenance procedures per manual"
+    
+    - name: "Cooling Connection Leakage"
+      probability: 0.5
+      checks:
+        - "Check for leakage at LT cooling connection between engine block and free end cover"
+      actions:
+        - "Repair leaking connections"
+        - "Replace damaged seals or gaskets"
+
+## Fault 8
+fault:
+  name: "Water in Charge Air Receiver"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Water escaping through drain pipe in air cooler housing"
+    - "Possible water entering cylinders"
+    - "Potential starting difficulties"
+  causes:
+    - name: "Leaky Air Cooler"
+      probability: 0.8
+      checks:
+        - "Inspect air cooler for leaks"
+        - "Pressure test air cooler if possible"
+      actions:
+        - "Repair or replace leaky air cooler"
+        - "Plug leaking tubes as emergency measure"
+    
+    - name: "Condensation Issues"
+      probability: 0.6
+      checks:
+        - "Check for too low charge air cooling water temperature"
+        - "Monitor ambient conditions"
+      actions:
+        - "Adjust charge air cooling water temperature"
+        - "Implement proper drainage system"
+    
+    - name: "Multiduct Leakage"
+      probability: 0.4
+      checks:
+        - "Inspect multiduct for leaks"
+      actions:
+        - "Repair leaking multiduct"
+        - "Replace damaged seals or gaskets"
+
+## Fault 9
+fault:
+  name: "Engine Loses Speed at Constant or Increased Load"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "RPM drops despite constant or increased load demand"
+    - "Engine unable to maintain speed"
+    - "Possible power loss"
+  causes:
+    - name: "Engine Overload"
+      probability: 0.8
+      checks:
+        - "Check if engine is overloaded beyond mechanical load limiter capacity"
+        - "Verify fuel injection pump rack positions"
+      actions:
+        - "Reduce engine load"
+        - "Adjust mechanical load limiter if appropriate"
+    
+    - name: "Fuel System Issues"
+      probability: 0.7
+      checks:
+        - "Inspect fuel control mechanism for jamming"
+        - "Check fuel system venting"
+        - "Examine fuel filters and supply"
+        - "Verify fuel feed pressure"
+      actions:
+        - "Fix jamming fuel control mechanisms"
+        - "Vent fuel system properly"
+        - "Clean or replace clogged filters"
+        - "Correct fuel feed pressure"
+    
+    - name: "Governor Problems"
+      probability: 0.6
+      checks:
+        - "Check for faulty governor or governor drive"
+      actions:
+        - "Repair or replace faulty governor"
+        - "Fix governor drive issues"
+
+## Fault 10
+fault:
+  name: "Engine Stops Unexpectedly"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Sudden engine shutdown"
+    - "Complete loss of power"
+    - "Possible warning alarms"
+  causes:
+    - name: "Fuel Supply Issues"
+      probability: 0.7
+      checks:
+        - "Check for shortage of fuel"
+        - "Inspect fuel filters and supply system"
+      actions:
+        - "Refill fuel tank"
+        - "Clean or replace clogged filters"
+        - "Repair fuel supply system"
+    
+    - name: "Safety System Activation"
+      probability: 0.8
+      checks:
+        - "Verify if overspeed trip device has tripped"
+        - "Check if automatic stop device has activated"
+      actions:
+        - "Identify cause of safety system activation"
+        - "Address underlying issue before resetting"
+        - "Reset safety systems once safe to do so"
+    
+    - name: "Governor Malfunction"
+      probability: 0.5
+      checks:
+        - "Inspect governor or governor drive for faults"
+      actions:
+        - "Repair or replace faulty governor"
+        - "Fix governor drive issues"
+
+## Fault 11
+fault:
+  name: "Engine Does Not Stop When Commanded"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine continues running when stop command given"
+    - "Failure to respond to stop lever or remote stop signal"
+  causes:
+    - name: "Injection Pump Control Rack Issues"
+      probability: 0.8
+      checks:
+        - "Check if injection pump control rack is wrongly set"
+      actions:
+        - "Trip the overspeed trip device manually"
+        - "Block fuel supply as near the engine as possible"
+        - "Locate and correct the fault before restarting"
+      warning: "Great risk of overspeed. Before restarting the engine, the fault must be located and corrected."
+    
+    - name: "Stop Automation Failure"
+      probability: 0.6
+      checks:
+        - "Test stop automation system"
+      actions:
+        - "Stop by means of stop lever if automation fails"
+        - "Repair faulty stop automation"
+    
+    - name: "External Drive Issues"
+      probability: 0.3
+      checks:
+        - "Check if engine is being driven by generator, propeller, or another engine connected to same reduction gear"
+      actions:
+        - "Address issues with connected equipment"
+        - "Isolate engine if necessary"
+
+## Fault 12
+fault:
+  name: "Engine Overspeeds and Does Not Stop"
+  subsystem: "auxiliary_engine"
+  symptoms:
+    - "Engine speed increases beyond control"
+    - "Overspeed trip device activates but engine continues running"
+    - "Dangerous operating condition"
+  causes:
+    - name: "Injection Pump Control Rack Issues"
+      probability: 0.9
+      checks:
+        - "Check if injection pump control rack is wrongly set"
+      actions:
+        - "Load the engine if possible"
+        - "Block fuel supply immediately"
+      warning: "An overspeeding engine is hard to stop. Regular checks of the control mechanism are essential."
+    
+    - name: "Control Mechanism Adjustment Problems"
+      probability: 0.7
+      checks:
+        - "Verify adjustment of control mechanism (injection pump rack positions)"
+        - "Check stop lever, overspeed trip device, and speed governor operation"
+      actions:
+        - "Regularly adjust and maintain control mechanism"
+        - "Perform control checks after any work on control mechanism or injection pumps"

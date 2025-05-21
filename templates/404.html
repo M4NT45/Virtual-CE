@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Engine Room Malfunction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a1929;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, #143d69 0%, #0a1929 70%);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: #ff4d4d;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .control-panel {
+            background-color: #1a2a3a;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+            max-width: 600px;
+        }
+
+        .control-panel-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ffcc00;
+            padding-bottom: 10px;
+        }
+
+        .gauge {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background-color: #0a1929;
+            border-radius: 50%;
+            margin: 10px;
+            position: relative;
+            border: 3px solid #2a3a4a;
+        }
+
+        .gauge:after {
+            content: "";
+            width: 40%;
+            height: 6px;
+            background-color: #ff4d4d;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            transform-origin: left center;
+        }
+
+        .gauge-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ffcc00;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #0a1929;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #ff4d4d;
+            transform: scale(1.05);
+        }
+
+        .diagnostic {
+            color: #aaa;
+            margin-top: 30px;
+            font-family: monospace;
+            text-align: left;
+            background-color: rgba(10, 25, 41, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 600px;
+        }
+
+        .blink {
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background-color: rgba(20, 61, 105, 0.3);
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200px;
+            bottom: -25px;
+            left: -50%;
+            border-radius: 100%;
+            background: rgba(30, 90, 150, 0.3);
+        }
+
+        .wave:nth-child(1) {
+            animation: wave 8s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            animation: wave 10s linear infinite;
+            bottom: -35px;
+            opacity: 0.8;
+        }
+
+        .wave:nth-child(3) {
+            animation: wave 12s linear infinite;
+            bottom: -45px;
+            opacity: 0.6;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(25%) scale(1.1); }
+            100% { transform: translateX(0) scale(1); }
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: rise 15s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            left: 10%;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 20px;
+            height: 20px;
+            left: 20%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            left: 35%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 50px;
+            height: 50px;
+            left: 50%;
+            animation-duration: 11s;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 25px;
+            height: 25px;
+            left: 65%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(6) {
+            width: 35px;
+            height: 35px;
+            left: 80%;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(7) {
+            width: 20px;
+            height: 20px;
+            left: 90%;
+            animation-duration: 12s;
+            animation-delay: 2s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <h1>404</h1>
+        <h2>Engine Room Malfunction!</h2>
+        
+        <div class="control-panel">
+            <div class="control-panel-header">
+                <span>FAULT DIAGNOSIS</span>
+                <span class="blink">CRITICAL ERROR</span>
+            </div>
+            
+            <p>The page you're looking for has drifted into uncharted waters or been swept overboard.</p>
+            
+            <div class="gauges">
+                <div class="gauge">
+                    <div class="gauge-label">HTTP PRESSURE</div>
+                </div>
+                <div class="gauge">
+                    <div class="gauge-label">URL TEMP</div>
+                </div>
+                <div class="gauge">
+                    <div class="gauge-label">PAGE FLOW</div>
+                </div>
+            </div>
+        </div>
+        
+        <p>Your Virtual Chief Engineer recommends returning to the bridge and plotting a new course.</p>
+        
+        <a href="/" class="back-button">Return to Home Port</a>
+        
+        <div class="diagnostic">
+            <p>DIAGNOSTIC REPORT:<br>
+            > HTTP status: 404<br>
+            > Page not found in navigation charts<br>
+            > Recommend checking URL for typos<br>
+            > Consider consulting site map<br>
+            > If problem persists, contact the ship's IT officer</p>
+        </div>
+    </div>
+    
+    <div class="waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+</body>
+</html>
