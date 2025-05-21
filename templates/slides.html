@@ -94,20 +94,20 @@
 
         h2 {
             font-size: 1.5em;
-            color: #1e3c72;
+            color: #cbd0d8;
             margin-bottom: 10px;
             text-align: center;
         }
 
         h3 {
             font-size: 1.1em;
-            color: #2a5298;
+            color: #ffffff;
             margin-bottom: 8px;
         }
 
         h4 {
             font-size: 0.95em;
-            color: #444;
+            color: #d67a7a;
             margin-bottom: 6px;
         }
 
@@ -358,14 +358,213 @@
             font-size: 0.8em;
         }
 
-        /* Title slide and thank you slide specific styles */
-        .title-slide .slide-content, .thank-you-slide .slide-content {
-            justify-content: center;
-            text-align: center;
+        /* Title slide specific styles */
+        .title-slide {
+            background: radial-gradient(ellipse at center, #1a1f3a 0%, #0a0e27 100%) !important;
+            color: white;
         }
 
-        .thank-you-slide .icon {
-            font-size: 2.5em;
+        .title-slide .slide-header {
+            background: none;
+            min-height: 0;
+            padding: 0;
+        }
+
+        .title-slide .slide-content {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Animated ocean background */
+        .ocean-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 150, 255, 0.1) 50%, transparent 100%);
+            animation: wave 20s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            animation-delay: -5s;
+            opacity: 0.5;
+        }
+
+        .wave:nth-child(3) {
+            animation-delay: -10s;
+            opacity: 0.3;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            100% { transform: translateX(0%) translateY(-10%) rotate(360deg); }
+        }
+
+        /* Enhanced title with gradient */
+        .main-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 50%, #0066ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(0, 150, 255, 0.8)); }
+        }
+
+        .title-subtitle {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: #a8b2d1;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        /* Tech badge */
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 150, 255, 0.1);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            border-radius: 30px;
+            padding: 10px 25px;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #00d4ff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Enhanced feature boxes */
+        .title-slide .feature-grid {
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            min-width: 280px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 150, 255, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-box:hover::before {
+            opacity: 1;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 150, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 150, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .feature-box:nth-child(2) .feature-icon {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            color: #8892b0;
+            line-height: 1.5;
+        }
+
+        /* Author info for title slide */
+        .title-author-info {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: #64748b;
+            z-index: 10;
+        }
+
+        .title-author-info p {
+            margin: 5px 0;
+        }
+
+        .title-author-info strong {
+            color: #a8b2d1;
+        }
+
+        /* Corner decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+        }
+
+        .corner-decoration.top-left {
+            top: -150px;
+            left: -150px;
+            background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: -150px;
+            right: -150px;
+            background: radial-gradient(circle, #0066ff 0%, transparent 70%);
         }
 
         @media (max-width: 768px) {
@@ -376,6 +575,14 @@
             .challenge-solution {
                 grid-template-columns: 1fr;
             }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .title-subtitle {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -385,32 +592,51 @@
     </div>
     
     <div class="slide-container" id="slideContainer">
-        <!-- Slide 1: Title Slide -->
+        <!-- Slide 1: Enhanced Title Slide -->
         <div class="slide title-slide active" id="slide-1">
-            <div class="slide-header">
-                <div>
-                    <h1>Virtual Chief Engineer</h1>
-                    <div class="subtitle">Web-Based Hybrid Fault Diagnosis Assistant for Marine Machinery</div>
-                </div>
+            <!-- Animated ocean background -->
+            <div class="ocean-bg">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
             </div>
+
+            <!-- Corner decorations -->
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+
+            <div class="slide-header"></div>
             <div class="slide-content">
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <span class="icon">🔧</span>
-                        <h4>Rule-Based Logic</h4>
-                        <p>Structured fault trees and decision rules</p>
-                    </div>
-                    <div class="feature-card">
-                        <span class="icon">🧠</span>
-                        <h4>Neural Intelligence</h4>
-                        <p>Semantic understanding with AI</p>
-                    </div>
+                <div class="tech-badge">
+                    <span>⚡</span>
+                    <span>AI-Powered Maritime Innovation</span>
+                    <span>⚡</span>
                 </div>
-                <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
-                    <p><strong>Developed by:</strong> [Your Name]</p>
-                    <p><strong>Institution:</strong> [Your Institution]</p>
+
+                <h1 class="main-title">Virtual Chief Engineer</h1>
+                <p class="title-subtitle">Web-Based Hybrid Fault Diagnosis Assistant for Marine Machinery</p>
+
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <span class="feature-icon">🔧</span>
+                        <h3 class="feature-title">Rule-Based Engine</h3>
+                        <p class="feature-desc">Structured fault trees and expert decision logic from real-world marine engineering</p>
+                    </div>
+                    <div class="feature-box">
+                        <span class="feature-icon">🧠</span>
+                        <h3 class="feature-title">Neural Intelligence</h3>
+                        <p class="feature-desc">Advanced semantic understanding powered by transformer-based AI models</p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Author information -->
+            <div class="title-author-info">
+                <p><strong>Developed by:</strong> Mantas Jucius</p>
+                <p><strong>Institution:</strong> CodeAcademy</p>
+                <p><strong>Date:</strong> 2025</p>
+            </div>
+
             <div class="slide-number">1</div>
         </div>
 
@@ -583,26 +809,6 @@ hybrid_engine = HybridEngine()
 @app.route('/api/diagnose', methods=['POST'])
 def diagnose():
     return jsonify(hybrid_engine.process(query))</div>
-
-                <h3>System Requirements</h3>
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <span class="stat-number">Python 3.8+</span>
-                        <div class="stat-label">Runtime</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4GB</span>
-                        <div class="stat-label">RAM Minimum</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">500MB</span>
-                        <div class="stat-label">Storage</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">MySQL 8.0+</span>
-                        <div class="stat-label">Database</div>
-                    </div>
-                </div>
             </div>
             <div class="slide-number">4</div>
         </div>
@@ -934,36 +1140,9 @@ if similarity > 0.3:
             <div class="slide-number">10</div>
         </div>
 
+
         <!-- Slide 11 -->
         <div class="slide" id="slide-11">
-            <div class="slide-header"><h2>Performance Metrics & Results</h2></div>
-            <div class="slide-content">
-                <h3>Key Performance Indicators</h3>
-                <div class="stats-row">
-                <div class="stat-item"><span class="stat-number">92%</span><div class="stat-label">Overall Accuracy</div></div>
-                <div class="stat-item"><span class="stat-number">1.8s</span><div class="stat-label">Average Response Time</div></div>
-                <div class="stat-item"><span class="stat-number">94%</span><div class="stat-label">Success with Clarification</div></div>
-                <div class="stat-item"><span class="stat-number">50+</span><div class="stat-label">Fault Cases</div></div>
-                </div>
-                <h3>User Feedback</h3>
-                <table class="comparison-table">
-                <tr><th>Metric</th><th>Score</th><th>Feedback</th></tr>
-                <tr><td>Ease of Use</td><td><strong>4.6/5.0</strong></td><td>"Intuitive interface, natural language works well"</td></tr>
-                <tr><td>Result Relevance</td><td><strong>4.4/5.0</strong></td><td>"Provides relevant diagnostics with actionable advice"</td></tr>
-                <tr><td>Response Speed</td><td><strong>4.7/5.0</strong></td><td>"Fast enough for real-time troubleshooting"</td></tr>
-                <tr><td>Interface Design</td><td><strong>4.8/5.0</strong></td><td>"Professional look, works well in engine room"</td></tr>
-                </table>
-                <h3>Technical Coverage</h3>
-                <div class="feature-grid">
-                <div class="feature-card"><span class="icon">⚙️</span><h4>Main Engine</h4><p>Temperature, pressure, and operational faults</p></div>
-                <div class="feature-card"><span class="icon">🔌</span><h4>Auxiliary Systems</h4><p>Generator and auxiliary engine diagnostics</p></div>
-                </div>
-            </div>
-            <div class="slide-number">11</div>
-        </div>
-
-        <!-- Slide 12 -->
-        <div class="slide" id="slide-12">
             <div class="slide-header"><h2>Real-World Applications & Impact</h2></div>
             <div class="slide-content">
                 <h3>Primary Use Cases</h3>
@@ -980,11 +1159,11 @@ if similarity > 0.3:
                 </div>
                 <div class="highlight-box"><h3>Real-World Success Story</h3><p style="font-style: italic;">"During a night watch, Engineer Chen noticed unusual exhaust smoke. Using the Virtual Chief Engineer, he quickly identified a potential fuel injection issue, preventing a major engine failure during critical cargo operations."</p></div>
             </div>
-            <div class="slide-number">12</div>
+            <div class="slide-number">11</div>
         </div>
 
-        <!-- Slide 13 -->
-        <div class="slide" id="slide-13">
+        <!-- Slide 12 -->
+        <div class="slide" id="slide-12">
             <div class="slide-header"><h2>Future Enhancements & Roadmap</h2></div>
             <div class="slide-content">
                 <h3>Development Timeline</h3>
@@ -1001,11 +1180,11 @@ if similarity > 0.3:
                 <div class="feature-card"><span class="icon">📊</span><h4>Digital Twin Integration</h4><p>Real-time system modeling for predictive maintenance</p></div>
                 </div>
             </div>
-            <div class="slide-number">13</div>
+            <div class="slide-number">12</div>
         </div>
 
-        <!-- Slide 14 -->
-        <div class="slide" id="slide-14">
+        <!-- Slide 13 -->
+        <div class="slide" id="slide-13">
             <div class="slide-header"><h2>Technical Implementation Details</h2></div>
             <div class="slide-content">
                 <h3>Database Architecture</h3>
@@ -1035,11 +1214,11 @@ nltk==3.9.1
 symspellpy==6.7.7
 PyMySQL==1.1.1</div>
             </div>
-            <div class="slide-number">14</div>
+            <div class="slide-number">13</div>
         </div>
 
-        <!-- Slide 15 -->
-        <div class="slide" id="slide-15">
+        <!-- Slide 14 -->
+        <div class="slide" id="slide-14">
             <div class="slide-header"><h2>Live Demo & System Showcase</h2></div>
             <div class="slide-content">
                 <h3>Demo Features</h3>
@@ -1065,11 +1244,11 @@ PyMySQL==1.1.1</div>
                 <div class="stat-item"><span class="stat-number">3</span><div class="stat-label">Causes Identified</div></div>
                 </div>
             </div>
-            <div class="slide-number">15</div>
+            <div class="slide-number">14</div>
         </div>
 
-        <!-- Slide 16 -->
-        <div class="slide" id="slide-16">
+        <!-- Slide 15 -->
+        <div class="slide" id="slide-15">
             <div class="slide-header"><h2>Lessons Learned & Best Practices</h2></div>
             <div class="slide-content">
                 <h3>What Worked Well</h3>
@@ -1084,11 +1263,11 @@ PyMySQL==1.1.1</div>
                 <h3>Key Success Factors</h3>
                 <ol><li><strong>Domain Expertise Integration:</strong> Close collaboration with marine engineers</li><li><strong>Iterative Development:</strong> Regular testing and feedback incorporation</li><li><strong>User-Centered Design:</strong> Interface designed for real-world usage</li><li><strong>Modular Architecture:</strong> Independent engine development and testing</li></ol>
             </div>
-            <div class="slide-number">16</div>
+            <div class="slide-number">15</div>
         </div>
 
-        <!-- Slide 17 -->
-        <div class="slide" id="slide-17">
+        <!-- Slide 16 -->
+        <div class="slide" id="slide-16">
             <div class="slide-header"><h2>Industry Impact & Innovation</h2></div>
             <div class="slide-content">
                 <h3>Technical Contributions</h3>
@@ -1106,11 +1285,11 @@ PyMySQL==1.1.1</div>
                 <h3>Adoption Strategy</h3>
                 <ol><li><strong>Pilot Programs:</strong> Selected shipping companies</li><li><strong>Academic Partnerships:</strong> Maritime universities and training centers</li><li><strong>Industry Integration:</strong> Standards bodies and classification societies</li><li><strong>Open Source Components:</strong> Community-driven enhancements</li></ol>
             </div>
-            <div class="slide-number">17</div>
+            <div class="slide-number">16</div>
         </div>
 
-        <!-- Slide 18 -->
-        <div class="slide" id="slide-18">
+        <!-- Slide 17 -->
+        <div class="slide" id="slide-17">
             <div class="slide-header"><h2>Project Conclusion & Impact</h2></div>
             <div class="slide-content">
                 <h3>Project Achievements Summary</h3>
@@ -1130,16 +1309,16 @@ PyMySQL==1.1.1</div>
                 <div class="stat-item"><span class="icon">🚀</span><div class="stat-label">Future Ready</div></div>
                 </div>
             </div>
-            <div class="slide-number">18</div>
+            <div class="slide-number">17</div>
         </div>
 
-        <!-- Slide 19 -->
-        <div class="slide thank-you-slide" id="slide-19">
+        <!-- Slide 18 -->
+        <div class="slide thank-you-slide" id="slide-18">
             <div class="slide-header"><h2>Thank You</h2></div>
             <div class="slide-content">
                 <div style="margin-bottom: 25px;"><span class="icon">⚓</span><h3 style="font-size: 2em; margin: 20px 0;">Virtual Chief Engineer</h3><p style="font-size: 1.2em; color: #666;">Revolutionizing Maritime Fault Diagnosis</p></div>
                 <div class="highlight-box"><h3>Questions & Discussion</h3><p>Ready to demonstrate the live system and discuss technical implementation details</p></div>
-                <div style="margin-top: 25px; font-size: 1em; color: #666;"><p><strong>Developed by:</strong> [Your Name]</p><p><strong>Institution:</strong> [Your Institution]</p><p><strong>Contact:</strong> [Your Email]</p></div>
+                <div style="margin-top: 25px; font-size: 1em; color: #666;"><p><strong>Developed by:</strong> Mantas Jucius</p><p><strong>Institution:</strong> CodeAcademy</p></div>
                 <div class="stats-row" style="margin-top: 20px;">
                 <div class="stat-item"><span class="icon">🏆</span><div class="stat-label">Technical Achievement</div></div>
                 <div class="stat-item"><span class="icon">🚢</span><div class="stat-label">Maritime Innovation</div></div>
@@ -1147,11 +1326,11 @@ PyMySQL==1.1.1</div>
                 <div class="stat-item"><span class="icon">🌊</span><div class="stat-label">Industry Impact</div></div>
                 </div>
             </div>
-            <div class="slide-number">19</div>
+            <div class="slide-number">18</div>
         </div>
     </div>
     
-    <div class="slide-counter" id="slideCounter">Slide 1 / 19</div>
+    <div class="slide-counter" id="slideCounter">Slide 1 / 18</div>
     <button class="fullscreen-btn" id="fullscreenBtn">Fullscreen</button>
     
     <div class="controls">

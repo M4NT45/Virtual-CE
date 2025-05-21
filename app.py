@@ -97,7 +97,6 @@ def diagnose():
 
 @app.route('/api/reset_conversation', methods=['POST'])
 def reset_conversation():
-    """Reset the conversation state (for testing or when user wants to start over)"""
     session['conversation_state'] = {
         "awaiting_clarification": None,
         "original_query": None,
