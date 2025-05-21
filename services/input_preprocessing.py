@@ -163,7 +163,6 @@ def add_missing_context(processed_query, conversation_state=None):
     Returns enhanced query or clarification request.
     """
     
-    # Define term categories
     ENGINE_TERMS = ['main', 'auxiliary', 'aux', 'generator', 'gen', 'me', 'ae', 'dg']
     
     COMPONENT_TERMS = ['temperature', 'pressure', 'vibration', 'smoke', 'noise', 
@@ -178,7 +177,6 @@ def add_missing_context(processed_query, conversation_state=None):
                    'something', 'it', 'that', 'not good', 'acting up', 'broken', 'damaged',
                    'kaput', 'failed', 'failure', 'dead', 'gone', 'finished', 'malfunctioning']
     
-    # Helper function to extract engine type
     def get_engine_type(text):
         text_lower = text.lower()
         if 'main' in text_lower or 'me' in text_lower:
@@ -186,11 +184,9 @@ def add_missing_context(processed_query, conversation_state=None):
         elif any(term in text_lower for term in ['auxiliary', 'aux', 'ae', 'generator', 'gen', 'dg']):
             return "auxiliary engine"
         elif 'engine' in text_lower:
-            # Generic "engine" without specification
             return "unspecified"
         return None
     
-    # Helper function to check what information we have
     def analyze_query(text):
         text_lower = text.lower()
         return {
@@ -202,19 +198,15 @@ def add_missing_context(processed_query, conversation_state=None):
             'engine_type': get_engine_type(text)
         }
     
-    # STEP 1: Handle ongoing clarification conversations
     if conversation_state and conversation_state.get('awaiting_clarification'):
         
-        # Waiting for ENGINE clarification
         if conversation_state['awaiting_clarification'] == 'engine':
-            engine_type = get_engine_type(processed_query) or "main engine"  # Default to main
+            engine_type = get_engine_type(processed_query) or "main engine" 
             original_query = conversation_state.get('original_query', '')
             
-            # Check if we still need component/problem info
             original_analysis = analyze_query(original_query)
             
             if original_analysis['is_vague'] or (not original_analysis['has_component'] and not original_analysis['has_problem']):
-                # Need component clarification next
                 return {
                     "enhanced_query": None,
                     "needs_clarification": True,
@@ -224,22 +216,18 @@ def add_missing_context(processed_query, conversation_state=None):
                     "clarified_engine": engine_type
                 }
             else:
-                # We have enough info
                 return {
                     "enhanced_query": f"{engine_type} {original_query}",
                     "needs_clarification": False,
                     "awaiting_clarification": None
                 }
         
-        # Waiting for COMPONENT clarification
         elif conversation_state['awaiting_clarification'] == 'component':
             clarified_engine = conversation_state.get('clarified_engine', 'engine')
             original_query = conversation_state.get('original_query', '')
             
-            # Build enhanced query from the response
             component_info = processed_query
             
-            # Check if response is still vague
             if analyze_query(component_info)['is_vague'] and not analyze_query(component_info)['has_component']:
                 # Ask for more specific info
                 return {
@@ -259,22 +247,18 @@ def add_missing_context(processed_query, conversation_state=None):
                     "awaiting_clarification": None
                 }
         
-        # Waiting for PROBLEM clarification
         elif conversation_state['awaiting_clarification'] == 'problem':
             clarified_engine = conversation_state.get('clarified_engine', 'engine')
             clarified_component = conversation_state.get('clarified_component', '')
-            
-            # Build final enhanced query
+
             return {
                 "enhanced_query": f"{clarified_engine} {clarified_component} {processed_query}",
                 "needs_clarification": False,
                 "awaiting_clarification": None
             }
     
-    # STEP 2: Analyze new queries
     analysis = analyze_query(processed_query)
     
-    # Case 1: Very vague query (just "problem", "issue", etc.)
     if analysis['is_vague'] and not analysis['has_engine'] and not analysis['has_component']:
         return {
             "enhanced_query": None,
@@ -284,7 +268,6 @@ def add_missing_context(processed_query, conversation_state=None):
             "original_query": processed_query
         }
     
-    # Case 2: Has generic "engine" without specification
     elif analysis['engine_type'] == "unspecified":
         return {
             "enhanced_query": None,
@@ -294,7 +277,6 @@ def add_missing_context(processed_query, conversation_state=None):
             "original_query": processed_query
         }
     
-    # Case 3: Has component/problem but no engine
     elif (analysis['has_component'] or analysis['has_problem'] or analysis['has_action']) and not analysis['has_engine']:
         return {
             "enhanced_query": None,
@@ -304,7 +286,6 @@ def add_missing_context(processed_query, conversation_state=None):
             "original_query": processed_query
         }
     
-    # Case 3: Has engine but query is vague
     elif analysis['has_engine'] and analysis['is_vague'] and not analysis['has_component'] and not analysis['has_problem']:
         return {
             "enhanced_query": None,
@@ -315,16 +296,13 @@ def add_missing_context(processed_query, conversation_state=None):
             "clarified_engine": analysis['engine_type']
         }
     
-    # Case 4: Has engine and action but no specific problem
     elif analysis['has_engine'] and analysis['has_action'] and not analysis['has_problem']:
-        # "Main engine not starting" is complete enough
         return {
             "enhanced_query": processed_query,
             "needs_clarification": False,
             "awaiting_clarification": None
         }
     
-    # Case 5: Query has enough information
     else:
         return {
             "enhanced_query": processed_query,
