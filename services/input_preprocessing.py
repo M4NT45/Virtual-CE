@@ -156,125 +156,182 @@ def preprocess_user_query(query):
     
     return processed_query, text
 
+
 def add_missing_context(processed_query, conversation_state=None):
-
-    component_terms = ['temperature', 'pressure', 'vibration', 'leak', 'noise', 'alarm', 
-                      'smoke', 'start', 'power', 'speed', 'rpm', 'fuel', 'oil', 'water',
-                      'coolant', 'exhaust', 'filter', 'pump', 'valve', 'injector', 'bearing',
-                      'turbocharger', 'cooling', 'lubrication', 'electrical', 'ignition']
+    """
+    Analyze query and determine if clarification is needed for engine, component, or problem type.
+    Returns enhanced query or clarification request.
+    """
     
-    engine_terms = ['main', 'auxiliary', 'aux', 'generator', 'gen']
+    # Define term categories
+    ENGINE_TERMS = ['main', 'auxiliary', 'aux', 'generator', 'gen', 'me', 'ae', 'dg']
     
-    problem_indicators = ['wrong', 'issue', 'problem', 'fault', 'error', 'trouble', 'fail', 
-                         'not work', 'broken', 'malfunction', 'not run', 'stop', 'high', 'low',
-                         'bad', 'strange', 'unusual', 'excessive', 'insufficient', 'poor', 'stuck',
-                         'leaking', 'overheating', 'running hot', 'won\'t start', 'stalls', 
-                         'rough', 'noisy', 'vibrating', 'smoking', 'alarm', 'warning', 'emergency',
-                         'shutdown', 'tripped', 'irregular', 'intermittent', 'erratic', 'damaged',
-                         'worn', 'burning', 'smell', 'knocking', 'rattling', 'grinding', 'loud']
+    COMPONENT_TERMS = ['temperature', 'pressure', 'vibration', 'smoke', 'noise', 
+                       'cooling', 'fuel', 'oil', 'turbocharger', 'exhaust', 'bearing']
     
-    has_component = any(term in processed_query for term in component_terms)
-    has_engine = any(term in processed_query for term in engine_terms)
-    has_problem = any(term in processed_query for term in problem_indicators)
+    PROBLEM_TERMS = ['high', 'low', 'excessive', 'insufficient', 'abnormal', 'unusual',
+                     'leak', 'leaking', 'hot', 'cold', 'loud', 'rough', 'black', 'white', 'blue']
     
-    def extract_engine_type(query):
-        if "main" in query:
+    ACTION_TERMS = ['start', 'starting', 'stop', 'stopping', 'run', 'running', 'work', 'working']
+    
+    VAGUE_TERMS = ['problem', 'issue', 'trouble', 'fault', 'wrong', 'bad', 'strange', 
+                   'something', 'it', 'that', 'not good', 'acting up', 'broken', 'damaged',
+                   'kaput', 'failed', 'failure', 'dead', 'gone', 'finished', 'malfunctioning']
+    
+    # Helper function to extract engine type
+    def get_engine_type(text):
+        text_lower = text.lower()
+        if 'main' in text_lower or 'me' in text_lower:
             return "main engine"
-        elif any(term in query for term in ['auxiliary', 'aux', 'generator', 'gen']):
+        elif any(term in text_lower for term in ['auxiliary', 'aux', 'ae', 'generator', 'gen', 'dg']):
             return "auxiliary engine"
-        else:
-            return "main engine" 
-
-    if conversation_state and conversation_state.get('awaiting_clarification') == 'engine':
+        elif 'engine' in text_lower:
+            # Generic "engine" without specification
+            return "unspecified"
+        return None
+    
+    # Helper function to check what information we have
+    def analyze_query(text):
+        text_lower = text.lower()
+        return {
+            'has_engine': any(term in text_lower for term in ENGINE_TERMS),
+            'has_component': any(term in text_lower for term in COMPONENT_TERMS),
+            'has_problem': any(term in text_lower for term in PROBLEM_TERMS),
+            'has_action': any(term in text_lower for term in ACTION_TERMS),
+            'is_vague': any(term in text_lower for term in VAGUE_TERMS),
+            'engine_type': get_engine_type(text)
+        }
+    
+    # STEP 1: Handle ongoing clarification conversations
+    if conversation_state and conversation_state.get('awaiting_clarification'):
         
-        engine_response = processed_query.lower()
-
-        clarified_engine = extract_engine_type(engine_response)
-        
-        original_query = conversation_state.get('original_query', '')
-        
-        if has_problem or any(term in original_query for term in problem_indicators):
-            if not has_component and not any(term in original_query for term in component_terms):
+        # Waiting for ENGINE clarification
+        if conversation_state['awaiting_clarification'] == 'engine':
+            engine_type = get_engine_type(processed_query) or "main engine"  # Default to main
+            original_query = conversation_state.get('original_query', '')
+            
+            # Check if we still need component/problem info
+            original_analysis = analyze_query(original_query)
+            
+            if original_analysis['is_vague'] or (not original_analysis['has_component'] and not original_analysis['has_problem']):
+                # Need component clarification next
                 return {
                     "enhanced_query": None,
                     "needs_clarification": True,
                     "awaiting_clarification": "component",
-                    "clarification_message": f"What specific issue are you observing with the {clarified_engine}? (temperature, pressure, noise, not starting, etc.)",
-                    "original_query": clarified_engine + " " + original_query,
-                    "clarified_engine": clarified_engine
+                    "clarification_message": f"What specific issue are you experiencing with the {engine_type}?",
+                    "original_query": original_query,
+                    "clarified_engine": engine_type
+                }
+            else:
+                # We have enough info
+                return {
+                    "enhanced_query": f"{engine_type} {original_query}",
+                    "needs_clarification": False,
+                    "awaiting_clarification": None
                 }
         
-
-        enhanced_query = clarified_engine + " " + original_query
-        return {
-            "enhanced_query": enhanced_query,
-            "needs_clarification": False,
-            "awaiting_clarification": None,
-            "original_query": None,
-            "clarified_engine": clarified_engine 
-        }
-    
-    if conversation_state and conversation_state.get('awaiting_clarification') == 'component':
-        component_response = processed_query.lower()
-        clarified_engine = conversation_state.get('clarified_engine', 'engine')
-        
-        mentioned_components = []
-        for component in component_terms:
-            if component in component_response:
-                mentioned_components.append(component)
-        
-        if mentioned_components:
-            primary_component = mentioned_components[0]
-            enhanced_query = clarified_engine + " " + primary_component + " issue"
-            if len(mentioned_components) > 1:
-                enhanced_query += " with " + " and ".join(mentioned_components[1:])
-        else:
-            if "not" in component_response or "won't" in component_response or "doesn't" in component_response:
-                enhanced_query = clarified_engine + " not functioning properly"
+        # Waiting for COMPONENT clarification
+        elif conversation_state['awaiting_clarification'] == 'component':
+            clarified_engine = conversation_state.get('clarified_engine', 'engine')
+            original_query = conversation_state.get('original_query', '')
+            
+            # Build enhanced query from the response
+            component_info = processed_query
+            
+            # Check if response is still vague
+            if analyze_query(component_info)['is_vague'] and not analyze_query(component_info)['has_component']:
+                # Ask for more specific info
+                return {
+                    "enhanced_query": None,
+                    "needs_clarification": True,
+                    "awaiting_clarification": "problem",
+                    "clarification_message": "Please be more specific. Is it related to temperature, pressure, noise, starting issues, or something else?",
+                    "original_query": original_query,
+                    "clarified_engine": clarified_engine,
+                    "clarified_component": component_info
+                }
             else:
-                for indicator in problem_indicators:
-                    if indicator in component_response:
-                        enhanced_query = clarified_engine + " " + indicator + " issue"
-                        break
-                else:
-                    enhanced_query = clarified_engine + " operational issue"
+                # Construct final query
+                return {
+                    "enhanced_query": f"{clarified_engine} {component_info}",
+                    "needs_clarification": False,
+                    "awaiting_clarification": None
+                }
         
-        return {
-            "enhanced_query": enhanced_query,
-            "needs_clarification": False,
-            "awaiting_clarification": None,
-            "original_query": None
-        }
+        # Waiting for PROBLEM clarification
+        elif conversation_state['awaiting_clarification'] == 'problem':
+            clarified_engine = conversation_state.get('clarified_engine', 'engine')
+            clarified_component = conversation_state.get('clarified_component', '')
+            
+            # Build final enhanced query
+            return {
+                "enhanced_query": f"{clarified_engine} {clarified_component} {processed_query}",
+                "needs_clarification": False,
+                "awaiting_clarification": None
+            }
     
-    if has_component and not has_engine:
+    # STEP 2: Analyze new queries
+    analysis = analyze_query(processed_query)
+    
+    # Case 1: Very vague query (just "problem", "issue", etc.)
+    if analysis['is_vague'] and not analysis['has_engine'] and not analysis['has_component']:
         return {
             "enhanced_query": None,
             "needs_clarification": True,
             "awaiting_clarification": "engine",
-            "clarification_message": "Which engine are you referring to? (Main Engine, Auxiliary Engine, Generator)",
+            "clarification_message": "I need more information. Which engine are you referring to?",
             "original_query": processed_query
         }
     
-    elif has_engine and has_problem and not has_component:
-        engine_type = extract_engine_type(processed_query)
-        
+    # Case 2: Has generic "engine" without specification
+    elif analysis['engine_type'] == "unspecified":
+        return {
+            "enhanced_query": None,
+            "needs_clarification": True,
+            "awaiting_clarification": "engine",
+            "clarification_message": "Which engine are you referring to? (Main Engine or Auxiliary Engine)",
+            "original_query": processed_query
+        }
+    
+    # Case 3: Has component/problem but no engine
+    elif (analysis['has_component'] or analysis['has_problem'] or analysis['has_action']) and not analysis['has_engine']:
+        return {
+            "enhanced_query": None,
+            "needs_clarification": True,
+            "awaiting_clarification": "engine",
+            "clarification_message": "Which engine are you referring to? (Main Engine or Auxiliary Engine)",
+            "original_query": processed_query
+        }
+    
+    # Case 3: Has engine but query is vague
+    elif analysis['has_engine'] and analysis['is_vague'] and not analysis['has_component'] and not analysis['has_problem']:
         return {
             "enhanced_query": None,
             "needs_clarification": True,
             "awaiting_clarification": "component",
-            "clarification_message": f"What specific issue are you observing with the {engine_type}? (temperature, pressure, noise, not starting, etc.)",
+            "clarification_message": f"What specific issue are you experiencing with the {analysis['engine_type']}?",
             "original_query": processed_query,
-            "clarified_engine": engine_type
+            "clarified_engine": analysis['engine_type']
         }
     
+    # Case 4: Has engine and action but no specific problem
+    elif analysis['has_engine'] and analysis['has_action'] and not analysis['has_problem']:
+        # "Main engine not starting" is complete enough
+        return {
+            "enhanced_query": processed_query,
+            "needs_clarification": False,
+            "awaiting_clarification": None
+        }
+    
+    # Case 5: Query has enough information
     else:
         return {
             "enhanced_query": processed_query,
             "needs_clarification": False,
-            "awaiting_clarification": None,
-            "original_query": None
+            "awaiting_clarification": None
         }
-
+        
 def process_query(user_query, conversation_state=None):
 
     processed_query, normalized_query = preprocess_user_query(user_query)

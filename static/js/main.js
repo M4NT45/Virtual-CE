@@ -4,6 +4,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatHistory = document.getElementById('chat-history');
     const engineSelect = document.getElementById('engine-type');
     
+    // Auto-resize textarea functionality
+    function autoResizeTextarea() {
+        // Reset height to auto to get the correct scrollHeight
+        this.style.height = 'auto';
+        
+        // Set the height to the scrollHeight, but limit it between min and max
+        const minHeight = 40;
+        const maxHeight = 200;
+        const newHeight = Math.min(Math.max(this.scrollHeight, minHeight), maxHeight);
+        this.style.height = newHeight + 'px';
+    }
+
+    // Add event listeners for auto-resize
+    queryInput.addEventListener('input', autoResizeTextarea);
+    queryInput.addEventListener('change', autoResizeTextarea);
+    queryInput.addEventListener('cut', function() {
+        setTimeout(autoResizeTextarea.bind(this), 0);
+    });
+    queryInput.addEventListener('paste', function() {
+        setTimeout(autoResizeTextarea.bind(this), 0);
+    });
+
+    // Initial resize in case there's default text
+    autoResizeTextarea.call(queryInput);
+    
     // Update tooltip text based on selected engine
     engineSelect.addEventListener('change', function() {
         const engineTooltip = document.querySelector('.engine-tooltip');
@@ -27,8 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add user message to chat
         addMessage('user', userQuery);
         
-        // Clear input
+        // Clear input and reset height
         queryInput.value = '';
+        queryInput.style.height = '40px'; // Reset to minimum height
         
         // Get selected engine
         const selectedEngine = engineSelect.value;
@@ -100,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     justify-content: center;
                     gap: 15px;
                     margin: 15px 0;
+                    flex-wrap: wrap;
                 }
                 
                 .dark-engine-btn {
@@ -122,6 +149,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 .dark-engine-btn.selected {
                     background-color: #3d56b2;
                 }
+                
+                .custom-clarification {
+                    margin-top: 15px;
+                    text-align: center;
+                }
+                
+                .custom-clarification input {
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    border: 1px solid #4a4a6b;
+                    background-color: #34344a;
+                    color: #e6e6e6;
+                    margin-right: 10px;
+                    width: 300px;
+                    max-width: 60%;
+                }
+                
+                .custom-clarification button {
+                    min-width: 80px;
+                }
             `;
             document.head.appendChild(darkThemeStyles);
         }
@@ -138,21 +185,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button class="dark-engine-btn" data-value="Auxiliary Engine">Auxiliary Engine</button>
                     </div>
                 </div>`;
-        } else if (awaiting === 'component') {
+        } else if (awaiting === 'component' || awaiting === 'problem') {
             clarificationHtml = `
-                <div class="clarification-request">
+                <div class="dark-clarification-container">
                     <p>${message}</p>
-                    <div class="clarification-options component-options">
-                        <button class="clarification-btn" data-value="Temperature">Temperature</button>
-                        <button class="clarification-btn" data-value="Pressure">Pressure</button>
-                        <button class="clarification-btn" data-value="Vibration">Vibration</button>
-                        <button class="clarification-btn" data-value="Noise">Noise</button>
-                        <button class="clarification-btn" data-value="Not starting">Not Starting</button>
-                        <button class="clarification-btn" data-value="Leak">Leak</button>
+                    <div class="dark-engine-options">
+                        <button class="dark-engine-btn" data-value="Temperature">Temperature</button>
+                        <button class="dark-engine-btn" data-value="Pressure">Pressure</button>
+                        <button class="dark-engine-btn" data-value="Vibration">Vibration</button>
+                        <button class="dark-engine-btn" data-value="Noise">Noise</button>
+                        <button class="dark-engine-btn" data-value="Not starting">Not Starting</button>
+                        <button class="dark-engine-btn" data-value="Leak">Leak</button>
                     </div>
                     <div class="custom-clarification">
-                        <input type="text" id="custom-clarification" placeholder="Or type your response...">
-                        <button id="submit-custom-clarification">Submit</button>
+                        <input type="text" id="custom-clarification" placeholder="Or type your specific issue...">
+                        <button id="submit-custom-clarification" class="dark-engine-btn">Submit</button>
                     </div>
                 </div>`;
         }
@@ -161,12 +208,25 @@ document.addEventListener('DOMContentLoaded', function() {
         addMessage('assistant', clarificationHtml);
         
         // Add event listeners to clarification buttons
-        if (awaiting === 'engine') {
+        setTimeout(() => {
             document.querySelectorAll('.dark-engine-btn').forEach(button => {
+                // Skip the submit button
+                if (button.id === 'submit-custom-clarification') {
+                    button.addEventListener('click', function() {
+                        const customValue = document.getElementById('custom-clarification').value.trim();
+                        if (customValue) {
+                            submitClarification(customValue, selectedEngine);
+                        }
+                    });
+                    return;
+                }
+                
                 button.addEventListener('click', function() {
                     // Add selected class to the clicked button
                     document.querySelectorAll('.dark-engine-btn').forEach(btn => {
-                        btn.classList.remove('selected');
+                        if (btn.id !== 'submit-custom-clarification') {
+                            btn.classList.remove('selected');
+                        }
                     });
                     this.classList.add('selected');
                     
@@ -178,32 +238,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 300);
                 });
             });
-        } else {
-            document.querySelectorAll('.clarification-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const clarificationValue = this.getAttribute('data-value');
-                    submitClarification(clarificationValue, selectedEngine);
-                });
-            });
             
-            // Add event listener to custom clarification button
-            document.getElementById('submit-custom-clarification').addEventListener('click', function() {
-                const customValue = document.getElementById('custom-clarification').value.trim();
-                if (customValue) {
-                    submitClarification(customValue, selectedEngine);
-                }
-            });
-            
-            // Also allow Enter key in the custom input
-            document.getElementById('custom-clarification').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const customValue = this.value.trim();
-                    if (customValue) {
-                        submitClarification(customValue, selectedEngine);
+            // Add event listener for Enter key in custom input
+            const customInput = document.getElementById('custom-clarification');
+            if (customInput) {
+                customInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const customValue = this.value.trim();
+                        if (customValue) {
+                            submitClarification(customValue, selectedEngine);
+                        }
                     }
-                }
-            });
-        }
+                });
+                // Focus on custom input for better UX
+                customInput.focus();
+            }
+        }, 100);
     }
     
     // Submit clarification response
@@ -306,12 +356,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (bestMatch && bestMatch.causes && bestMatch.causes.length > 0) {
+            // Sort causes by probability in descending order (highest probability first)
+            const sortedCauses = [...bestMatch.causes].sort((a, b) => b.probability - a.probability);
+            
             html += '<p>Potential causes (ranked by probability):</p><ol>';
-            bestMatch.causes.forEach(cause => {
+            sortedCauses.forEach((cause, index) => {
                 const percentage = Math.round(cause.probability * 100);
+                // Add priority class based on probability
+                const priorityClass = percentage >= 80 ? 'high-priority' : 
+                                     percentage >= 50 ? 'medium-priority' : 'low-priority';
+                
                 html += `
                     <li>
-                        <div class="cause">
+                        <div class="cause ${priorityClass}">
                             <h4>${cause.name} <span class="probability">${percentage}%</span></h4>
                             <div class="cause-details">
                                 <div class="checks">
@@ -338,24 +395,41 @@ document.addEventListener('DOMContentLoaded', function() {
         return html;
     }
     
-    // Add a reset conversation button (optional)
+    // Create and add reset conversation button
     const resetButton = document.createElement('button');
     resetButton.textContent = 'Reset Conversation';
     resetButton.className = 'reset-button';
     resetButton.addEventListener('click', function() {
-        fetch('/api/reset_conversation', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-        })
-        .then(response => response.json())
-        .then(() => {
-            // Clear chat history
-            chatHistory.innerHTML = '';
-            addMessage('assistant', 'Conversation has been reset. How can I help you with marine machinery diagnosis?');
-        });
+        if (confirm('Are you sure you want to reset the conversation?')) {
+            fetch('/api/reset_conversation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(() => {
+                // Clear chat history
+                chatHistory.innerHTML = '';
+                addMessage('assistant', 'Conversation has been reset. How can I help you with marine machinery diagnosis?');
+                // Reset textarea height
+                queryInput.style.height = '40px';
+                queryInput.focus();
+            })
+            .catch(error => {
+                console.error('Error resetting conversation:', error);
+                addMessage('assistant', 'Sorry, I couldn\'t reset the conversation. Please try again.');
+            });
+        }
     });
-    document.querySelector('.chat-container').appendChild(resetButton);
+    
+    // Append reset button to body for fixed positioning
+    document.body.appendChild(resetButton);
+    
+    // Add initial welcome message
+    addMessage('assistant', 'Welcome to Virtual Chief Engineer! I can help you diagnose marine machinery issues. Please describe the problem you\'re experiencing.');
+    
+    // Focus on input field
+    queryInput.focus();
 });

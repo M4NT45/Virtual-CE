@@ -85,7 +85,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    padding-bottom: 1rem;
+    padding-bottom: 80px; /* Updated: Add space for fixed reset button */
 }
 
 /* Message styles */
@@ -167,6 +167,7 @@ main {
 
 #query-form {
     display: flex;
+    align-items: flex-end; /* Updated: Align items to bottom */
     gap: 0.8rem;
     background-color: var(--bg-secondary);
     padding: 0.8rem;
@@ -184,6 +185,12 @@ main {
     resize: none;
     outline: none;
     padding: 0.5rem;
+    /* Updated: Auto-resize properties */
+    min-height: 40px;
+    max-height: 200px;
+    overflow-y: auto;
+    line-height: 1.5;
+    transition: height 0.1s ease;
 }
 
 #query::placeholder {
@@ -204,6 +211,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 #submit-btn:hover {
@@ -444,19 +452,67 @@ footer {
     opacity: 0.8;
 }
 
+/* Updated: Fixed reset button styling */
 .reset-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #e53e3e;
+    position: fixed; /* Changed from absolute to fixed */
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--error-color); /* Using your error color variable */
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 6px 12px;
+    border-radius: 25px; /* More rounded */
+    padding: 12px 20px; /* Larger padding */
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.8;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000; /* Ensure it stays above other content */
 }
 
 .reset-button:hover {
     opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.reset-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Typing indicator styles */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+}
+
+.typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-secondary);
+    animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
 }
